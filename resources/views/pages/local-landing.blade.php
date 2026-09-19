@@ -327,8 +327,7 @@
                     <div>
                         <h4 class="text-lg font-bold text-slate-900">Program Tukar Tambah Aki Bekas (Trade-In Extra Hemat)</h4>
                         <p class="text-sm text-slate-700 mt-1 max-w-2xl">
-                            Jangan buang aki lama Anda! Tukar aki mati/soak Anda saat teknisi tiba untuk potongan harga langsung sebesar 
-                            <strong class="text-amber-800">Rp 50.000 hingga Rp 250.000</strong> per unit.
+                            Jangan buang aki lama Anda! Tukarkan aki mati/soak saat teknisi tiba dan dapatkan potongan harga khusus untuk pembelian aki baru. Nilai tukar tambah menyesuaikan jenis dan kondisi aki bekas.
                         </p>
                     </div>
                 </div>
