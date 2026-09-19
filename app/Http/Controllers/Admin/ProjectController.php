@@ -31,14 +31,27 @@ class ProjectController extends Controller
             'image' => 'nullable|image|max:2048',
         ]);
 
-        $validated['slug'] = \Illuminate\Support\Str::slug($request->title);
+        $slug = \Illuminate\Support\Str::slug($request->title);
+
+        if (\App\Models\Project::where('slug', $slug)->exists()) {
+            return back()->withInput()->withErrors(['title' => 'Slug/judul proyek sudah digunakan. Silakan gunakan judul proyek yang berbeda.']);
+        }
+
+        $validated['slug'] = $slug;
         $validated['is_published'] = $request->has('is_published');
 
         if ($request->hasFile('image')) {
             $validated['image'] = $request->file('image')->store('projects', 'public');
         }
 
-        \App\Models\Project::create($validated);
+        try {
+            \App\Models\Project::create($validated);
+        } catch (\Illuminate\Database\UniqueConstraintViolationException $e) {
+            if ($request->hasFile('image') && isset($validated['image'])) {
+                \Illuminate\Support\Facades\Storage::disk('public')->delete($validated['image']);
+            }
+            return back()->withInput()->withErrors(['title' => 'Slug/judul proyek sudah digunakan. Silakan gunakan judul proyek yang berbeda.']);
+        }
 
         return redirect()->route('admin.projects.index')->with('success', 'Proyek berhasil ditambahkan!');
     }
@@ -66,7 +79,13 @@ class ProjectController extends Controller
             'image' => 'nullable|image|max:2048',
         ]);
 
-        $validated['slug'] = \Illuminate\Support\Str::slug($request->title);
+        $slug = \Illuminate\Support\Str::slug($request->title);
+
+        if (\App\Models\Project::where('slug', $slug)->where('id', '!=', $project->id)->exists()) {
+            return back()->withInput()->withErrors(['title' => 'Slug/judul proyek sudah digunakan. Silakan gunakan judul proyek yang berbeda.']);
+        }
+
+        $validated['slug'] = $slug;
         $validated['is_published'] = $request->has('is_published');
 
         if ($request->hasFile('image')) {
@@ -76,7 +95,11 @@ class ProjectController extends Controller
             $validated['image'] = $request->file('image')->store('projects', 'public');
         }
 
-        $project->update($validated);
+        try {
+            $project->update($validated);
+        } catch (\Illuminate\Database\UniqueConstraintViolationException $e) {
+            return back()->withInput()->withErrors(['title' => 'Slug/judul proyek sudah digunakan. Silakan gunakan judul proyek yang berbeda.']);
+        }
 
         return redirect()->route('admin.projects.index')->with('success', 'Proyek berhasil diperbarui!');
     }
