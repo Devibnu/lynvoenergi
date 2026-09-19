@@ -486,7 +486,7 @@
                                 </a>
 
                                 <p class="text-xs text-slate-500 line-clamp-3 mb-3 leading-relaxed">
-                                    {{ $proj->description }}
+                                    {{ \Illuminate\Support\Str::limit(strip_tags($proj->description), 150) }}
                                 </p>
                             </div>
                         </div>
