@@ -20,7 +20,8 @@ class HomeController extends Controller
     public function index(): View
     {
         $categories = Category::withCount(['products' => fn($q) => $q->where('is_active', true)])
-            ->take(8)
+            ->where('is_active', true)
+            ->orderBy('sort_order', 'asc')
             ->get();
 
         $applications = Application::where('is_active', true)

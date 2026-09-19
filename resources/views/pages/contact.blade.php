@@ -59,19 +59,19 @@
                             </div>
                             <div>
                                 <div class="text-xs font-semibold text-slate-500">WhatsApp Hotline & CS</div>
-                                <div class="text-base font-bold text-slate-900 group-hover:text-emerald-600">0812-3456-7890</div>
+                                <div class="text-base font-bold text-slate-900 group-hover:text-emerald-600">{{ \App\Models\Setting::getValue('site_whatsapp') }}</div>
                                 <p class="text-xs text-slate-500 mt-0.5">Respon cepat via chat untuk konsultasi & order darurat</p>
                             </div>
                         </a>
 
-                        <a href="tel:0254889900" class="flex items-start gap-4 p-4 rounded-xl border border-slate-100 hover:border-blue-300 hover:bg-blue-50/50 transition duration-200 group">
+                        <a href="tel:{{ preg_replace('/[^0-9+]/', '', \App\Models\Setting::getValue('b2b_phone')) }}" class="flex items-start gap-4 p-4 rounded-xl border border-slate-100 hover:border-blue-300 hover:bg-blue-50/50 transition duration-200 group">
                             <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 group-hover:bg-blue-600 group-hover:text-white flex items-center justify-center shrink-0 transition duration-200">
                                 <i class="fas fa-phone-alt text-lg"></i>
                             </div>
                             <div>
                                 <div class="text-xs font-semibold text-slate-500">Telepon Kantor (B2B Procurement)</div>
-                                <div class="text-base font-bold text-slate-900 group-hover:text-blue-600">(0254) 889-900</div>
-                                <p class="text-xs text-slate-500 mt-0.5">Senin - Sabtu: 08.00 - 17.00 WIB</p>
+                                <div class="text-base font-bold text-slate-900 group-hover:text-blue-600">{{ \App\Models\Setting::getValue('b2b_phone') }}</div>
+                                <p class="text-xs text-slate-500 mt-0.5">{{ \App\Models\Setting::getValue('business_hours') }}</p>
                             </div>
                         </a>
 
@@ -88,20 +88,7 @@
                     </div>
                 </div>
 
-                <!-- Office & Hub Location -->
-                <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200 space-y-4">
-                    <h3 class="text-base font-bold text-slate-900 flex items-center gap-2">
-                        <i class="fas fa-map-marker-alt text-rose-500"></i> Kantor Pusat & Hub Distribusi Banten
-                    </h3>
-                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                        <strong>PT Lynvo Energi Nusantara</strong><br>
-                        Kawasan Industri & Komersial Banten, Jl. Raya Serang - Cilegon KM 8, Serang, Banten 42162, Indonesia.
-                    </p>
-                    <div class="pt-2 border-t border-slate-100 text-xs text-slate-500 flex items-center justify-between">
-                        <span><i class="fas fa-truck-fast text-blue-600 mr-1"></i> Hub Antar Pasang:</span>
-                        <span class="font-semibold text-slate-700">Serang, Cilegon, Tangerang</span>
-                    </div>
-                </div>
+
 
                 <!-- Emergency Banner -->
                 <div class="bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-2xl p-6 shadow-md">
@@ -110,7 +97,7 @@
                         <h4 class="font-black text-lg">Layanan Darurat Aki Mogok</h4>
                     </div>
                     <p class="text-xs text-amber-50 leading-relaxed mb-4">
-                        Kendaraan, genset, atau alat berat Anda mati total di jalan/lokasi proyek? Teknisi kami siap meluncur dengan aki baru dan tester profesional.
+                        {{ \App\Models\Setting::getValue('emergency_service_text') }}
                     </p>
                     <a href="https://wa.me/{{ \App\Models\Setting::getValue('site_whatsapp') }}?text=DARURAT:%20Aki%20Mogok%20butuh%20ganti%20segera%20di%20wilayah%20Banten" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center w-full py-2.5 px-4 bg-white text-orange-600 hover:bg-orange-50 text-xs font-bold rounded-xl transition duration-200 shadow-sm">
                         Panggil Tim Darurat Sekarang
@@ -185,4 +172,85 @@
         </div>
     </div>
 </section>
+
+<!-- Company Locations Section -->
+@php
+    $locations = \App\Models\CompanyLocation::active()->ordered()->get();
+@endphp
+
+@if($locations->count() > 0)
+<section class="py-12 lg:py-16 bg-white border-t border-slate-200">
+    <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+        <div class="mb-8">
+            <h2 class="text-2xl font-bold text-slate-900">Jaringan Lokasi Lynvo Energi</h2>
+            <p class="text-sm text-slate-500 mt-2">Temukan cabang, hub distribusi, dan gudang operasional kami di wilayah Banten dan sekitarnya.</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            @foreach($locations as $location)
+                <div class="bg-slate-50 rounded-2xl p-5 shadow-sm border border-slate-200 hover:border-blue-300 hover:shadow-md transition duration-200 flex flex-col h-full">
+                    <div class="mb-4">
+                        <h3 class="text-base font-bold text-slate-900 flex items-center gap-2 mb-2">
+                            <i class="fas fa-map-marker-alt {{ $location->is_primary ? 'text-rose-500' : 'text-blue-500' }}"></i> 
+                            {{ $location->name }} 
+                            @if($location->type)
+                                <span class="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full {{ $location->is_primary ? 'bg-rose-100 text-rose-700' : 'bg-slate-200 text-slate-700' }} ml-1">
+                                    {{ $location->type }}
+                                </span>
+                            @endif
+                        </h3>
+                        
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            @if($location->is_primary)
+                                <strong class="text-slate-800">{{ \App\Models\Setting::getValue('company_name') }}</strong><br>
+                            @endif
+                            {{ $location->address }}
+                            @if($location->city || $location->province)
+                                <br>
+                                <span class="text-slate-500 text-xs">{{ filter_var(implode(', ', array_filter([$location->city, $location->province, $location->postal_code])), FILTER_SANITIZE_STRING) }}</span>
+                            @endif
+                        </p>
+                    </div>
+
+                    <div class="mt-auto grid grid-cols-1 gap-3 pt-4 border-t border-slate-200/60 text-xs">
+                        <div class="flex items-center gap-4 flex-wrap">
+                            @if($location->google_maps_url)
+                                <a href="{{ $location->google_maps_url }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-blue-600 hover:text-blue-700 font-semibold transition group">
+                                    <div class="w-7 h-7 rounded-full bg-blue-100/50 group-hover:bg-blue-100 flex items-center justify-center transition">
+                                        <i class="fas fa-directions"></i>
+                                    </div>
+                                    Petunjuk Arah
+                                </a>
+                            @endif
+
+                            @if($location->whatsapp)
+                                <a href="https://wa.me/{{ $location->whatsapp }}" target="_blank" class="inline-flex items-center gap-1.5 text-emerald-600 hover:text-emerald-700 font-semibold transition group">
+                                    <div class="w-7 h-7 rounded-full bg-emerald-100/50 group-hover:bg-emerald-100 flex items-center justify-center transition">
+                                        <i class="fab fa-whatsapp"></i>
+                                    </div>
+                                    {{ $location->whatsapp }}
+                                </a>
+                            @elseif($location->phone)
+                                <a href="tel:{{ preg_replace('/[^0-9+]/', '', $location->phone) }}" class="inline-flex items-center gap-1.5 text-slate-600 hover:text-slate-900 font-semibold transition group">
+                                    <div class="w-7 h-7 rounded-full bg-slate-200/50 group-hover:bg-slate-200 flex items-center justify-center transition">
+                                        <i class="fas fa-phone-alt text-[10px]"></i>
+                                    </div>
+                                    {{ $location->phone }}
+                                </a>
+                            @endif
+                        </div>
+                        
+                        @if($location->business_hours)
+                            <div class="flex items-center gap-1.5 text-slate-500 mt-1">
+                                <i class="fas fa-clock text-slate-400 w-4 text-center"></i>
+                                {{ $location->business_hours }}
+                            </div>
+                        @endif
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+</section>
+@endif
 @endsection

@@ -70,6 +70,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::resource('categories', \App\Http\Controllers\Admin\CategoryController::class);
     Route::resource('applications', \App\Http\Controllers\Admin\ApplicationController::class);
     Route::resource('projects', \App\Http\Controllers\Admin\ProjectController::class);
+    Route::resource('company-locations', \App\Http\Controllers\Admin\CompanyLocationController::class);
     Route::resource('articles', \App\Http\Controllers\Admin\ArticleController::class);
     Route::resource('inquiries', \App\Http\Controllers\Admin\InquiryController::class)->only(['index', 'show', 'destroy']);
     Route::get('settings', [\App\Http\Controllers\Admin\SettingController::class, 'index'])->name('settings.index');

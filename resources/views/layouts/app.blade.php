@@ -64,7 +64,7 @@
                 <span class="text-slate-300 sm:hidden">Pesan Antar Pasang Aki Cepat se-Banten</span>
             </div>
             <div class="flex items-center space-x-4">
-                <a href="tel:081288889999" class="text-slate-300 hover:text-white flex items-center gap-1.5 transition">
+                <a href="tel:{{ \App\Models\Setting::getValue('hero_phone') }}" class="text-slate-300 hover:text-white flex items-center gap-1.5 transition">
                     <i class="fa-solid fa-phone text-amber-400"></i>
                     <span class="font-semibold">{{ \App\Models\Setting::getValue('hero_phone') }}</span>
                 </a>
@@ -348,19 +348,19 @@
                         <span class="text-xl font-black text-white tracking-tight">LYNVO <span class="text-blue-500">ENERGI</span></span>
                     </div>
                     <p class="text-slate-300 text-sm leading-relaxed mb-5">
-                        <strong>PT Lynvo Energi Prima</strong> — Distributor resmi &amp; pusat pengadaan baterai industri, aki armada truk, alat berat, marine, genset, dan layanan darurat ganti aki 24 jam se-Banten.
+                        <strong>{{ \App\Models\Setting::getValue('company_name') }}</strong> — Distributor resmi &amp; pusat pengadaan baterai industri, aki armada truk, alat berat, marine, genset, dan layanan darurat ganti aki 24 jam se-Banten.
                     </p>
                     <div class="flex items-center gap-2.5">
                         <a href="https://wa.me/{{ \App\Models\Setting::getValue('site_whatsapp') }}" target="_blank" class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 hover:border-emerald-500 hover:bg-emerald-600 flex items-center justify-center text-slate-300 hover:text-white transition" title="WhatsApp">
                             <i class="fa-brands fa-whatsapp text-sm"></i>
                         </a>
-                        <a href="tel:081288889999" class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 hover:border-blue-500 hover:bg-blue-600 flex items-center justify-center text-slate-300 hover:text-white transition" title="Telepon">
+                        <a href="tel:{{ \App\Models\Setting::getValue('hero_phone') }}" class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 hover:border-blue-500 hover:bg-blue-600 flex items-center justify-center text-slate-300 hover:text-white transition" title="Telepon">
                             <i class="fa-solid fa-phone text-xs"></i>
                         </a>
                         <a href="mailto:{{ \App\Models\Setting::getValue('site_email') }}" class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 hover:border-amber-500 hover:bg-amber-600 flex items-center justify-center text-slate-300 hover:text-white transition" title="Email">
                             <i class="fa-solid fa-envelope text-xs"></i>
                         </a>
-                        <a href="https://linkedin.com" target="_blank" class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 hover:border-sky-500 hover:bg-sky-600 flex items-center justify-center text-slate-300 hover:text-white transition" title="LinkedIn">
+                        <a href="{{ \App\Models\Setting::getValue('site_linkedin', 'https://linkedin.com') }}" target="_blank" class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 hover:border-sky-500 hover:bg-sky-600 flex items-center justify-center text-slate-300 hover:text-white transition" title="LinkedIn">
                             <i class="fa-brands fa-linkedin-in text-xs"></i>
                         </a>
                     </div>
@@ -419,8 +419,11 @@
                         <div class="flex items-start gap-2">
                             <i class="fa-solid fa-location-dot text-rose-500 mt-0.5 text-xs"></i>
                             <div>
-                                <strong class="text-slate-100 block">Hub Logistik &amp; Workshop:</strong>
-                                <span>Jl. Raya Serang - Jkt KM 68, Kawasan Cikande &amp; Serang, Banten</span>
+                                @php
+                                    $primaryLocation = \App\Models\CompanyLocation::active()->where('is_primary', true)->first();
+                                @endphp
+                                <strong class="text-slate-100 block">{{ $primaryLocation ? $primaryLocation->name : 'Hub Logistik & Workshop' }}:</strong>
+                                <span>{{ $primaryLocation ? $primaryLocation->address : \App\Models\Setting::getValue('office_address') }}</span>
                             </div>
                         </div>
                         <div class="flex items-start gap-2">
@@ -482,7 +485,7 @@
             </div>
 
             <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-400">
-                <p>&copy; {{ date('Y') }} PT Lynvo Energi Prima. All rights reserved. Spesialis Pengadaan Aki &amp; Accu Nasional.</p>
+                <p>&copy; {{ date('Y') }} {{ \App\Models\Setting::getValue('company_name') }}. All rights reserved. {{ \App\Models\Setting::getValue('company_description') }}.</p>
                 <div class="flex items-center gap-5">
                     <a href="{{ route('services.battery_delivery') }}" class="hover:text-slate-200 transition-colors">Layanan Antar Pasang</a>
                     <a href="{{ route('quotation') }}" class="hover:text-slate-200 transition-colors">Permintaan RFQ B2B</a>
