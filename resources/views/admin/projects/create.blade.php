@@ -8,6 +8,15 @@
                 <h6>Tambah Proyek Baru</h6>
             </div>
             <div class="card-body">
+                @if ($errors->any())
+                    <div class="alert alert-danger" role="alert">
+                        <ul class="mb-0 text-white">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <form action="{{ route('admin.projects.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
@@ -19,22 +28,22 @@
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label">Judul Proyek <span class="text-danger">*</span></label>
-                                <input type="text" name="title" class="form-control" required placeholder="Contoh: Instalasi Solar Panel">
+                                <input type="text" name="title" class="form-control" value="{{ old('title') }}" required placeholder="Contoh: Instalasi Solar Panel">
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label">Nama Klien</label>
-                                <input type="text" name="client_name" class="form-control" placeholder="Contoh: PT. ABC">
+                                <input type="text" name="client_name" class="form-control" value="{{ old('client_name') }}" placeholder="Contoh: PT. ABC">
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label">Lokasi</label>
-                                <input type="text" name="location" class="form-control" placeholder="Contoh: Jakarta">
+                                <input type="text" name="location" class="form-control" value="{{ old('location') }}" placeholder="Contoh: Jakarta">
                             </div>
                         </div>
                         
                         <!-- Kolom Kanan -->
                         <div class="col-md-6">
                             <div class="form-check form-switch mt-4">
-                                <input class="form-check-input" type="checkbox" name="is_published" id="is_published" value="1" checked>
+                                <input class="form-check-input" type="checkbox" name="is_published" id="is_published" value="1" {{ old('is_published', true) ? 'checked' : '' }}>
                                 <label class="form-check-label" for="is_published">Tampilkan di Website (Published)</label>
                             </div>
                         </div>
@@ -44,7 +53,7 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label class="form-control-label">Deskripsi Proyek</label>
-                                <textarea name="description" id="editor" class="form-control"></textarea>
+                                <textarea name="description" id="editor" class="form-control">{{ old('description') }}</textarea>
                             </div>
                         </div>
                     </div>

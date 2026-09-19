@@ -8,6 +8,15 @@
                 <h6>Edit Proyek: {{ $project->title }}</h6>
             </div>
             <div class="card-body">
+                @if ($errors->any())
+                    <div class="alert alert-danger" role="alert">
+                        <ul class="mb-0 text-white">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <form action="{{ route('admin.projects.update', $project->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
