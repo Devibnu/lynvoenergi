@@ -167,7 +167,7 @@
                     <a href="{{ route('quotation') }}" class="inline-flex items-center justify-center gap-1.5 px-5 py-2.5 border border-blue-600 text-blue-600 hover:bg-blue-50 text-base font-semibold rounded-xl transition whitespace-nowrap">
                         <i class="fa-solid fa-file-invoice-dollar"></i> <span class="whitespace-nowrap">Minta RFQ B2B</span>
                     </a>
-                    <a href="https://wa.me/{{ \App\Models\Setting::getValue('site_whatsapp') }}?text=Halo%20Lynvo%20Energi%2C%20saya%20butuh%20bantuan%20pesan%20antar%20aki%20sekarang." 
+                    <a href="{{ \App\Models\Setting::getWhatsappUrl('Halo Lynvo Energi, saya butuh bantuan pesan antar aki sekarang.') }}"
                        target="_blank"
                        class="inline-flex items-center justify-center gap-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-base font-semibold px-5 py-2.5 rounded-xl shadow-lg shadow-emerald-600/20 transition transform hover:-translate-y-0.5 btn-wa-pulse whitespace-nowrap">
                         <i class="fa-brands fa-whatsapp"></i>
@@ -288,7 +288,7 @@
                         <i class="fa-solid fa-file-invoice-dollar"></i>
                         Minta RFQ B2B
                     </a>
-                    <a href="https://wa.me/{{ \App\Models\Setting::getValue('site_whatsapp') }}?text=Halo%20Lynvo%20Energi%2C%20saya%20butuh%20bantuan%20pesan%20antar%20aki%20sekarang."
+                    <a href="{{ \App\Models\Setting::getWhatsappUrl('Halo Lynvo Energi, saya butuh bantuan pesan antar aki sekarang.') }}"
                        target="_blank"
                        class="flex items-center justify-center gap-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-4 py-2.5 rounded-xl shadow transition">
                         <i class="fa-brands fa-whatsapp"></i>
@@ -351,7 +351,7 @@
                         <strong>{{ \App\Models\Setting::getValue('company_name') }}</strong> — Distributor resmi &amp; pusat pengadaan baterai industri, aki armada truk, alat berat, marine, genset, dan layanan darurat ganti aki 24 jam se-Banten.
                     </p>
                     <div class="flex items-center gap-2.5">
-                        <a href="https://wa.me/{{ \App\Models\Setting::getValue('site_whatsapp') }}" target="_blank" class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 hover:border-emerald-500 hover:bg-emerald-600 flex items-center justify-center text-slate-300 hover:text-white transition" title="WhatsApp">
+                        <a href="{{ \App\Models\Setting::getWhatsappUrl() }}" target="_blank" class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 hover:border-emerald-500 hover:bg-emerald-600 flex items-center justify-center text-slate-300 hover:text-white transition" title="WhatsApp">
                             <i class="fa-brands fa-whatsapp text-sm"></i>
                         </a>
                         <a href="tel:{{ \App\Models\Setting::getValue('hero_phone') }}" class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 hover:border-blue-500 hover:bg-blue-600 flex items-center justify-center text-slate-300 hover:text-white transition" title="Telepon">
@@ -430,7 +430,7 @@
                             <i class="fa-brands fa-whatsapp text-emerald-400 mt-0.5 text-xs"></i>
                             <div>
                                 <strong class="text-slate-100 block">Hotline 24 Jam / WA:</strong>
-                                <a href="https://wa.me/{{ \App\Models\Setting::getValue('site_whatsapp') }}" class="hover:text-emerald-400 hover:transition-colors font-semibold text-slate-300">{{ \App\Models\Setting::getValue('hero_phone') }}</a>
+                                <a href="{{ \App\Models\Setting::getWhatsappUrl() }}" class="hover:text-emerald-400 hover:transition-colors font-semibold text-slate-300">{{ \App\Models\Setting::getValue('hero_phone') }}</a>
                             </div>
                         </div>
                         <div class="flex items-start gap-2">
@@ -509,7 +509,7 @@
             <i class="fa-solid fa-car-battery text-lg mb-0.5"></i>
             <span>Katalog</span>
         </a>
-        <a href="https://wa.me/{{ \App\Models\Setting::getValue('site_whatsapp') }}?text=Halo%20Lynvo%20Energi%2C%20saya%20mau%20ganti%20aki%20antar%20ke%20lokasi%20sekarang." 
+        <a href="{{ \App\Models\Setting::getWhatsappUrl('Halo Lynvo Energi, saya mau ganti aki antar ke lokasi sekarang.') }}"
            target="_blank"
            class="flex items-center gap-2 bg-emerald-600 text-white font-bold text-xs px-4 py-2 rounded-full shadow-lg shadow-emerald-500/40">
             <i class="fa-brands fa-whatsapp text-lg animate-bounce"></i>

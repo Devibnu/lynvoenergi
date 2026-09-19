@@ -53,7 +53,7 @@
                     <h2 class="text-xl font-bold text-slate-900">Saluran Komunikasi Langsung</h2>
                     
                     <div class="space-y-4">
-                        <a href="https://wa.me/{{ \App\Models\Setting::getValue('site_whatsapp') }}?text=Halo%20Lynvo%20Energi,%20saya%20ingin%20konsultasi%20baterai/aki" target="_blank" rel="noopener noreferrer" class="flex items-start gap-4 p-4 rounded-xl border border-slate-100 hover:border-emerald-300 hover:bg-emerald-50/50 transition duration-200 group">
+                        <a href="{{ \App\Models\Setting::getWhatsappUrl('Halo Lynvo Energi, saya ingin konsultasi baterai/aki') }}" target="_blank" rel="noopener noreferrer" class="flex items-start gap-4 p-4 rounded-xl border border-slate-100 hover:border-emerald-300 hover:bg-emerald-50/50 transition duration-200 group">
                             <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white flex items-center justify-center shrink-0 transition duration-200">
                                 <i class="fab fa-whatsapp text-xl"></i>
                             </div>
@@ -99,7 +99,7 @@
                     <p class="text-xs text-amber-50 leading-relaxed mb-4">
                         {{ \App\Models\Setting::getValue('emergency_service_text') }}
                     </p>
-                    <a href="https://wa.me/{{ \App\Models\Setting::getValue('site_whatsapp') }}?text=DARURAT:%20Aki%20Mogok%20butuh%20ganti%20segera%20di%20wilayah%20Banten" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center w-full py-2.5 px-4 bg-white text-orange-600 hover:bg-orange-50 text-xs font-bold rounded-xl transition duration-200 shadow-sm">
+                    <a href="{{ \App\Models\Setting::getWhatsappUrl('DARURAT: Aki Mogok butuh ganti segera di wilayah Banten') }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center w-full py-2.5 px-4 bg-white text-orange-600 hover:bg-orange-50 text-xs font-bold rounded-xl transition duration-200 shadow-sm">
                         Panggil Tim Darurat Sekarang
                     </a>
                 </div>
@@ -224,7 +224,7 @@
                             @endif
 
                             @if($location->whatsapp)
-                                <a href="https://wa.me/{{ $location->whatsapp }}" target="_blank" class="inline-flex items-center gap-1.5 text-emerald-600 hover:text-emerald-700 font-semibold transition group">
+                                <a href="{{ \App\Models\Setting::getWhatsappUrl(null, $location->whatsapp) }}" target="_blank" class="inline-flex items-center gap-1.5 text-emerald-600 hover:text-emerald-700 font-semibold transition group">
                                     <div class="w-7 h-7 rounded-full bg-emerald-100/50 group-hover:bg-emerald-100 flex items-center justify-center transition">
                                         <i class="fab fa-whatsapp"></i>
                                     </div>

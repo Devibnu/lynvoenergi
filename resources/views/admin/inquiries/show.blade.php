@@ -40,7 +40,7 @@
                     <div class="col-md-6 mb-3">
                         <label class="text-xs font-weight-bold text-uppercase text-secondary mb-0">No. WhatsApp / Telepon</label>
                         <p class="text-sm font-weight-bold mb-0">
-                            <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $inquiry->phone) }}" target="_blank" class="text-info">
+                            <a href="{{ \App\Models\Setting::getWhatsappUrl(null, $inquiry->phone) }}" target="_blank" class="text-info">
                                 {{ $inquiry->phone }} <i class="fab fa-whatsapp ms-1"></i>
                             </a>
                         </p>

@@ -19,7 +19,7 @@
                 Mitra pengadaan baterai korporat terpercaya untuk pabrik manufaktur Cikande, industri baja/kimia Cilegon, armada logistik, kontraktor alat berat, dan generator standby.
             </p>
 
-            <a href="https://wa.me/{{ \App\Models\Setting::getValue('site_whatsapp') }}?text=Halo%20Lynvo%20Energi%2C%20kami%20ingin%20konsultasi%20pengadaan%20aki%20B2B%20untuk%20perusahaan." 
+            <a href="{{ \App\Models\Setting::getWhatsappUrl('Halo Lynvo Energi, kami ingin konsultasi pengadaan aki B2B untuk perusahaan.') }}"
                target="_blank"
                class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm px-6 py-3.5 rounded-xl shadow-lg shadow-emerald-600/30 transition">
                 <i class="fa-brands fa-whatsapp text-lg"></i>
@@ -63,7 +63,7 @@
                                 <span>Lihat Solusi & Produk</span>
                                 <i class="fa-solid fa-arrow-right text-[10px]"></i>
                             </a>
-                            <a href="https://wa.me/{{ \App\Models\Setting::getValue('site_whatsapp') }}?text=Halo%20Lynvo%20Energi%2C%20saya%20tertarik%20dengan%20solusi%20aki%20sektor%20{{ rawurlencode($app->name) }}." 
+                            <a href="{{ \App\Models\Setting::getWhatsappUrl('Halo Lynvo Energi, saya tertarik dengan solusi aki sektor ' . $app->name . '.') }}"
                                target="_blank" 
                                class="text-emerald-600 hover:text-emerald-700 text-xs font-bold flex items-center gap-1">
                                 <i class="fa-brands fa-whatsapp"></i>
@@ -88,7 +88,7 @@
                     </p>
                 </div>
                 <div class="flex flex-col sm:flex-row gap-3 whitespace-nowrap">
-                    <a href="https://wa.me/{{ \App\Models\Setting::getValue('site_whatsapp') }}?text=Halo%20Lynvo%20Energi%2C%20kami%20ingin%20mengajukan%20kontrak%20pengadaan%20aki%20perusahaan." 
+                    <a href="{{ \App\Models\Setting::getWhatsappUrl('Halo Lynvo Energi, kami ingin mengajukan kontrak pengadaan aki perusahaan.') }}"
                        target="_blank"
                        class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-sm px-6 py-3.5 rounded-xl shadow transition">
                         <i class="fa-brands fa-whatsapp mr-1 text-base"></i> Hubungi Key Account Manager

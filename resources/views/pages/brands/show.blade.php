@@ -28,7 +28,7 @@
                     {{ $brand->description }}
                 </p>
                 <div class="flex items-center gap-4">
-                    <a href="https://wa.me/{{ \App\Models\Setting::getValue('site_whatsapp') }}?text=Halo%20Lynvo%20Energi%2C%20saya%20mau%20tanya%20harga%20dan%20tipe%20aki%20merk%20{{ rawurlencode($brand->name) }}." 
+                    <a href="{{ \App\Models\Setting::getWhatsappUrl('Halo Lynvo Energi, saya mau tanya harga dan tipe aki merk ' . $brand->name . '.') }}"
                        target="_blank"
                        class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm px-6 py-3 rounded-xl transition">
                         <i class="fa-brands fa-whatsapp text-lg"></i>

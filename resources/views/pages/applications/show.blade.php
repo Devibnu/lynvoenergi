@@ -36,7 +36,7 @@
                     </p>
 
                     <div class="flex flex-wrap gap-4">
-                        <a href="https://wa.me/{{ \App\Models\Setting::getValue('site_whatsapp') }}?text=Halo%20Lynvo%20Energi%2C%20kami%20ingin%20meminta%20penawaran%20harga%20aki%20untuk%20sektor%20{{ rawurlencode($application->name) }}." 
+                        <a href="{{ \App\Models\Setting::getWhatsappUrl('Halo Lynvo Energi, kami ingin meminta penawaran harga aki untuk sektor ' . $application->name . '.') }}"
                            target="_blank"
                            class="bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-sm px-6 py-3.5 rounded-xl shadow-lg transition flex items-center gap-2">
                             <i class="fa-brands fa-whatsapp text-lg"></i>

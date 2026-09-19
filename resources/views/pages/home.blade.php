@@ -37,7 +37,7 @@
 
                     <!-- Dual CTAs: Green WhatsApp + Dark Navy RFQ -->
                     <div class="flex flex-col sm:flex-row gap-4 mb-10">
-                        <a href="https://wa.me/{{ \App\Models\Setting::getValue('site_whatsapp') }}?text=Halo%20Lynvo%20Energi%2C%20saya%20ingin%20konsultasi%20kebutuhan%20aki%20dan%20baterai." 
+                        <a href="{{ \App\Models\Setting::getWhatsappUrl('Halo Lynvo Energi, saya ingin konsultasi kebutuhan aki dan baterai.') }}"
                            target="_blank"
                            class="inline-flex items-center justify-center gap-3 bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-base px-8 py-4 rounded-xl shadow-xl shadow-emerald-600/30 transition duration-200 transform hover:-translate-y-0.5 btn-wa-pulse">
                             <i class="fa-brands fa-whatsapp text-2xl text-emerald-100"></i>
@@ -399,7 +399,7 @@
                             </p>
                             <div class="flex items-center justify-between pt-2 border-t border-slate-800 text-xs">
                                 <span class="font-bold text-emerald-400">Respon Cepat 30-60 Mnt</span>
-                                <a href="https://wa.me/{{ \App\Models\Setting::getValue('site_whatsapp') }}" target="_blank" class="text-white bg-emerald-600 hover:bg-emerald-500 font-bold px-3 py-1.5 rounded-lg transition flex items-center gap-1">
+                                <a href="{{ \App\Models\Setting::getWhatsappUrl() }}" target="_blank" class="text-white bg-emerald-600 hover:bg-emerald-500 font-bold px-3 py-1.5 rounded-lg transition flex items-center gap-1">
                                     <i class="fa-brands fa-whatsapp"></i> Panggil
                                 </a>
                             </div>
@@ -526,7 +526,7 @@
                         </p>
                     </div>
 
-                    <a href="https://wa.me/{{ \App\Models\Setting::getValue('site_whatsapp') }}" target="_blank" class="inline-flex items-center gap-2 text-emerald-600 hover:text-emerald-700 font-extrabold text-sm flex-shrink-0 bg-emerald-50 border border-emerald-200 px-4 py-2.5 rounded-xl transition">
+                    <a href="{{ \App\Models\Setting::getWhatsappUrl() }}" target="_blank" class="inline-flex items-center gap-2 text-emerald-600 hover:text-emerald-700 font-extrabold text-sm flex-shrink-0 bg-emerald-50 border border-emerald-200 px-4 py-2.5 rounded-xl transition">
                         <i class="fa-brands fa-whatsapp text-lg"></i>
                         <span>WhatsApp Langsung 24 Jam</span>
                     </a>

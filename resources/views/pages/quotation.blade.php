@@ -196,7 +196,7 @@
                         Hubungi Key Account Manager kami secara langsung melalui WhatsApp atau saluran telepon kantor.
                     </p>
                     <div class="space-y-2">
-                        <a href="https://wa.me/{{ \App\Models\Setting::getValue('site_whatsapp') }}?text=Halo%20KAM%20Lynvo%20Energi,%20kami%20ingin%20mengajukan%20pengadaan%20baterai%20B2B%20urgent" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 w-full py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-xl transition">
+                        <a href="{{ \App\Models\Setting::getWhatsappUrl('Halo KAM Lynvo Energi, kami ingin mengajukan pengadaan baterai B2B urgent') }}" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 w-full py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-xl transition">
                             <i class="fab fa-whatsapp text-sm"></i> WhatsApp KAM B2B
                         </a>
                         <a href="tel:0254889900" class="flex items-center justify-center gap-2 w-full py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-xl transition">

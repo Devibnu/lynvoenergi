@@ -40,7 +40,7 @@ class LocalSeoController extends Controller
             'name' => "Lynvo Energi - Toko Aki & Accu {$area->city_name}",
             'image' => asset('assets/img/lynvo-store.jpg'),
             'description' => $metaDescription,
-            'telephone' => '+' . ($area->whatsapp_number ?: '6281288889999'),
+            'telephone' => '+' . \App\Models\Setting::getNormalizedWhatsappNumber(),
             'priceRange' => 'Rp 700.000 - Rp 3.500.000',
             'areaServed' => [
                 '@type' => 'AdministrativeArea',

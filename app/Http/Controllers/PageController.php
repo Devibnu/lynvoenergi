@@ -67,7 +67,6 @@ class PageController extends Controller
         $inquiry = Inquiry::create($validated);
 
         // Generate pre-filled WhatsApp text for direct sales forward
-        $salesPhone = config('app.whatsapp_number', '6281288889999');
         $typeLabel = match ($inquiry->type) {
             'b2b_quotation' => 'Permintaan Penawaran Harga B2B (RFQ)',
             'retail_order' => 'Pemesanan Ganti Aki Retail / Home Service',
@@ -90,7 +89,7 @@ class PageController extends Controller
             . "• Rincian Kebutuhan:\n{$inquiry->message}\n\n"
             . "Mohon segera ditindaklanjuti. Terima kasih!";
 
-        $waUrl = "https://wa.me/{$salesPhone}?text=" . rawurlencode($waText);
+        $waUrl = \App\Models\Setting::getWhatsappUrl($waText);
 
         return redirect()->back()->with([
             'success' => 'Permintaan Anda berhasil kami terima! Tim Sales/Technical Lynvo Energi akan segera menghubungi Anda.',

@@ -24,7 +24,7 @@
             </p>
 
             <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="https://wa.me/{{ \App\Models\Setting::getValue('site_whatsapp') }}?text=Halo%20Lynvo%20Energi%2C%20saya%20butuh%20layanan%20pesan%20antar%20aki%20di%20Banten." 
+                <a href="{{ \App\Models\Setting::getWhatsappUrl('Halo Lynvo Energi, saya butuh layanan pesan antar aki di Banten.') }}"
                    target="_blank"
                    class="inline-flex items-center justify-center gap-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-base px-8 py-4 rounded-xl shadow-xl shadow-emerald-600/30 transition transform hover:-translate-y-0.5 btn-wa-pulse">
                     <i class="fa-brands fa-whatsapp text-2xl"></i>
@@ -170,7 +170,7 @@
                         Pilihan Aki / Accu Terlaris
                     </h2>
                 </div>
-                <a href="https://wa.me/{{ \App\Models\Setting::getValue('site_whatsapp') }}" target="_blank" class="text-sm font-bold text-emerald-600 hover:underline">
+                <a href="{{ \App\Models\Setting::getWhatsappUrl() }}" target="_blank" class="text-sm font-bold text-emerald-600 hover:underline">
                     Konsultasi Tipe Aki via WhatsApp &rarr;
                 </a>
             </div>

@@ -36,9 +36,7 @@ class CoverageArea extends Model
      */
     public function getWhatsappUrlAttribute(): string
     {
-        $phone = $this->whatsapp_number ?: config('app.whatsapp_number', '6281288889999');
         $text = "Halo Lynvo Energi, saya butuh aki / layanan emergency antar pasang aki untuk area *{$this->city_name}* dan sekitarnya. Mohon bantuan teknisi dan rekomendasi tipe aki.";
-
-        return "https://wa.me/{$phone}?text=" . rawurlencode($text);
+        return Setting::getWhatsappUrl($text);
     }
 }

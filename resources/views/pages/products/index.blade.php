@@ -52,7 +52,7 @@
                         <span>Download Katalog PDF</span>
                     </a>
                     <!-- Fast WhatsApp Order Button -->
-                    <a href="https://wa.me/{{ \App\Models\Setting::getValue('site_whatsapp') }}?text=Halo%20Lynvo%20Energi%2C%20saya%20mau%20tanya%20stok%20dan%20harga%20aki." 
+                    <a href="{{ \App\Models\Setting::getWhatsappUrl('Halo Lynvo Energi, saya mau tanya stok dan harga aki.') }}"
                        target="_blank"
                        class="inline-flex items-center gap-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm px-6 py-3.5 rounded-xl shadow-lg shadow-emerald-600/30 whitespace-nowrap transition">
                         <i class="fa-brands fa-whatsapp text-lg"></i>
@@ -284,7 +284,7 @@
                                                class="text-center bg-white hover:bg-slate-100 text-slate-800 border border-slate-200 font-bold text-xs py-2.5 px-2 rounded-xl transition">
                                                 Lihat Detail
                                             </a>
-                                            <a href="https://wa.me/{{ \App\Models\Setting::getValue('site_whatsapp') }}" 
+                                            <a href="{{ \App\Models\Setting::getWhatsappUrl() }}"
                                                target="_blank" 
                                                class="text-center bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs py-2.5 px-2 rounded-xl transition flex items-center justify-center gap-1">
                                                 <i class="fa-brands fa-whatsapp text-sm"></i>

@@ -124,13 +124,13 @@
 
                         <!-- Action Buttons -->
                         <div class="flex flex-col sm:flex-row gap-3 mb-6">
-                            <a href="https://wa.me/{{ \App\Models\Setting::getValue('site_whatsapp') }}?text=Halo%20Lynvo%20Energi,%20saya%20tertarik%20dengan%20produk%20{{ urlencode($product->name) }}" 
+                            <a href="{{ \App\Models\Setting::getWhatsappUrl('Halo Lynvo Energi, saya tertarik dengan produk ' . $product->name) }}"
                                target="_blank"
                                class="inline-flex items-center justify-center gap-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-sm px-6 py-4 rounded-xl shadow-lg shadow-emerald-600/30 transition btn-wa-pulse">
                                 <i class="fa-brands fa-whatsapp text-xl"></i>
                                 <span>Pesan & Pasang via WhatsApp</span>
                             </a>
-                            <a href="https://wa.me/{{ \App\Models\Setting::getValue('site_whatsapp') }}?text=Halo%20Lynvo%20Energi%2C%20kami%20ingin%20meminta%20Surat%20Penawaran%20Harga%20%28RFQ%29%20untuk%20produk%20{{ rawurlencode($product->name) }}%20untuk%20kebutuhan%20perusahaan%20kami." 
+                            <a href="{{ \App\Models\Setting::getWhatsappUrl('Halo Lynvo Energi, kami ingin meminta Surat Penawaran Harga (RFQ) untuk produk ' . $product->name . ' untuk kebutuhan perusahaan kami.') }}"
                                target="_blank"
                                class="inline-flex items-center justify-center gap-2 bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm px-6 py-4 rounded-xl transition">
                                 <i class="fa-solid fa-file-invoice-dollar text-amber-400"></i>

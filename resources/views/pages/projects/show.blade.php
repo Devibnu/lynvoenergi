@@ -60,7 +60,7 @@
                     </div>
 
                     <div class="mt-8">
-                        <a href="https://wa.me/{{ \App\Models\Setting::getValue('site_whatsapp') }}?text=Halo%20Lynvo%20Energi,%20saya%20tertarik%20dengan%20proyek%20{{ urlencode($project->title) }}" 
+                        <a href="{{ \App\Models\Setting::getWhatsappUrl('Halo Lynvo Energi, saya tertarik dengan proyek ' . $project->title) }}"
                            target="_blank"
                            class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm px-6 py-3 rounded-xl transition shadow-lg shadow-emerald-600/30">
                             <i class="fa-brands fa-whatsapp text-lg"></i>
@@ -88,7 +88,7 @@
                         <p class="text-xs text-slate-400 mb-6">
                             Tim teknis kami siap datang ke pabrik / kantor Anda untuk survei kebutuhan baterai.
                         </p>
-                        <a href="https://wa.me/{{ \App\Models\Setting::getValue('site_whatsapp') }}?text=Halo%20Lynvo%20Energi%2C%20kami%20ingin%20konsultasi%20mengenai%20proyek%20pengadaan%20aki." 
+                        <a href="{{ \App\Models\Setting::getWhatsappUrl('Halo Lynvo Energi, kami ingin konsultasi mengenai proyek pengadaan aki.') }}"
                            target="_blank"
                            class="w-full inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs py-3 rounded-xl transition">
                             <i class="fa-brands fa-whatsapp text-base"></i>
