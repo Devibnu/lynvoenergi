@@ -440,18 +440,11 @@
             <!-- 4 Column Real Photo Projects Grid -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 
-                @php
-                    $projectPhotos = [
-                        'https://placehold.co/600x400/0f172a/ffffff?text=Proyek+Pabrik',
-                        'https://placehold.co/600x400/0f172a/ffffff?text=Proyek+Armada+Truk',
-                        'https://placehold.co/600x400/0f172a/ffffff?text=Proyek+Alat+Berat',
-                        'https://placehold.co/600x400/0f172a/ffffff?text=Proyek+Tugboat+Pelabuhan',
-                    ];
-                @endphp
-
                 @forelse($latestProjects as $index => $proj)
                     @php
-                        $photoUrl = $projectPhotos[$index % 4];
+                        $photoUrl = $proj->image
+                            ? asset('storage/' . $proj->image)
+                            : 'https://placehold.co/600x400/f8fafc/334155?text=Dokumentasi+Proyek';
                     @endphp
                     <div class="bg-white rounded-2xl border border-slate-100 overflow-hidden shadow-sm hover:shadow-xl hover:border-blue-500/80 hover:-translate-y-1 transition duration-300 flex flex-col justify-between group">
                         <div>
