@@ -6,7 +6,7 @@
     <title>@yield('title', 'Lynvo Energi - Distributor & Layanan Antar Pasang Aki / Accu Banten')</title>
     <meta name="description" content="@yield('meta_description', 'Distributor aki mobil, truk, genset dan industri di Banten. Layanan pesan antar pasang aki 24 jam cepat ke rumah & kantor.')">
     <link rel="canonical" href="{{ url()->current() }}">
-    
+
     <!-- Open Graph / Social Meta -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
@@ -18,7 +18,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
+
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
@@ -37,7 +37,7 @@
         .bg-wa-green { background-color: #22c55e; }
         .hover\:bg-wa-dark:hover { background-color: #16a34a; }
         .text-wa-green { color: #22c55e; }
-        
+
         @keyframes pulse-glow {
             0%, 100% { box-shadow: 0 0 15px rgba(34, 197, 94, 0.4); }
             50% { box-shadow: 0 0 25px rgba(34, 197, 94, 0.8); }
@@ -109,7 +109,7 @@
                     <a href="{{ route('home') }}" class="text-base font-medium whitespace-nowrap {{ request()->routeIs('home') ? 'text-blue-600' : 'text-slate-700' }} hover:text-blue-600 transition">
                         Beranda
                     </a>
-                    
+
                     <a href="{{ route('products.index') }}" class="text-base font-medium whitespace-nowrap {{ request()->routeIs('products.*') ? 'text-blue-600' : 'text-slate-700' }} hover:text-blue-600 transition">
                         Katalog Produk
                     </a>
@@ -121,7 +121,7 @@
                     <a href="{{ route('projects.index') }}" class="text-base font-medium whitespace-nowrap {{ request()->routeIs('projects.*') ? 'text-blue-600' : 'text-slate-700' }} hover:text-blue-600 transition">
                         Proyek
                     </a>
-                    
+
                     <!-- Dropdown Area Banten & Layanan -->
                     <div class="relative group" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
                         <button class="flex items-center gap-1.5 text-sm font-semibold text-slate-700 hover:text-blue-600 transition-colors py-2">
@@ -518,5 +518,71 @@
     </div>
 
     @stack('scripts')
+
+    <!-- WhatsApp Desktop Direct App Interceptor -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if it's a desktop (not mobile/tablet)
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            if (isMobile) return;
+
+            document.addEventListener('click', function(e) {
+                // Ignore modified clicks
+                if (e.ctrlKey || e.metaKey || e.shiftKey || e.altKey || e.button !== 0) return;
+
+                // Find the closest anchor tag
+                const target = e.target.closest('a');
+                if (!target || !target.href || target.hasAttribute('download')) return;
+
+                // Check if it's a wa.me link
+                let hrefUrl;
+                try {
+                    hrefUrl = new URL(target.href);
+                } catch (err) {
+                    return;
+                }
+
+                if (hrefUrl.hostname === 'wa.me') {
+                    e.preventDefault();
+
+                    // Extract phone and text
+                    const phone = hrefUrl.pathname.replace(/^\/+/, '');
+                    const text = hrefUrl.searchParams.get('text') || '';
+
+                    // Construct custom protocol URL
+                    const customProtocolUrl = `whatsapp://send?phone=${phone}&text=${encodeURIComponent(text)}`;
+
+                    let appOpened = false;
+
+                    // Monitor visibility or blur to detect if app opened
+                    const onBlur = () => { appOpened = true; };
+                    const onVisibilityChange = () => {
+                        if (document.hidden || document.visibilityState === 'hidden') appOpened = true;
+                    };
+
+                    window.addEventListener('blur', onBlur);
+                    document.addEventListener('visibilitychange', onVisibilityChange);
+
+                    // Attempt to open the custom protocol
+                    window.location.href = customProtocolUrl;
+
+                    // Fallback after timeout
+                    setTimeout(() => {
+                        window.removeEventListener('blur', onBlur);
+                        document.removeEventListener('visibilitychange', onVisibilityChange);
+
+                        if (!appOpened) {
+                            // Navigate to the original HTTPS URL
+                            if (target.target === '_blank') {
+                                window.open(hrefUrl.toString(), '_blank');
+                            } else {
+                                window.location.href = hrefUrl.toString();
+                            }
+                        }
+                    }, 1500);
+                }
+            });
+        });
+    </script>
 </body>
 </html>
