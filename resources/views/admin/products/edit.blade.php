@@ -36,7 +36,19 @@
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label">Merek (Brand) <span class="text-danger">*</span></label>
-                                <input type="text" name="brand" class="form-control" value="{{ old('brand', $product->brand) }}" required placeholder="Contoh: GS Astra">
+                                @if(is_null($product->brand_id) && !empty($product->brand))
+                                    <div class="alert alert-warning text-white text-sm py-2 mb-2" role="alert">
+                                        <strong>Perhatian:</strong> Merek produk ini ("{{ $product->brand }}") belum ternormalisasi. Silakan pilih merek resmi di bawah ini.
+                                    </div>
+                                @endif
+                                <select name="brand_id" class="form-control" required>
+                                    <option value="">-- Pilih Merek --</option>
+                                    @foreach($brands as $brand)
+                                        <option value="{{ $brand->id }}" {{ old('brand_id', $product->brand_id) == $brand->id ? 'selected' : '' }}>
+                                            {{ $brand->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label">Nama Produk <span class="text-danger">*</span></label>

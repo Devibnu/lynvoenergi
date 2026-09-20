@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Brand;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -27,7 +28,7 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        $query = Product::active()->with('category');
+        $query = Product::active()->with(['category', 'brand']);
 
         // Search query
         if ($search = trim($request->input('q', ''))) {
@@ -50,7 +51,17 @@ class ProductController extends Controller
 
         // Filter by Brand
         if ($brand = $request->input('brand')) {
-            $query->whereIn('brand', (array) $brand);
+            $brandInput = (array) $brand;
+            $resolvedBrands = Brand::whereIn('name', $brandInput)
+                                   ->orWhereIn('slug', $brandInput)
+                                   ->pluck('id');
+                                   
+            $query->where(function ($q) use ($brandInput, $resolvedBrands) {
+                if ($resolvedBrands->isNotEmpty()) {
+                    $q->whereIn('brand_id', $resolvedBrands);
+                }
+                $q->orWhereIn('brand', $brandInput);
+            });
         }
 
         // Filter by Capacity (Ah)
@@ -75,14 +86,9 @@ class ProductController extends Controller
 
         $categories = Category::withCount(['products' => fn($q) => $q->active()])->get();
 
-        $brandsData = Product::active()->whereNotNull('brand')->selectRaw('brand, count(*) as count')->groupBy('brand')->get();
-        $brands = $brandsData->map(function($item) {
-            return (object) [
-                'slug' => $item->brand,
-                'name' => $item->brand,
-                'products_count' => $item->count,
-            ];
-        });
+        $brands = Brand::whereHas('products', fn($q) => $q->active())
+            ->withCount(['products' => fn($q) => $q->active()])
+            ->get();
 
         return view('pages.products.index', [
             'products' => $products,
@@ -101,7 +107,7 @@ class ProductController extends Controller
     {
         $category = Category::where('slug', $categorySlug)->firstOrFail();
 
-        $query = Product::where('category_id', $category->id)->active()->with('category');
+        $query = Product::where('category_id', $category->id)->active()->with(['category', 'brand']);
 
         // Search within category
         if ($search = trim($request->input('q', ''))) {
@@ -113,7 +119,17 @@ class ProductController extends Controller
 
         // Filter by Brand
         if ($brand = $request->input('brand')) {
-            $query->whereIn('brand', (array) $brand);
+            $brandInput = (array) $brand;
+            $resolvedBrands = Brand::whereIn('name', $brandInput)
+                                   ->orWhereIn('slug', $brandInput)
+                                   ->pluck('id');
+                                   
+            $query->where(function ($q) use ($brandInput, $resolvedBrands) {
+                if ($resolvedBrands->isNotEmpty()) {
+                    $q->whereIn('brand_id', $resolvedBrands);
+                }
+                $q->orWhereIn('brand', $brandInput);
+            });
         }
 
         // Sorting
@@ -130,14 +146,9 @@ class ProductController extends Controller
 
         $categories = Category::withCount(['products' => fn($q) => $q->active()])->get();
 
-        $brandsData = Product::where('category_id', $category->id)->active()->whereNotNull('brand')->selectRaw('brand, count(*) as count')->groupBy('brand')->get();
-        $brands = $brandsData->map(function($item) {
-            return (object) [
-                'slug' => $item->brand,
-                'name' => $item->brand,
-                'products_count' => $item->count,
-            ];
-        });
+        $brands = Brand::whereHas('products', fn($q) => $q->where('category_id', $category->id)->active())
+            ->withCount(['products' => fn($q) => $q->where('category_id', $category->id)->active()])
+            ->get();
 
         return view('pages.products.index', [
             'products' => $products,
@@ -156,19 +167,24 @@ class ProductController extends Controller
     {
         $product = Product::where('slug', $productSlug)
             ->active()
-            ->with('category')
+            ->with(['category', 'brand'])
             ->firstOrFail();
 
         // 4 Related Products
         $relatedProducts = Product::active()
             ->where('id', '!=', $product->id)
             ->where(function ($q) use ($product) {
-                $q->where('category_id', $product->category_id)
-                  ->orWhere('brand', $product->brand);
+                $q->where('category_id', $product->category_id);
+                if ($product->brand_id) {
+                    $q->orWhere('brand_id', $product->brand_id);
+                }
+                $q->orWhere('brand', $product->brand);
             })
-            ->with('category')
+            ->with(['category', 'brand'])
             ->take(4)
             ->get();
+            
+        $resolvedBrandName = $product->getRelationValue('brand')?->name ?? $product->brand;
 
         // JSON-LD Product Schema
         $schemaProduct = [
@@ -181,7 +197,7 @@ class ProductController extends Controller
             'mpn' => $product->slug,
             'brand' => [
                 '@type' => 'Brand',
-                'name' => $product->brand,
+                'name' => $resolvedBrandName,
             ],
             'category' => $product->category?->name,
             'offers' => [

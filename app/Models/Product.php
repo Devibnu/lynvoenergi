@@ -34,4 +34,9 @@ class Product extends Model
     {
         return $query->where('is_active', true);
     }
+
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class);
+    }
 }

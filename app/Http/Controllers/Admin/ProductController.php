@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Brand;
 
 class ProductController extends Controller
 {
@@ -20,14 +21,15 @@ class ProductController extends Controller
     {
         $categories = \App\Models\Category::all();
         $applications = \App\Models\Application::active()->get();
-        return view('admin.products.create', compact('categories', 'applications'));
+        $brands = Brand::orderBy('name')->get();
+        return view('admin.products.create', compact('categories', 'applications', 'brands'));
     }
 
     public function store(Request $request)
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'brand' => 'required|string|max:255',
+            'brand_id' => 'required|exists:brands,id',
             'category_id' => 'required|exists:categories,id',
             'voltage' => 'nullable|string|max:255',
             'capacity_ah' => 'nullable|integer',
@@ -38,6 +40,9 @@ class ProductController extends Controller
             'applications' => 'nullable|array',
             'applications.*' => 'exists:applications,id',
         ]);
+
+        $brand = Brand::findOrFail($validated['brand_id']);
+        $validated['brand'] = $brand->name;
 
         $validated['slug'] = \Illuminate\Support\Str::slug($request->name);
         $validated['is_price_visible'] = $request->has('is_price_visible');
@@ -68,7 +73,8 @@ class ProductController extends Controller
         $product = \App\Models\Product::findOrFail($id);
         $categories = \App\Models\Category::all();
         $applications = \App\Models\Application::active()->get();
-        return view('admin.products.edit', compact('product', 'categories', 'applications'));
+        $brands = Brand::orderBy('name')->get();
+        return view('admin.products.edit', compact('product', 'categories', 'applications', 'brands'));
     }
 
     public function update(Request $request, string $id)
@@ -77,7 +83,7 @@ class ProductController extends Controller
 
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'brand' => 'required|string|max:255',
+            'brand_id' => 'required|exists:brands,id',
             'category_id' => 'required|exists:categories,id',
             'voltage' => 'nullable|string|max:255',
             'capacity_ah' => 'nullable|integer',
@@ -88,6 +94,9 @@ class ProductController extends Controller
             'applications' => 'nullable|array',
             'applications.*' => 'exists:applications,id',
         ]);
+
+        $brand = Brand::findOrFail($validated['brand_id']);
+        $validated['brand'] = $brand->name;
 
         // Auto-slug update (or keep old if preferred, here we'll update it based on name)
         $validated['slug'] = \Illuminate\Support\Str::slug($request->name);
