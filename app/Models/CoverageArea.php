@@ -39,4 +39,9 @@ class CoverageArea extends Model
         $text = "Halo Lynvo Energi, saya butuh aki / layanan emergency antar pasang aki untuk area *{$this->city_name}* dan sekitarnya. Mohon bantuan teknisi dan rekomendasi tipe aki.";
         return Setting::getWhatsappUrl($text, $this->whatsapp_number);
     }
+
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', true);
+    }
 }

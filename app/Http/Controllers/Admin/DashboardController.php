@@ -10,7 +10,7 @@ class DashboardController extends Controller
     public function index()
     {
         $totalProducts = \App\Models\Product::count();
-        $activeProducts = \App\Models\Product::where('is_active', true)->count();
+        $activeProducts = \App\Models\Product::active()->count();
         $totalProjects = \App\Models\Project::count();
         $publishedProjects = \App\Models\Project::where('is_published', true)->count();
 

@@ -17,23 +17,23 @@ class SitemapController extends Controller
      */
     public function index(): Response
     {
-        $coverageAreas = CoverageArea::where('is_active', true)
+        $coverageAreas = CoverageArea::active()
             ->orderBy('sort_order')
             ->get();
 
-        $categories = Category::where('is_active', true)
+        $categories = Category::active()
             ->orderBy('sort_order')
             ->get();
 
-        $products = Product::where('is_active', true)
+        $products = Product::active()
             ->with('category')
             ->whereHas('category', function ($q) {
-                $q->where('is_active', true);
+                $q->active();
             })
             ->latest('updated_at')
             ->get();
 
-        $applications = Application::where('is_active', true)
+        $applications = Application::active()
             ->get();
 
         $brands = Brand::all();

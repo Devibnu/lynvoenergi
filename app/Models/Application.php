@@ -28,4 +28,9 @@ class Application extends Model
     {
         return $this->belongsToMany(Product::class, 'application_product');
     }
+
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', true);
+    }
 }

@@ -13,8 +13,8 @@ class ApplicationController extends Controller
      */
     public function index(): View
     {
-        $applications = Application::where('is_active', true)
-            ->withCount(['products' => fn($q) => $q->where('is_active', true)])
+        $applications = Application::active()
+            ->withCount(['products' => fn($q) => $q->active()])
             ->get();
 
         return view('pages.applications.index', [
@@ -30,13 +30,13 @@ class ApplicationController extends Controller
     public function show(string $slug): View
     {
         $application = Application::where('slug', $slug)
-            ->where('is_active', true)
+            ->active()
             ->with(['products' => function ($q) {
-                $q->where('is_active', true)->with(['category']);
+                $q->active()->with(['category']);
             }])
             ->firstOrFail();
 
-        $otherApplications = Application::where('is_active', true)
+        $otherApplications = Application::active()
             ->where('id', '!=', $application->id)
             ->get();
 

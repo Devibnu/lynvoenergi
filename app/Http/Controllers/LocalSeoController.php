@@ -15,16 +15,16 @@ class LocalSeoController extends Controller
     public function showLocalLanding(string $slug): View
     {
         $area = CoverageArea::where('slug', $slug)
-            ->where('is_active', true)
+            ->active()
             ->firstOrFail();
 
         $popularProducts = Product::where('is_popular_retail', true)
-            ->where('is_active', true)
+            ->active()
             ->with(['category'])
             ->take(8)
             ->get();
 
-        $otherAreas = CoverageArea::where('is_active', true)
+        $otherAreas = CoverageArea::active()
             ->where('id', '!=', $area->id)
             ->orderBy('sort_order')
             ->get();
@@ -145,12 +145,12 @@ class LocalSeoController extends Controller
      */
     public function serviceHub(): View
     {
-        $coverageAreas = CoverageArea::where('is_active', true)
+        $coverageAreas = CoverageArea::active()
             ->orderBy('sort_order')
             ->get();
 
         $featuredProducts = Product::where('is_popular_retail', true)
-            ->where('is_active', true)
+            ->active()
             ->with(['category'])
             ->take(6)
             ->get();

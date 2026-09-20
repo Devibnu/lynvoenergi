@@ -29,4 +29,9 @@ class Product extends Model
         $text = "Halo Lynvo Energi, saya tertarik memesan produk {$this->name}. Apakah stoknya tersedia?";
         return Setting::getWhatsappUrl($text);
     }
+
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', true);
+    }
 }

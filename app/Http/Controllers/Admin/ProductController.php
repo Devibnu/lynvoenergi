@@ -19,7 +19,7 @@ class ProductController extends Controller
     public function create()
     {
         $categories = \App\Models\Category::all();
-        $applications = \App\Models\Application::where('is_active', true)->get();
+        $applications = \App\Models\Application::active()->get();
         return view('admin.products.create', compact('categories', 'applications'));
     }
 
@@ -67,7 +67,7 @@ class ProductController extends Controller
     {
         $product = \App\Models\Product::findOrFail($id);
         $categories = \App\Models\Category::all();
-        $applications = \App\Models\Application::where('is_active', true)->get();
+        $applications = \App\Models\Application::active()->get();
         return view('admin.products.edit', compact('product', 'categories', 'applications'));
     }
 

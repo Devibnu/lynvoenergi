@@ -13,7 +13,7 @@ class BrandController extends Controller
      */
     public function index(): View
     {
-        $brands = Brand::withCount(['products' => fn($q) => $q->where('is_active', true)])
+        $brands = Brand::withCount(['products' => fn($q) => $q->active()])
             ->get();
 
         return view('pages.brands.index', [
@@ -30,7 +30,7 @@ class BrandController extends Controller
     {
         $brand = Brand::where('slug', $slug)
             ->with(['products' => function ($q) {
-                $q->where('is_active', true)->with('category');
+                $q->active()->with('category');
             }])
             ->firstOrFail();
 

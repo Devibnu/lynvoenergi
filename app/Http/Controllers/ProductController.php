@@ -13,7 +13,7 @@ class ProductController extends Controller
     public function downloadPdf()
     {
         // Ambil semua produk aktif
-        $products = \App\Models\Product::with('category')->where('is_active', true)->orderBy('category_id')->get();
+        $products = \App\Models\Product::with('category')->active()->orderBy('category_id')->get();
         
         // Load view khusus PDF
         $pdf = Pdf::loadView('pages.products.pdf', compact('products'));
@@ -27,7 +27,7 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        $query = Product::where('is_active', true)->with('category');
+        $query = Product::active()->with('category');
 
         // Search query
         if ($search = trim($request->input('q', ''))) {
@@ -73,9 +73,9 @@ class ProductController extends Controller
 
         $products = $query->paginate(12)->withQueryString();
 
-        $categories = Category::withCount(['products' => fn($q) => $q->where('is_active', true)])->get();
+        $categories = Category::withCount(['products' => fn($q) => $q->active()])->get();
 
-        $brandsData = Product::where('is_active', true)->whereNotNull('brand')->selectRaw('brand, count(*) as count')->groupBy('brand')->get();
+        $brandsData = Product::active()->whereNotNull('brand')->selectRaw('brand, count(*) as count')->groupBy('brand')->get();
         $brands = $brandsData->map(function($item) {
             return (object) [
                 'slug' => $item->brand,
@@ -101,7 +101,7 @@ class ProductController extends Controller
     {
         $category = Category::where('slug', $categorySlug)->firstOrFail();
 
-        $query = Product::where('category_id', $category->id)->where('is_active', true)->with('category');
+        $query = Product::where('category_id', $category->id)->active()->with('category');
 
         // Search within category
         if ($search = trim($request->input('q', ''))) {
@@ -128,9 +128,9 @@ class ProductController extends Controller
 
         $products = $query->paginate(12)->withQueryString();
 
-        $categories = Category::withCount(['products' => fn($q) => $q->where('is_active', true)])->get();
+        $categories = Category::withCount(['products' => fn($q) => $q->active()])->get();
 
-        $brandsData = Product::where('category_id', $category->id)->where('is_active', true)->whereNotNull('brand')->selectRaw('brand, count(*) as count')->groupBy('brand')->get();
+        $brandsData = Product::where('category_id', $category->id)->active()->whereNotNull('brand')->selectRaw('brand, count(*) as count')->groupBy('brand')->get();
         $brands = $brandsData->map(function($item) {
             return (object) [
                 'slug' => $item->brand,
@@ -155,12 +155,12 @@ class ProductController extends Controller
     public function show(string $categorySlug, string $productSlug)
     {
         $product = Product::where('slug', $productSlug)
-            ->where('is_active', true)
+            ->active()
             ->with('category')
             ->firstOrFail();
 
         // 4 Related Products
-        $relatedProducts = Product::where('is_active', true)
+        $relatedProducts = Product::active()
             ->where('id', '!=', $product->id)
             ->where(function ($q) use ($product) {
                 $q->where('category_id', $product->category_id)

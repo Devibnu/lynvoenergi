@@ -37,7 +37,7 @@ class PageController extends Controller
      */
     public function quotation(): View
     {
-        $categories = Category::where('is_active', true)->orderBy('sort_order')->get();
+        $categories = Category::active()->orderBy('sort_order')->get();
 
         return view('pages.quotation', [
             'categories' => $categories,

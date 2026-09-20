@@ -19,12 +19,12 @@ class HomeController extends Controller
      */
     public function index(): View
     {
-        $categories = Category::withCount(['products' => fn($q) => $q->where('is_active', true)])
-            ->where('is_active', true)
+        $categories = Category::withCount(['products' => fn($q) => $q->active()])
+            ->active()
             ->orderBy('sort_order', 'asc')
             ->get();
 
-        $applications = Application::where('is_active', true)
+        $applications = Application::active()
             ->take(6)
             ->get();
 
@@ -33,7 +33,7 @@ class HomeController extends Controller
             ->get();
 
         $popularProducts = Product::with('category')
-            ->where('is_active', true)
+            ->active()
             ->latest()
             ->take(6)
             ->get();
@@ -43,11 +43,11 @@ class HomeController extends Controller
             ->take(4)
             ->get();
 
-        $coverageAreas = CoverageArea::where('is_active', true)
+        $coverageAreas = CoverageArea::active()
             ->orderBy('sort_order')
             ->get();
 
-        $articles = Article::where('is_active', true)
+        $articles = Article::active()
             ->latest('published_at')
             ->take(3)
             ->get();

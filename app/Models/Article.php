@@ -26,4 +26,9 @@ class Article extends Model
         'is_active' => 'boolean',
         'published_at' => 'datetime',
     ];
+
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', true);
+    }
 }
