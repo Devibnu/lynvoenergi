@@ -37,6 +37,6 @@ class CoverageArea extends Model
     public function getWhatsappUrlAttribute(): string
     {
         $text = "Halo Lynvo Energi, saya butuh aki / layanan emergency antar pasang aki untuk area *{$this->city_name}* dan sekitarnya. Mohon bantuan teknisi dan rekomendasi tipe aki.";
-        return Setting::getWhatsappUrl($text);
+        return Setting::getWhatsappUrl($text, $this->whatsapp_number);
     }
 }
