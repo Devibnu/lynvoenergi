@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Product;
+use App\Models\Brand;
 use Illuminate\Support\Str;
 
 class ProductSeeder extends Seeder
@@ -18,6 +19,7 @@ class ProductSeeder extends Seeder
             [
                 'name' => 'GS Astra NS40Z',
                 'brand' => 'GS Astra',
+                'official_brand' => 'GS Astra',
                 'category_id' => 1, // Aki Mobil
                 'voltage' => '12V',
                 'capacity_ah' => 35,
@@ -31,6 +33,7 @@ class ProductSeeder extends Seeder
             [
                 'name' => 'Incoe Gold N200',
                 'brand' => 'Incoe',
+                'official_brand' => 'Incoe',
                 'category_id' => 2, // Aki Truk & Bus
                 'voltage' => '12V',
                 'capacity_ah' => 200,
@@ -44,6 +47,7 @@ class ProductSeeder extends Seeder
             [
                 'name' => 'Yuasa Pafecta N120',
                 'brand' => 'Yuasa',
+                'official_brand' => 'Yuasa',
                 'category_id' => 4, // Aki Kapal
                 'voltage' => '12V',
                 'capacity_ah' => 120,
@@ -57,6 +61,7 @@ class ProductSeeder extends Seeder
             [
                 'name' => 'Amaron Quanta 12V 100Ah',
                 'brand' => 'Amaron',
+                'official_brand' => 'Amaron',
                 'category_id' => 6, // Aki UPS
                 'voltage' => '12V',
                 'capacity_ah' => 100,
@@ -70,6 +75,7 @@ class ProductSeeder extends Seeder
             [
                 'name' => 'Massiv Amal N70Z',
                 'brand' => 'Massiv',
+                'official_brand' => 'Yuasa',
                 'category_id' => 3, // Aki Alat Berat
                 'voltage' => '12V',
                 'capacity_ah' => 75,
@@ -86,9 +92,16 @@ class ProductSeeder extends Seeder
             $apps = $data['applications'];
             unset($data['applications']);
             
+            $officialBrand = Brand::where('name', $data['official_brand'])->firstOrFail();
+            $data['brand_id'] = $officialBrand->id;
+            unset($data['official_brand']);
+            
             $data['slug'] = Str::slug($data['name']);
             
-            $product = Product::create($data);
+            $product = Product::updateOrCreate(
+                ['name' => $data['name']],
+                $data
+            );
             $product->applications()->sync($apps);
         }
     }
