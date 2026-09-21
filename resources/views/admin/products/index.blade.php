@@ -29,7 +29,7 @@
                     </div>
                     <div class="d-flex flex-column justify-content-center">
                       <h6 class="mb-0 text-sm">{{ $product->name }}</h6>
-                      <p class="text-xs text-secondary mb-0">{{ $product->brand ?? 'Tanpa Merek' }}</p>
+                      <p class="text-xs text-secondary mb-0">{{ $product->getRelationValue('brand')?->name ?? 'Tanpa Merek' }}</p>
                     </div>
                   </div>
                 </td>

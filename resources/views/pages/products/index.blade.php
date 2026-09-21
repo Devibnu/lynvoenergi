@@ -239,7 +239,7 @@
                                         <!-- Card Top Badges -->
                                         <div class="flex items-center justify-between gap-2 mb-3">
                                             <span class="px-2.5 py-1 rounded-md text-[11px] font-bold bg-blue-100 text-blue-800 uppercase tracking-wide">
-                                                {{ $product->brand }}
+                                                {{ $product->getRelationValue('brand')?->name }}
                                             </span>
                                             <span class="text-[11px] font-semibold text-slate-500 bg-slate-100 px-2 py-0.5 rounded">
                                                 {{ $product->category->name }}

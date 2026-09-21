@@ -56,11 +56,10 @@ class ProductController extends Controller
                                    ->orWhereIn('slug', $brandInput)
                                    ->pluck('id');
                                    
-            $query->where(function ($q) use ($brandInput, $resolvedBrands) {
+            $query->where(function ($q) use ($resolvedBrands) {
                 if ($resolvedBrands->isNotEmpty()) {
                     $q->whereIn('brand_id', $resolvedBrands);
                 }
-                $q->orWhereIn('brand', $brandInput);
             });
         }
 
@@ -124,11 +123,10 @@ class ProductController extends Controller
                                    ->orWhereIn('slug', $brandInput)
                                    ->pluck('id');
                                    
-            $query->where(function ($q) use ($brandInput, $resolvedBrands) {
+            $query->where(function ($q) use ($resolvedBrands) {
                 if ($resolvedBrands->isNotEmpty()) {
                     $q->whereIn('brand_id', $resolvedBrands);
                 }
-                $q->orWhereIn('brand', $brandInput);
             });
         }
 
@@ -178,7 +176,6 @@ class ProductController extends Controller
                 if ($product->brand_id) {
                     $q->orWhere('brand_id', $product->brand_id);
                 }
-                $q->orWhere('brand', $product->brand);
             })
             ->with(['category', 'brand'])
             ->take(4)

@@ -27,7 +27,7 @@
             <tr>
                 <td>{{ $index + 1 }}</td>
                 <td>{{ $product->category?->name }}</td>
-                <td>{{ $product->brand }}</td>
+                <td>{{ $product->getRelationValue('brand')?->name }}</td>
                 <td>{{ $product->name }}</td>
                 <td>{{ $product->voltage ?? '-' }} / {{ $product->capacity_ah ?? '-' }} Ah / {{ $product->cca ?? '-' }} CCA</td>
             </tr>
