@@ -18,7 +18,7 @@ class ProductSeeder extends Seeder
         $products = [
             [
                 'name' => 'GS Astra NS40Z',
-                'brand' => 'GS Astra',
+
                 'official_brand' => 'GS Astra',
                 'category_id' => 1, // Aki Mobil
                 'voltage' => '12V',
@@ -32,7 +32,7 @@ class ProductSeeder extends Seeder
             ],
             [
                 'name' => 'Incoe Gold N200',
-                'brand' => 'Incoe',
+
                 'official_brand' => 'Incoe',
                 'category_id' => 2, // Aki Truk & Bus
                 'voltage' => '12V',
@@ -46,7 +46,7 @@ class ProductSeeder extends Seeder
             ],
             [
                 'name' => 'Yuasa Pafecta N120',
-                'brand' => 'Yuasa',
+
                 'official_brand' => 'Yuasa',
                 'category_id' => 4, // Aki Kapal
                 'voltage' => '12V',
@@ -60,7 +60,7 @@ class ProductSeeder extends Seeder
             ],
             [
                 'name' => 'Amaron Quanta 12V 100Ah',
-                'brand' => 'Amaron',
+
                 'official_brand' => 'Amaron',
                 'category_id' => 6, // Aki UPS
                 'voltage' => '12V',
@@ -74,7 +74,7 @@ class ProductSeeder extends Seeder
             ],
             [
                 'name' => 'Massiv Amal N70Z',
-                'brand' => 'Massiv',
+
                 'official_brand' => 'Yuasa',
                 'category_id' => 3, // Aki Alat Berat
                 'voltage' => '12V',

@@ -188,7 +188,7 @@
                             <div>
                             <div class="flex items-center justify-between mb-3">
                                 <span class="text-xs font-bold px-2.5 py-1 rounded bg-blue-100 text-blue-800">
-                                    {{ $prod->getRelationValue('brand')?->name ?? $prod->brand }}
+                                    {{ $prod->getRelationValue('brand')?->name }}
                                 </span>
                                 <span class="text-xs font-semibold text-emerald-600">Garansi Resmi</span>
                             </div>

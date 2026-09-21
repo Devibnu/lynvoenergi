@@ -42,7 +42,6 @@ class ProductController extends Controller
         ]);
 
         $brand = Brand::findOrFail($validated['brand_id']);
-        $validated['brand'] = $brand->name;
 
         $validated['slug'] = \Illuminate\Support\Str::slug($request->name);
         $validated['is_price_visible'] = $request->has('is_price_visible');
@@ -96,7 +95,6 @@ class ProductController extends Controller
         ]);
 
         $brand = Brand::findOrFail($validated['brand_id']);
-        $validated['brand'] = $brand->name;
 
         // Auto-slug update (or keep old if preferred, here we'll update it based on name)
         $validated['slug'] = \Illuminate\Support\Str::slug($request->name);

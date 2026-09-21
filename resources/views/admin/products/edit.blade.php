@@ -36,11 +36,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label">Merek (Brand) <span class="text-danger">*</span></label>
-                                @if(is_null($product->brand_id) && !empty($product->brand))
-                                    <div class="alert alert-warning text-white text-sm py-2 mb-2" role="alert">
-                                        <strong>Perhatian:</strong> Merek produk ini ("{{ $product->brand }}") belum ternormalisasi. Silakan pilih merek resmi di bawah ini.
-                                    </div>
-                                @endif
+
                                 <select name="brand_id" class="form-control" required>
                                     <option value="">-- Pilih Merek --</option>
                                     @foreach($brands as $brand)

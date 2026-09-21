@@ -181,7 +181,7 @@ class ProductController extends Controller
             ->take(4)
             ->get();
             
-        $resolvedBrandName = $product->getRelationValue('brand')?->name ?? $product->brand;
+        $resolvedBrandName = $product->getRelationValue('brand')?->name;
 
         // JSON-LD Product Schema
         $schemaProduct = [
