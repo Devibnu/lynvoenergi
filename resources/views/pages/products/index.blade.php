@@ -46,11 +46,6 @@
                 </div>
 
                 <div class="flex flex-col sm:flex-row gap-3">
-                    <a href="{{ route('katalog.pdf') }}" 
-                       class="inline-flex items-center gap-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs sm:text-sm px-6 py-3.5 rounded-xl shadow-lg shadow-blue-600/30 whitespace-nowrap transition">
-                        <i class="fa-solid fa-download text-lg"></i>
-                        <span>Download Katalog PDF</span>
-                    </a>
                     <!-- Fast WhatsApp Order Button -->
                     <a href="{{ \App\Models\Setting::getWhatsappUrl('Halo Lynvo Energi, saya mau tanya stok dan harga aki.') }}"
                        target="_blank"

@@ -5,24 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Brand;
-use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
-    public function downloadPdf()
-    {
-        // Ambil semua produk aktif
-        $products = \App\Models\Product::with('category')->active()->orderBy('category_id')->get();
-        
-        // Load view khusus PDF
-        $pdf = Pdf::loadView('pages.products.pdf', compact('products'));
-        
-        // Download file
-        return $pdf->download('Katalog-Produk-Lynvo-Energi.pdf');
-    }
-
     /**
      * Display product catalog with dynamic filters and search.
      */

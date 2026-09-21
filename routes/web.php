@@ -31,7 +31,6 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/layanan/antar-pasang-aki', [LocalSeoController::class, 'serviceHub'])->name('services.battery_delivery');
 
 // Katalog & Detail Produk
-Route::get('/katalog/download-pdf', [ProductController::class, 'downloadPdf'])->name('katalog.pdf');
 Route::get('/produk', [ProductController::class, 'index'])->name('products.index');
 Route::get('/produk/{category:slug}', [ProductController::class, 'category'])->name('products.category');
 Route::get('/produk/{category:slug}/{product:slug}', [ProductController::class, 'show'])->name('products.show');
