@@ -51,7 +51,9 @@ Route::get('/project/{project:slug}', [ProjectController::class, 'show'])->name(
 Route::get('/tentang-kami', [PageController::class, 'about'])->name('about');
 Route::get('/kontak', [PageController::class, 'contact'])->name('contact');
 Route::get('/minta-penawaran', [PageController::class, 'quotation'])->name('quotation');
-Route::post('/inquiry', [PageController::class, 'storeInquiry'])->name('inquiry.store');
+Route::post('/inquiry', [PageController::class, 'storeInquiry'])
+    ->middleware('throttle:inquiry')
+    ->name('inquiry.store');
 
 // Local Landing SEO Route
 Route::get('/{coverageArea:slug}', [LocalSeoController::class, 'showLocalLanding'])

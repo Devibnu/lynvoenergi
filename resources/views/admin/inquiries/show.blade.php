@@ -78,7 +78,12 @@
                         <label class="text-xs font-weight-bold text-uppercase text-secondary mb-0">URL Sumber Referensi</label>
                         <p class="text-sm font-weight-bold mb-0">
                             @if($inquiry->source_url)
-                                <a href="{{ $inquiry->source_url }}" target="_blank" class="text-info">{{ $inquiry->source_url }} <i class="fas fa-external-link-alt ms-1 text-xs"></i></a>
+                                @php($sourceScheme = parse_url($inquiry->source_url, PHP_URL_SCHEME))
+                                @if(in_array(strtolower((string) $sourceScheme), ['http', 'https'], true))
+                                    <a href="{{ $inquiry->source_url }}" target="_blank" rel="noopener noreferrer" class="text-info">{{ $inquiry->source_url }} <i class="fas fa-external-link-alt ms-1 text-xs"></i></a>
+                                @else
+                                    {{ $inquiry->source_url }}
+                                @endif
                             @else
                                 -
                             @endif

@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Inquiry;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
 class PageController extends Controller
@@ -55,14 +56,30 @@ class PageController extends Controller
             'type' => 'required|in:b2b_quotation,retail_order,general_contact',
             'name' => 'required|string|max:255',
             'company_name' => 'nullable|string|max:255',
-            'phone' => 'required|string|max:50',
+            'phone' => ['required', 'string', 'max:50', 'regex:/^\+?[0-9][0-9\s().-]{7,48}$/'],
             'email' => 'nullable|email|max:255',
             'target_location' => 'nullable|string|max:255',
-            'category_id' => 'nullable|exists:categories,id',
+            'category_id' => 'nullable|integer',
             'quantity' => 'nullable|string|max:100',
             'message' => 'required|string|max:5000',
-            'source_url' => 'nullable|string|max:500',
+            'source_url' => 'nullable|url:http,https|max:500',
         ]);
+
+        $category = null;
+        if (!empty($validated['category_id'])) {
+            $category = Category::find($validated['category_id']);
+
+            if (!$category) {
+                throw ValidationException::withMessages([
+                    'category_id' => 'Kategori yang dipilih tidak tersedia.',
+                ]);
+            }
+        }
+
+        $normalizedPhone = \App\Models\Setting::getNormalizedWhatsappNumber($validated['phone']);
+        if (!preg_match('/^[1-9][0-9]{7,14}$/', $normalizedPhone)) {
+            return redirect()->back()->withErrors(['phone' => 'Nomor WhatsApp atau telepon tidak valid.'])->withInput();
+        }
 
         $inquiry = Inquiry::create($validated);
 
@@ -73,10 +90,7 @@ class PageController extends Controller
             default => 'Pesan Kontak Umum',
         };
 
-        $categoryName = '';
-        if ($inquiry->category_id) {
-            $categoryName = Category::find($inquiry->category_id)->name ?? '';
-        }
+        $categoryName = $category?->name ?? '';
 
         $waText = "Halo Tim Sales Lynvo Energi, saya telah mengirimkan *{$typeLabel}* melalui website:\n\n"
             . "• Nama: {$inquiry->name}\n"
