@@ -69,6 +69,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
     Route::resource('products', \App\Http\Controllers\Admin\ProductController::class);
     Route::resource('categories', \App\Http\Controllers\Admin\CategoryController::class);
+    Route::resource('brands', \App\Http\Controllers\Admin\BrandController::class);
     Route::resource('applications', \App\Http\Controllers\Admin\ApplicationController::class);
     Route::resource('projects', \App\Http\Controllers\Admin\ProjectController::class);
     Route::resource('company-locations', \App\Http\Controllers\Admin\CompanyLocationController::class);
