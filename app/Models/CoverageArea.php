@@ -33,11 +33,13 @@ class CoverageArea extends Model
 
     /**
      * Accessor for local WhatsApp call-to-action link.
+     * Menggunakan nomor WhatsApp global dari Admin Settings.
      */
     public function getWhatsappUrlAttribute(): string
     {
         $text = "Halo Lynvo Energi, saya butuh aki / layanan emergency antar pasang aki untuk area *{$this->city_name}* dan sekitarnya. Mohon bantuan teknisi dan rekomendasi tipe aki.";
-        return Setting::getWhatsappUrl($text, $this->whatsapp_number);
+
+        return Setting::getWhatsappUrl($text);
     }
 
     public function scopeActive($query)
