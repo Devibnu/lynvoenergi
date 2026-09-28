@@ -29,7 +29,7 @@
     </div>
 
     <!-- MAIN PRODUCT DETAILS -->
-    <section class="py-12 bg-slate-50 pb-24 md:pb-12">
+    <section class="py-12 bg-slate-50 pb-40 md:pb-12">
         <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
 
@@ -284,7 +284,7 @@
     </section>
 
     <!-- STICKY BOTTOM CTA (MOBILE ONLY) -->
-    <div class="fixed bottom-0 left-0 right-0 p-4 bg-white border-t border-slate-200 shadow-[0_-10px_15px_-3px_rgba(0,0,0,0.05)] md:hidden z-50">
+    <div class="fixed bottom-[60px] left-0 right-0 p-4 bg-white/95 backdrop-blur-md border-t border-slate-200 shadow-[0_-10px_15px_-3px_rgba(0,0,0,0.05)] md:hidden z-40">
         <a href="{{ \App\Models\Setting::getWhatsappUrl($waTextDetail) }}"
            target="_blank"
            class="flex items-center justify-center gap-2 w-full bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-sm py-3.5 px-4 rounded-xl shadow-lg shadow-emerald-600/30 transition btn-wa-pulse">
