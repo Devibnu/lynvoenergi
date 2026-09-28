@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -10,60 +11,59 @@ class SettingController extends Controller
 {
     public function index()
     {
-        $settings = \App\Models\Setting::all();
+        $settings = Setting::all();
         return view('admin.settings.index', compact('settings'));
+    }
+
+    public function upload(Request $request)
+    {
+        // This is kept just in case but we'll merge logic to update()
+        return back()->with('error', 'Silakan gunakan tombol Simpan Pengaturan di bawah.');
     }
 
     public function update(Request $request)
     {
-        // Handle logo file upload separately
-        if ($request->hasFile('site_logo')) {
-            $request->validate([
-                'site_logo' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
-            ]);
-
-            // Delete old logo if exists
-            $oldLogo = \App\Models\Setting::where('key', 'site_logo')->value('value');
-            if ($oldLogo && Storage::disk('public')->exists($oldLogo)) {
-                Storage::disk('public')->delete($oldLogo);
+        // --- LOGO ---
+        if ($request->hasFile('site_logo') && $request->file('site_logo')->isValid()) {
+            $file = $request->file('site_logo');
+            Storage::disk('public')->makeDirectory('logo');
+            $old = Setting::getValue('site_logo');
+            if ($old && Storage::disk('public')->exists($old)) {
+                Storage::disk('public')->delete($old);
             }
-
-            // Store new logo
-            $logoFile = $request->file('site_logo');
-            $logoName = 'logo_' . time() . '.' . $logoFile->getClientOriginalExtension();
-            $logoPath = $logoFile->storeAs('logo', $logoName, 'public');
-
-            // Save path to database
-            \App\Models\Setting::where('key', 'site_logo')->update(['value' => $logoPath]);
+            $path = $file->storeAs('logo', 'logo_' . time() . '.' . $file->getClientOriginalExtension(), 'public');
+            Setting::updateOrCreate(
+                ['key' => 'site_logo'],
+                ['value' => $path, 'label' => 'Logo Website']
+            );
         }
 
-        // Handle favicon file upload separately
-        if ($request->hasFile('site_favicon')) {
-            $request->validate([
-                'site_favicon' => 'file|mimes:ico,png,svg,jpg,jpeg,webp|max:512',
-            ]);
-
-            // Delete old favicon if exists
-            $oldFavicon = \App\Models\Setting::where('key', 'site_favicon')->value('value');
-            if ($oldFavicon && Storage::disk('public')->exists($oldFavicon)) {
-                Storage::disk('public')->delete($oldFavicon);
+        // --- FAVICON ---
+        if ($request->hasFile('site_favicon') && $request->file('site_favicon')->isValid()) {
+            $file = $request->file('site_favicon');
+            Storage::disk('public')->makeDirectory('logo');
+            $old = Setting::getValue('site_favicon');
+            if ($old && Storage::disk('public')->exists($old)) {
+                Storage::disk('public')->delete($old);
             }
-
-            // Store new favicon
-            $faviconFile = $request->file('site_favicon');
-            $faviconName = 'favicon_' . time() . '.' . $faviconFile->getClientOriginalExtension();
-            $faviconPath = $faviconFile->storeAs('logo', $faviconName, 'public');
-
-            // Save path to database
-            \App\Models\Setting::where('key', 'site_favicon')->update(['value' => $faviconPath]);
+            $path = $file->storeAs('logo', 'favicon_' . time() . '.' . $file->getClientOriginalExtension(), 'public');
+            Setting::updateOrCreate(
+                ['key' => 'site_favicon'],
+                ['value' => $path, 'label' => 'Favicon Website']
+            );
         }
 
-        // Handle text-based settings
-        $excludedKeys = ['_token', '_method', 'site_logo', 'site_favicon'];
-        foreach ($request->except($excludedKeys) as $key => $value) {
-            \App\Models\Setting::where('key', $key)->update(['value' => $value]);
+        // --- TEXT SETTINGS ---
+        $skip = ['_token', '_method', 'site_logo', 'site_favicon'];
+        foreach ($request->except($skip) as $key => $value) {
+            if ($value !== null && $value !== '') {
+                Setting::updateOrCreate(
+                    ['key' => $key],
+                    ['value' => $value, 'label' => ucwords(str_replace('_', ' ', $key))]
+                );
+            }
         }
 
-        return back()->with('success', 'Pengaturan berhasil diperbarui!');
+        return back()->with('success', 'Pengaturan berhasil disimpan!');
     }
 }

@@ -7,6 +7,14 @@
     <meta name="description" content="@yield('meta_description', 'Distributor aki mobil, truk, genset dan industri di Banten. Layanan pesan antar pasang aki 24 jam cepat ke rumah & kantor.')">
     <link rel="canonical" href="{{ url()->current() }}">
 
+    <!-- Dynamic Favicon -->
+    @php
+        $siteFavicon = \App\Models\Setting::getValue('site_favicon');
+    @endphp
+    @if($siteFavicon)
+        <link rel="icon" href="{{ asset('storage/' . $siteFavicon) }}">
+    @endif
+
     <!-- Open Graph / Social Meta -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
@@ -93,15 +101,15 @@
                         <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-blue-700 via-blue-600 to-amber-500 flex items-center justify-center text-white shadow-md shadow-blue-500/20 group-hover:scale-105 transition transform">
                             <i class="fa-solid fa-car-battery text-2xl"></i>
                         </div>
+                        <div>
+                            <span class="text-2xl font-black tracking-tight text-slate-900 block leading-none">
+                                LYNVO <span class="text-blue-600">ENERGI</span>
+                            </span>
+                            <span class="text-[11px] font-semibold tracking-wider text-slate-500 uppercase block mt-1">
+                                Pusat Aki &amp; Accu Banten
+                            </span>
+                        </div>
                     @endif
-                    <div>
-                        <span class="text-2xl font-black tracking-tight text-slate-900 block leading-none">
-                            LYNVO <span class="text-blue-600">ENERGI</span>
-                        </span>
-                        <span class="text-[11px] font-semibold tracking-wider text-slate-500 uppercase block mt-1">
-                            Pusat Aki &amp; Accu Banten
-                        </span>
-                    </div>
                 </a>
 
                 <!-- Desktop Navigation Links -->

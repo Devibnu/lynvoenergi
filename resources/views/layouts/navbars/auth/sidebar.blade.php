@@ -62,12 +62,55 @@
             <span class="nav-link-text ms-1">User Management</span>
         </a>
       </li>
-      <li class="nav-item pb-2">
+      <li class="nav-item mt-2">
+        <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Manajemen Data</h6>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link {{ (Request::is('admin/products*') ? 'active' : '') }}" href="{{ route('admin.products.index') }}">
+            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                <i style="font-size: 1rem;" class="fas fa-lg fa-box ps-2 pe-2 text-center text-dark {{ (Request::is('admin/products*') ? 'text-white' : 'text-dark') }} " aria-hidden="true"></i>
+            </div>
+            <span class="nav-link-text ms-1">Produk</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link {{ (Request::is('admin/categories*') ? 'active' : '') }}" href="{{ route('admin.categories.index') }}">
+            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                <i style="font-size: 1rem;" class="fas fa-lg fa-tags ps-2 pe-2 text-center text-dark {{ (Request::is('admin/categories*') ? 'text-white' : 'text-dark') }} " aria-hidden="true"></i>
+            </div>
+            <span class="nav-link-text ms-1">Kategori Produk</span>
+        </a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link {{ (Request::is('admin/brands*') ? 'active' : '') }}" href="{{ route('admin.brands.index') }}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                <i style="font-size: 1rem;" class="fas fa-lg fa-tags ps-2 pe-2 text-center text-dark {{ (Request::is('admin/brands*') ? 'text-white' : 'text-dark') }} " aria-hidden="true"></i>
+                <i style="font-size: 1rem;" class="fas fa-lg fa-copyright ps-2 pe-2 text-center text-dark {{ (Request::is('admin/brands*') ? 'text-white' : 'text-dark') }} " aria-hidden="true"></i>
             </div>
             <span class="nav-link-text ms-1">Merek</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link {{ (Request::is('admin/applications*') ? 'active' : '') }}" href="{{ route('admin.applications.index') }}">
+            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                <i style="font-size: 1rem;" class="fas fa-lg fa-industry ps-2 pe-2 text-center text-dark {{ (Request::is('admin/applications*') ? 'text-white' : 'text-dark') }} " aria-hidden="true"></i>
+            </div>
+            <span class="nav-link-text ms-1">Sektor Aplikasi</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link {{ (Request::is('admin/projects*') ? 'active' : '') }}" href="{{ route('admin.projects.index') }}">
+            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                <i style="font-size: 1rem;" class="fas fa-lg fa-briefcase ps-2 pe-2 text-center text-dark {{ (Request::is('admin/projects*') ? 'text-white' : 'text-dark') }} " aria-hidden="true"></i>
+            </div>
+            <span class="nav-link-text ms-1">Proyek</span>
+        </a>
+      </li>
+      <li class="nav-item pb-2">
+        <a class="nav-link {{ (Request::is('admin/articles*') ? 'active' : '') }}" href="{{ route('admin.articles.index') }}">
+            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                <i style="font-size: 1rem;" class="fas fa-lg fa-newspaper ps-2 pe-2 text-center text-dark {{ (Request::is('admin/articles*') ? 'text-white' : 'text-dark') }} " aria-hidden="true"></i>
+            </div>
+            <span class="nav-link-text ms-1">Artikel & Edukasi</span>
         </a>
       </li>
       <li class="nav-item mt-2">

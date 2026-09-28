@@ -8,7 +8,7 @@ class Setting extends Model
 {
     protected $guarded = [];
 
-    public static function getValue($key, $default = '')
+    public static function getValue($key, $default = null)
     {
         return self::where('key', $key)->value('value') ?? $default;
     }

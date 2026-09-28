@@ -296,73 +296,29 @@
 
                     <!-- 6 Industrial Sectors Strip Grid -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                        @php
+                            $appStyleMap = [
+                                ['border' => 'hover:border-blue-500/60', 'bg' => 'bg-blue-950', 'text' => 'text-blue-400'],
+                                ['border' => 'hover:border-emerald-500/60', 'bg' => 'bg-emerald-950', 'text' => 'text-emerald-400'],
+                                ['border' => 'hover:border-sky-500/60', 'bg' => 'bg-sky-950', 'text' => 'text-sky-400'],
+                                ['border' => 'hover:border-purple-500/60', 'bg' => 'bg-purple-950', 'text' => 'text-purple-400'],
+                                ['border' => 'hover:border-amber-500/60', 'bg' => 'bg-amber-950', 'text' => 'text-amber-400'],
+                                ['border' => 'hover:border-rose-500/60', 'bg' => 'bg-rose-950', 'text' => 'text-rose-400'],
+                            ];
+                        @endphp
                         
-                        <!-- 1. Manufaktur -->
-                        <div class="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-blue-500/60 transition flex items-center gap-3.5">
-                            <div class="w-10 h-10 rounded-lg bg-blue-950 text-blue-400 flex items-center justify-center text-lg flex-shrink-0">
-                                <i class="fa-solid fa-industry"></i>
+                        @foreach($applications as $application)
+                        @php $appStyle = $appStyleMap[$loop->index % count($appStyleMap)]; @endphp
+                        <a href="{{ route('applications.show', $application->slug) }}" class="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 {{ $appStyle['border'] }} transition flex items-center gap-3.5 block group">
+                            <div class="w-10 h-10 rounded-lg {{ $appStyle['bg'] }} {{ $appStyle['text'] }} flex items-center justify-center text-lg flex-shrink-0">
+                                <i class="{{ $application->icon ?: 'fa-solid fa-industry' }}"></i>
                             </div>
                             <div>
-                                <h4 class="text-xs font-bold text-white">Industri Manufaktur</h4>
-                                <p class="text-[11px] text-slate-400">Pabrik kimia, semen, baja & kawasan industri Cikande/Cilegon.</p>
+                                <h4 class="text-xs font-bold text-white">{{ $application->name }}</h4>
+                                <p class="text-[11px] text-slate-400">{{ $application->description }}</p>
                             </div>
-                        </div>
-
-                        <!-- 2. Armada Logistik -->
-                        <div class="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-emerald-500/60 transition flex items-center gap-3.5">
-                            <div class="w-10 h-10 rounded-lg bg-emerald-950 text-emerald-400 flex items-center justify-center text-lg flex-shrink-0">
-                                <i class="fa-solid fa-truck-moving"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-xs font-bold text-white">Armada Logistik</h4>
-                                <p class="text-[11px] text-slate-400">Truk kontainer, fuso ekspedisi lintas Jawa-Sumatera.</p>
-                            </div>
-                        </div>
-
-                        <!-- 3. Pelabuhan & Marine -->
-                        <div class="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-sky-500/60 transition flex items-center gap-3.5">
-                            <div class="w-10 h-10 rounded-lg bg-sky-950 text-sky-400 flex items-center justify-center text-lg flex-shrink-0">
-                                <i class="fa-solid fa-ship"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-xs font-bold text-white">Pelabuhan & Marine</h4>
-                                <p class="text-[11px] text-slate-400">Kapal tunda Merak, dermaga Bojonegara & pelayaran.</p>
-                            </div>
-                        </div>
-
-                        <!-- 4. RS & Data Center -->
-                        <div class="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-purple-500/60 transition flex items-center gap-3.5">
-                            <div class="w-10 h-10 rounded-lg bg-purple-950 text-purple-400 flex items-center justify-center text-lg flex-shrink-0">
-                                <i class="fa-solid fa-hospital"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-xs font-bold text-white">Rumah Sakit & Data Center</h4>
-                                <p class="text-[11px] text-slate-400">Sistem catu daya kritis UPS & genset darurat tanpa henti.</p>
-                            </div>
-                        </div>
-
-                        <!-- 5. Tambang & Konstruksi -->
-                        <div class="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-amber-500/60 transition flex items-center gap-3.5">
-                            <div class="w-10 h-10 rounded-lg bg-amber-950 text-amber-400 flex items-center justify-center text-lg flex-shrink-0">
-                                <i class="fa-solid fa-trowel-bricks"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-xs font-bold text-white">Pertambangan & Konstruksi</h4>
-                                <p class="text-[11px] text-slate-400">Alat berat excavator tambang pasir, quarry & proyek sipil.</p>
-                            </div>
-                        </div>
-
-                        <!-- 6. Genset Komersial -->
-                        <div class="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-rose-500/60 transition flex items-center gap-3.5">
-                            <div class="w-10 h-10 rounded-lg bg-rose-950 text-rose-400 flex items-center justify-center text-lg flex-shrink-0">
-                                <i class="fa-solid fa-building-circle-check"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-xs font-bold text-white">Genset Komersial</h4>
-                                <p class="text-[11px] text-slate-400">Gedung perkantoran, perhotelan, pusat perbelanjaan & industri.</p>
-                            </div>
-                        </div>
-
+                        </a>
+                        @endforeach
                     </div>
 
                     <a href="{{ route('applications.index') }}" 

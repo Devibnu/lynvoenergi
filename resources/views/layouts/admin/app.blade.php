@@ -57,6 +57,14 @@
           </a>
         </li>
         <li class="nav-item">
+          <a class="nav-link  {{ request()->routeIs('admin.brands.*') ? 'active' : '' }}" href="{{ route('admin.brands.index') }}">
+            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="fa fa-copyright text-dark" style="font-size: 0.875rem;"></i>
+            </div>
+            <span class="nav-link-text ms-1">Merek</span>
+          </a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link  {{ request()->routeIs('admin.applications.*') ? 'active' : '' }}" href="{{ route('admin.applications.index') }}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="fa fa-industry text-dark" style="font-size: 0.875rem;"></i>

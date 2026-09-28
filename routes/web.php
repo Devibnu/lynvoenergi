@@ -77,4 +77,5 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::resource('inquiries', \App\Http\Controllers\Admin\InquiryController::class)->only(['index', 'show', 'destroy']);
     Route::get('settings', [\App\Http\Controllers\Admin\SettingController::class, 'index'])->name('settings.index');
     Route::put('settings', [\App\Http\Controllers\Admin\SettingController::class, 'update'])->name('settings.update');
+    Route::post('settings/upload', [\App\Http\Controllers\Admin\SettingController::class, 'upload'])->name('settings.upload');
 });

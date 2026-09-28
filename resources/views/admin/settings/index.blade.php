@@ -8,6 +8,11 @@
                 {{ session('success') }}
             </div>
         @endif
+        @if(session('error'))
+            <div class="alert alert-danger text-white">
+                {{ session('error') }}
+            </div>
+        @endif
         @if($errors->any())
             <div class="alert alert-danger text-white">
                 @foreach($errors->all() as $error)
@@ -16,17 +21,17 @@
             </div>
         @endif
 
-        {{-- Logo Upload Section --}}
-        <div class="card mb-4">
-            <div class="card-header pb-0">
-                <h6>Logo Website</h6>
-                <p class="text-sm text-secondary mb-0">Upload logo perusahaan yang akan ditampilkan di header website publik.</p>
-            </div>
-            <div class="card-body">
-                <form action="{{ route('admin.settings.update') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    @method('PUT')
+        <form action="{{ route('admin.settings.update') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
 
+            {{-- Logo Upload Section --}}
+            <div class="card mb-4">
+                <div class="card-header pb-0">
+                    <h6>Logo Website</h6>
+                    <p class="text-sm text-secondary mb-0">Upload logo perusahaan yang akan ditampilkan di header website publik.</p>
+                </div>
+                <div class="card-body">
                     <div class="row align-items-center">
                         <div class="col-md-3 text-center mb-3 mb-md-0">
                             @php
@@ -44,32 +49,22 @@
                                 </div>
                             @endif
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-9">
                             <label class="form-label text-sm font-weight-bold">Pilih File Logo</label>
                             <input type="file" name="site_logo" class="form-control" accept="image/*">
                             <p class="text-xs text-secondary mt-1 mb-0">Format: JPG, PNG, SVG, WebP. Maks: 2MB. Rekomendasi: 200x60 px.</p>
                         </div>
-                        <div class="col-md-3 text-end mt-3 mt-md-0">
-                            <button type="submit" class="btn bg-gradient-info mb-0">
-                                <i class="fa fa-upload me-1"></i> Upload Logo
-                            </button>
-                        </div>
                     </div>
-                </form>
+                </div>
             </div>
-        </div>
 
-        {{-- Favicon Upload Section --}}
-        <div class="card mb-4">
-            <div class="card-header pb-0">
-                <h6>Favicon Website</h6>
-                <p class="text-sm text-secondary mb-0">Upload ikon kecil yang muncul di tab browser. Rekomendasi: 32x32 atau 64x64 px.</p>
-            </div>
-            <div class="card-body">
-                <form action="{{ route('admin.settings.update') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    @method('PUT')
-
+            {{-- Favicon Upload Section --}}
+            <div class="card mb-4">
+                <div class="card-header pb-0">
+                    <h6>Favicon Website</h6>
+                    <p class="text-sm text-secondary mb-0">Upload ikon kecil yang muncul di tab browser. Rekomendasi: 32x32 atau 64x64 px.</p>
+                </div>
+                <div class="card-body">
                     <div class="row align-items-center">
                         <div class="col-md-3 text-center mb-3 mb-md-0">
                             @php
@@ -85,32 +80,22 @@
                                 <p class="text-xs text-secondary mt-2 mb-0">Belum ada favicon</p>
                             @endif
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-9">
                             <label class="form-label text-sm font-weight-bold">Pilih File Favicon</label>
                             <input type="file" name="site_favicon" class="form-control" accept=".ico,.png,.svg,.jpg,.jpeg,.webp">
                             <p class="text-xs text-secondary mt-1 mb-0">Format: ICO, PNG, SVG. Maks: 512KB.</p>
                         </div>
-                        <div class="col-md-3 text-end mt-3 mt-md-0">
-                            <button type="submit" class="btn bg-gradient-info mb-0">
-                                <i class="fa fa-upload me-1"></i> Upload Favicon
-                            </button>
-                        </div>
                     </div>
-                </form>
+                </div>
             </div>
-        </div>
 
-        {{-- Text-based Settings Section --}}
-        <div class="card mb-4">
-            <div class="card-header pb-0">
-                <h6>Pengaturan Umum</h6>
-                <p class="text-sm text-secondary mb-0">Kelola informasi kontak dan teks promo website.</p>
-            </div>
-            <div class="card-body p-4">
-                <form action="{{ route('admin.settings.update') }}" method="POST">
-                    @csrf
-                    @method('PUT')
-                    
+            {{-- Text-based Settings Section --}}
+            <div class="card mb-4">
+                <div class="card-header pb-0">
+                    <h6>Pengaturan Umum</h6>
+                    <p class="text-sm text-secondary mb-0">Kelola informasi kontak dan teks promo website.</p>
+                </div>
+                <div class="card-body p-4">
                     <div class="row">
                         @foreach($settings as $setting)
                             @if(!in_array($setting->key, ['site_logo', 'site_favicon']))
@@ -123,13 +108,13 @@
                     </div>
                     
                     <div class="text-end mt-4">
-                        <button type="submit" class="btn bg-gradient-info mb-0">
-                            <i class="fa fa-save me-1"></i> Simpan Pengaturan
+                        <button type="submit" class="btn bg-gradient-info btn-lg mb-0">
+                            <i class="fa fa-save me-1"></i> Simpan Semua Pengaturan & Gambar
                         </button>
                     </div>
-                </form>
+                </div>
             </div>
-        </div>
+        </form>
     </div>
 </div>
 @endsection
