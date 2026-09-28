@@ -89,6 +89,75 @@
                 </div>
             </div>
 
+            {{-- SEO Settings Section --}}
+            <div class="card mb-4">
+                <div class="card-header pb-0">
+                    <h6>SEO Website</h6>
+                    <p class="text-sm text-secondary mb-0">Kelola pengaturan meta tag SEO, Open Graph, dan Twitter Card.</p>
+                </div>
+                <div class="card-body p-4">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label text-sm font-weight-bold">SEO Title</label>
+                            <input type="text" name="seo_title" class="form-control" value="{{ \App\Models\Setting::getValue('seo_title') }}" maxlength="70">
+                            <p class="text-xs text-secondary mt-1 mb-0">Maks. 70 karakter.</p>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label text-sm font-weight-bold">SEO Keywords</label>
+                            <input type="text" name="seo_keywords" class="form-control" value="{{ \App\Models\Setting::getValue('seo_keywords') }}" maxlength="255">
+                            <p class="text-xs text-secondary mt-1 mb-0">Maks. 255 karakter.</p>
+                        </div>
+                        <div class="col-12 mb-3">
+                            <label class="form-label text-sm font-weight-bold">SEO Description</label>
+                            <textarea name="seo_description" class="form-control" rows="3" maxlength="160">{{ \App\Models\Setting::getValue('seo_description') }}</textarea>
+                            <p class="text-xs text-secondary mt-1 mb-0">Maks. 160 karakter.</p>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label class="form-label text-sm font-weight-bold">SEO Author</label>
+                            <input type="text" name="seo_author" class="form-control" value="{{ \App\Models\Setting::getValue('seo_author') }}">
+                        </div>
+
+                        <div class="col-12"><hr class="horizontal dark mt-2 mb-4"></div>
+                        <h6 class="mb-3 text-sm">Open Graph (Facebook/LinkedIn)</h6>
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label text-sm font-weight-bold">OG Title</label>
+                            <input type="text" name="seo_og_title" class="form-control" value="{{ \App\Models\Setting::getValue('seo_og_title') }}" maxlength="70">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label text-sm font-weight-bold">OG Image</label>
+                            <input type="file" name="seo_og_image" class="form-control" accept="image/jpeg,image/png,image/webp">
+                            @if(\App\Models\Setting::getValue('seo_og_image'))
+                                <a href="{{ asset('storage/' . \App\Models\Setting::getValue('seo_og_image')) }}" target="_blank" class="text-xs text-info d-block mt-1">Lihat OG Image Saat Ini</a>
+                            @endif
+                        </div>
+                        <div class="col-12 mb-3">
+                            <label class="form-label text-sm font-weight-bold">OG Description</label>
+                            <textarea name="seo_og_description" class="form-control" rows="2" maxlength="160">{{ \App\Models\Setting::getValue('seo_og_description') }}</textarea>
+                        </div>
+
+                        <div class="col-12"><hr class="horizontal dark mt-2 mb-4"></div>
+                        <h6 class="mb-3 text-sm">Twitter Card</h6>
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label text-sm font-weight-bold">Twitter Title</label>
+                            <input type="text" name="seo_twitter_title" class="form-control" value="{{ \App\Models\Setting::getValue('seo_twitter_title') }}" maxlength="70">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label text-sm font-weight-bold">Twitter Image</label>
+                            <input type="file" name="seo_twitter_image" class="form-control" accept="image/jpeg,image/png,image/webp">
+                            @if(\App\Models\Setting::getValue('seo_twitter_image'))
+                                <a href="{{ asset('storage/' . \App\Models\Setting::getValue('seo_twitter_image')) }}" target="_blank" class="text-xs text-info d-block mt-1">Lihat Twitter Image Saat Ini</a>
+                            @endif
+                        </div>
+                        <div class="col-12 mb-3">
+                            <label class="form-label text-sm font-weight-bold">Twitter Description</label>
+                            <textarea name="seo_twitter_description" class="form-control" rows="2" maxlength="160">{{ \App\Models\Setting::getValue('seo_twitter_description') }}</textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             {{-- Text-based Settings Section --}}
             <div class="card mb-4">
                 <div class="card-header pb-0">
@@ -98,7 +167,7 @@
                 <div class="card-body p-4">
                     <div class="row">
                         @foreach($settings as $setting)
-                            @if(!in_array($setting->key, ['site_logo', 'site_favicon']))
+                            @if(!in_array($setting->key, ['site_logo', 'site_favicon', 'seo_title', 'seo_description', 'seo_keywords', 'seo_author', 'seo_og_title', 'seo_og_description', 'seo_og_image', 'seo_twitter_title', 'seo_twitter_description', 'seo_twitter_image']))
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label text-sm font-weight-bold">{{ $setting->label }}</label>
                                     <input type="text" name="{{ $setting->key }}" class="form-control" value="{{ $setting->value }}">

@@ -3,24 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Lynvo Energi - Distributor & Layanan Antar Pasang Aki / Accu Banten')</title>
-    <meta name="description" content="@yield('meta_description', 'Distributor aki mobil, truk, genset dan industri di Banten. Layanan pesan antar pasang aki 24 jam cepat ke rumah & kantor.')">
-    <link rel="canonical" href="{{ url()->current() }}">
-
-    <!-- Dynamic Favicon -->
     @php
         $siteFavicon = \App\Models\Setting::getValue('site_favicon');
+        $seoTitle = \App\Models\Setting::getValue('seo_title', 'Lynvo Energi | Distributor Aki Industri Indonesia');
+        $seoDesc = \App\Models\Setting::getValue('seo_description', 'Distributor aki industri, genset, UPS, forklift dan kendaraan komersial seluruh Indonesia.');
+        $seoKeywords = \App\Models\Setting::getValue('seo_keywords', 'aki industri, aki genset, aki ups, aki forklift, distributor aki');
+        $seoAuthor = \App\Models\Setting::getValue('seo_author', 'Lynvo Energi');
+        
+        $ogTitle = \App\Models\Setting::getValue('seo_og_title', $seoTitle);
+        $ogDesc = \App\Models\Setting::getValue('seo_og_description', $seoDesc);
+        $ogImage = \App\Models\Setting::getValue('seo_og_image');
+        
+        $twitterTitle = \App\Models\Setting::getValue('seo_twitter_title', $seoTitle);
+        $twitterDesc = \App\Models\Setting::getValue('seo_twitter_description', $seoDesc);
+        $twitterImage = \App\Models\Setting::getValue('seo_twitter_image');
     @endphp
+
+    <title>{{ $seoTitle }}</title>
+    <meta name="description" content="{{ $seoDesc }}">
+    <meta name="keywords" content="{{ $seoKeywords }}">
+    <meta name="author" content="{{ $seoAuthor }}">
+    <link rel="canonical" href="{{ url()->current() }}">
+
     @if($siteFavicon)
         <link rel="icon" href="{{ asset('storage/' . $siteFavicon) }}">
     @endif
 
-    <!-- Open Graph / Social Meta -->
+    <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:title" content="@yield('title', 'Lynvo Energi - Distributor & Layanan Antar Pasang Aki Banten')">
-    <meta property="og:description" content="@yield('meta_description', 'Pesan antar pasang aki mobil & truk cepat bergaransi resmi se-Banten.')">
-    <meta property="og:image" content="{{ asset('assets/img/og-lynvo.jpg') }}">
+    <meta property="og:title" content="{{ $ogTitle }}">
+    <meta property="og:description" content="{{ $ogDesc }}">
+    @if($ogImage)
+        <meta property="og:image" content="{{ asset('storage/' . $ogImage) }}">
+    @endif
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ $twitterTitle }}">
+    <meta name="twitter:description" content="{{ $twitterDesc }}">
+    @if($twitterImage)
+        <meta name="twitter:image" content="{{ asset('storage/' . $twitterImage) }}">
+    @endif
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
