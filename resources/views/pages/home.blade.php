@@ -513,7 +513,7 @@
                                    id="quick_phone" 
                                    name="phone" 
                                    required 
-                                   placeholder="cth: 0812-3456-7890" 
+                                   placeholder="cth: {{ \App\Models\Setting::getValue('hero_phone') }}" 
                                    class="w-full px-4 py-3.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 placeholder-slate-400 text-xs focus:bg-white focus:ring-2 focus:ring-blue-600 focus:border-blue-600 outline-none transition">
                         </div>
 

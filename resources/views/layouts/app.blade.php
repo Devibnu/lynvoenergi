@@ -96,7 +96,7 @@
                 <span class="text-slate-300 sm:hidden">Pesan Antar Pasang Aki Cepat se-Banten</span>
             </div>
             <div class="flex items-center space-x-4">
-                <a href="tel:{{ \App\Models\Setting::getValue('hero_phone') }}" class="text-slate-300 hover:text-white flex items-center gap-1.5 transition">
+                <a href="{{ \App\Models\Setting::getPhoneUrl() }}" class="text-slate-300 hover:text-white flex items-center gap-1.5 transition">
                     <i class="fa-solid fa-phone text-amber-400"></i>
                     <span class="font-semibold">{{ \App\Models\Setting::getValue('hero_phone') }}</span>
                 </a>
@@ -386,7 +386,7 @@
                         <a href="{{ \App\Models\Setting::getWhatsappUrl() }}" target="_blank" class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 hover:border-emerald-500 hover:bg-emerald-600 flex items-center justify-center text-slate-300 hover:text-white transition" title="WhatsApp">
                             <i class="fa-brands fa-whatsapp text-sm"></i>
                         </a>
-                        <a href="tel:{{ \App\Models\Setting::getValue('hero_phone') }}" class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 hover:border-blue-500 hover:bg-blue-600 flex items-center justify-center text-slate-300 hover:text-white transition" title="Telepon">
+                        <a href="{{ \App\Models\Setting::getPhoneUrl() }}" class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 hover:border-blue-500 hover:bg-blue-600 flex items-center justify-center text-slate-300 hover:text-white transition" title="Telepon">
                             <i class="fa-solid fa-phone text-xs"></i>
                         </a>
                         <a href="mailto:{{ \App\Models\Setting::getValue('site_email') }}" class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 hover:border-amber-500 hover:bg-amber-600 flex items-center justify-center text-slate-300 hover:text-white transition" title="Email">

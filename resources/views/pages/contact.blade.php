@@ -59,18 +59,18 @@
                             </div>
                             <div>
                                 <div class="text-xs font-semibold text-slate-500">WhatsApp Hotline & CS</div>
-                                <div class="text-base font-bold text-slate-900 group-hover:text-emerald-600">{{ \App\Models\Setting::getValue('site_whatsapp') }}</div>
+                                <div class="text-base font-bold text-slate-900 group-hover:text-emerald-600">{{ \App\Models\Setting::getValue('hero_phone') }}</div>
                                 <p class="text-xs text-slate-500 mt-0.5">Respon cepat via chat untuk konsultasi & order darurat</p>
                             </div>
                         </a>
 
-                        <a href="tel:{{ preg_replace('/[^0-9+]/', '', \App\Models\Setting::getValue('b2b_phone')) }}" class="flex items-start gap-4 p-4 rounded-xl border border-slate-100 hover:border-blue-300 hover:bg-blue-50/50 transition duration-200 group">
+                        <a href="{{ \App\Models\Setting::getPhoneUrl() }}" class="flex items-start gap-4 p-4 rounded-xl border border-slate-100 hover:border-blue-300 hover:bg-blue-50/50 transition duration-200 group">
                             <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 group-hover:bg-blue-600 group-hover:text-white flex items-center justify-center shrink-0 transition duration-200">
                                 <i class="fas fa-phone-alt text-lg"></i>
                             </div>
                             <div>
                                 <div class="text-xs font-semibold text-slate-500">Telepon Kantor (B2B Procurement)</div>
-                                <div class="text-base font-bold text-slate-900 group-hover:text-blue-600">{{ \App\Models\Setting::getValue('b2b_phone') }}</div>
+                                <div class="text-base font-bold text-slate-900 group-hover:text-blue-600">{{ \App\Models\Setting::getValue('hero_phone') }}</div>
                                 <p class="text-xs text-slate-500 mt-0.5">{{ \App\Models\Setting::getValue('business_hours') }}</p>
                             </div>
                         </a>
@@ -143,7 +143,7 @@
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                             <div>
                                 <label for="phone" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">No. WhatsApp / Telepon <span class="text-rose-500">*</span></label>
-                                <input type="tel" name="phone" id="phone" required value="{{ old('phone') }}" placeholder="Contoh: 081234567890" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition">
+                                <input type="tel" name="phone" id="phone" required value="{{ old('phone') }}" placeholder="Contoh: {{ \App\Models\Setting::getValue('hero_phone') }}" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition">
                             </div>
                             <div>
                                 <label for="email" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Alamat Email</label>

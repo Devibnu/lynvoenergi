@@ -87,7 +87,7 @@
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div>
                                     <label for="phone" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">No. WhatsApp / Telepon <span class="text-rose-500">*</span></label>
-                                    <input type="tel" name="phone" id="phone" required value="{{ old('phone') }}" placeholder="Contoh: 081234567890" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition">
+                                    <input type="tel" name="phone" id="phone" required value="{{ old('phone') }}" placeholder="Contoh: {{ \App\Models\Setting::getValue('hero_phone') }}" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition">
                                 </div>
                                 <div>
                                     <label for="email" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Email Kantor / Perusahaan <span class="text-rose-500">*</span></label>
@@ -199,8 +199,8 @@
                         <a href="{{ \App\Models\Setting::getWhatsappUrl('Halo KAM Lynvo Energi, kami ingin mengajukan pengadaan baterai B2B urgent') }}" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 w-full py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-xl transition">
                             <i class="fab fa-whatsapp text-sm"></i> WhatsApp KAM B2B
                         </a>
-                        <a href="tel:0254889900" class="flex items-center justify-center gap-2 w-full py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-xl transition">
-                            <i class="fas fa-phone-alt text-xs"></i> Telepon: (0254) 889-900
+                        <a href="{{ \App\Models\Setting::getPhoneUrl() }}" class="flex items-center justify-center gap-2 w-full py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-xl transition">
+                            <i class="fas fa-phone-alt text-xs"></i> Telepon: {{ \App\Models\Setting::getValue('hero_phone') }}
                         </a>
                     </div>
                 </div>

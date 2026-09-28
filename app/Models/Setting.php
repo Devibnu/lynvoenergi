@@ -18,8 +18,14 @@ class Setting extends Model
      */
     public static function getNormalizedWhatsappNumber($customPhone = null)
     {
-        $phone = $customPhone ?: self::getValue('site_whatsapp', '6281384474349');
-        $phone = preg_replace('/[^0-9]/', '', $phone);
+        $phone = $customPhone ?: self::getValue('hero_phone');
+        if (empty($phone) || trim($phone) === '') {
+            return '';
+        }
+        $phone = preg_replace('/[^0-9]/', '', (string) $phone);
+        if (empty($phone)) {
+            return '';
+        }
         if (strpos($phone, '0') === 0) {
             $phone = '62' . substr($phone, 1);
         }
@@ -32,10 +38,29 @@ class Setting extends Model
     public static function getWhatsappUrl($text = '', $customPhone = null)
     {
         $phone = self::getNormalizedWhatsappNumber($customPhone);
+        if (empty($phone)) {
+            return '#';
+        }
         $url = "https://wa.me/{$phone}";
         if ($text) {
             $url .= "?text=" . rawurlencode($text);
         }
         return $url;
+    }
+
+    /**
+     * Get safe tel: URL.
+     */
+    public static function getPhoneUrl($customPhone = null)
+    {
+        $phone = $customPhone ?: self::getValue('hero_phone');
+        if (empty($phone) || trim($phone) === '') {
+            return '#';
+        }
+        $phone = preg_replace('/[^0-9+]/', '', (string) $phone);
+        if (empty($phone)) {
+            return '#';
+        }
+        return "tel:{$phone}";
     }
 }

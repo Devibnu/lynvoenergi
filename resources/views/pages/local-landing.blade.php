@@ -65,12 +65,14 @@
                                 <span class="block text-base font-extrabold leading-tight">Pesan Aki & Panggil Teknisi</span>
                             </div>
                         </a>
-                        <a href="tel:081288889999" 
-                           class="inline-flex items-center justify-center gap-3 bg-slate-800/80 hover:bg-slate-700 text-slate-200 border border-slate-700 font-bold text-base px-6 py-4 rounded-xl transition">
+                        <a href="{{ \App\Models\Setting::getPhoneUrl() }}"
+                        class="inline-flex items-center justify-center gap-3 bg-slate-800/80 hover:bg-slate-700 text-slate-200 border border-slate-700 font-bold text-base px-6 py-4 rounded-xl transition">
                             <i class="fa-solid fa-phone text-blue-400 text-xl"></i>
                             <div class="text-left">
                                 <span class="block text-xs font-medium text-slate-400 uppercase tracking-wider leading-none">Hotline Telepon</span>
-                                <span class="block text-base font-bold text-white leading-tight">{{ \App\Models\Setting::getValue('hero_phone') }}</span>
+                                <span class="block text-base font-bold text-white leading-tight">
+                                    {{ \App\Models\Setting::getValue('hero_phone') }}
+                                </span>
                             </div>
                         </a>
                     </div>

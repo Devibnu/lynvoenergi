@@ -52,7 +52,7 @@ class CompanyLocation extends Model
      */
     public function getActiveWhatsappAttribute()
     {
-        return $this->whatsapp ?: Setting::getValue('site_whatsapp');
+        return $this->whatsapp ?: Setting::getValue('hero_phone');
     }
 
     /**
@@ -60,7 +60,7 @@ class CompanyLocation extends Model
      */
     public function getActivePhoneAttribute()
     {
-        return $this->phone ?: Setting::getValue('hero_phone', Setting::getValue('b2b_phone'));
+        return $this->phone ?: Setting::getValue('hero_phone');
     }
 
     /**

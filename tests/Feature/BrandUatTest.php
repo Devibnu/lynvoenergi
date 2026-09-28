@@ -11,6 +11,8 @@ use App\Models\Category;
 
 class BrandUatTest extends TestCase
 {
+    use RefreshDatabase;
+
     protected function getAdminUser()
     {
         return User::firstOrCreate(

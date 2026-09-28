@@ -34,6 +34,7 @@ class SettingController extends Controller
             'site_favicon' => 'nullable|image|mimes:jpeg,png,jpg,svg,webp,ico|max:512',
             'seo_og_image' => 'nullable|image|mimes:jpg,png,webp|max:2048',
             'seo_twitter_image' => 'nullable|image|mimes:jpg,png,webp|max:2048',
+            'hero_phone' => 'required|string|min:9|max:15|regex:/^[0-9\-\+\s]+$/',
         ]);
 
         // --- LOGO ---

@@ -13,6 +13,15 @@ class InquiryWorkflowTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+        \App\Models\Setting::updateOrCreate(
+            ['key' => 'hero_phone'],
+            ['value' => '0812-3456-7890', 'label' => 'Hero Phone']
+        );
+    }
+
     public function test_quotation_form_is_available(): void
     {
         $this->get('/minta-penawaran')->assertOk();
