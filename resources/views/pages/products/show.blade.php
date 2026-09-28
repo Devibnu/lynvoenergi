@@ -124,7 +124,15 @@
 
                         <!-- Action Buttons -->
                         <div class="flex flex-col sm:flex-row gap-3 mb-6">
-                            <a href="{{ \App\Models\Setting::getWhatsappUrl('Halo Lynvo Energi, saya tertarik dengan produk ' . $product->name) }}"
+                            @php
+                                $cleanVoltageDetail = str_replace(['V', 'v', ' '], '', $product->voltage);
+                                $waTextDetail = "Halo Lynvo Energi,\n\nSaya tertarik dengan produk:\n\n{$product->name}\n\nSpesifikasi:\n{$cleanVoltageDetail}V\n{$product->capacity_ah} Ah\n";
+                                if ($product->cca) {
+                                    $waTextDetail .= "{$product->cca} CCA\n";
+                                }
+                                $waTextDetail .= "\nMohon informasi harga dan ketersediaan stok.\n\nTerima kasih.";
+                            @endphp
+                            <a href="{{ \App\Models\Setting::getWhatsappUrl($waTextDetail) }}"
                                target="_blank"
                                class="inline-flex items-center justify-center gap-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-sm px-6 py-4 rounded-xl shadow-lg shadow-emerald-600/30 transition btn-wa-pulse">
                                 <i class="fa-brands fa-whatsapp text-xl"></i>

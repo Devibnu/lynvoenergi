@@ -23,8 +23,9 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
-// XML Sitemap
+// SEO Routes
 Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
+Route::get('/robots.txt', [App\Http\Controllers\SeoController::class, 'robots'])->name('robots');
 
 // Homepage & Service Hub
 Route::get('/', [HomeController::class, 'index'])->name('home');

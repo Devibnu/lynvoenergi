@@ -279,7 +279,15 @@
                                                class="text-center bg-white hover:bg-slate-100 text-slate-800 border border-slate-200 font-bold text-xs py-2.5 px-2 rounded-xl transition">
                                                 Lihat Detail
                                             </a>
-                                            <a href="{{ \App\Models\Setting::getWhatsappUrl() }}"
+                                            @php
+                                                $cleanVoltage = str_replace(['V', 'v', ' '], '', $product->voltage);
+                                                $waText = "Halo Lynvo Energi,\n\nSaya tertarik dengan produk:\n\n{$product->name}\n\nSpesifikasi:\n{$cleanVoltage}V\n{$product->capacity_ah} Ah\n";
+                                                if ($product->cca) {
+                                                    $waText .= "{$product->cca} CCA\n";
+                                                }
+                                                $waText .= "\nMohon informasi harga dan ketersediaan stok.\n\nTerima kasih.";
+                                            @endphp
+                                            <a href="{{ \App\Models\Setting::getWhatsappUrl($waText) }}"
                                                target="_blank" 
                                                class="text-center bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs py-2.5 px-2 rounded-xl transition flex items-center justify-center gap-1">
                                                 <i class="fa-brands fa-whatsapp text-sm"></i>

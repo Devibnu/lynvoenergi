@@ -155,6 +155,23 @@
                             <textarea name="seo_twitter_description" class="form-control" rows="2" maxlength="160">{{ \App\Models\Setting::getValue('seo_twitter_description') }}</textarea>
                         </div>
                     </div>
+                    
+                    <hr class="horizontal dark mt-2 mb-4">
+                    <h6 class="mb-3 text-sm">Robots.txt</h6>
+                    <div class="row">
+                        <div class="col-md-12 mb-3">
+                            <label class="form-label text-sm font-weight-bold">Enable Robots.txt</label>
+                            <select name="robots_enabled" class="form-control">
+                                <option value="1" {{ \App\Models\Setting::getValue('robots_enabled', '1') == '1' ? 'selected' : '' }}>Ya (Gunakan Default)</option>
+                                <option value="0" {{ \App\Models\Setting::getValue('robots_enabled', '1') == '0' ? 'selected' : '' }}>Tidak (Gunakan Custom)</option>
+                            </select>
+                        </div>
+                        <div class="col-12 mb-3">
+                            <label class="form-label text-sm font-weight-bold">Custom Robots Content</label>
+                            <textarea name="robots_custom_content" class="form-control" rows="6">{{ \App\Models\Setting::getValue('robots_custom_content') }}</textarea>
+                            <p class="text-xs text-secondary mt-1 mb-0">Digunakan hanya jika Enable Robots.txt diatur ke "Tidak".</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -167,7 +184,7 @@
                 <div class="card-body p-4">
                     <div class="row">
                         @foreach($settings as $setting)
-                            @if(!in_array($setting->key, ['site_logo', 'site_favicon', 'seo_title', 'seo_description', 'seo_keywords', 'seo_author', 'seo_og_title', 'seo_og_description', 'seo_og_image', 'seo_twitter_title', 'seo_twitter_description', 'seo_twitter_image']))
+                            @if(!in_array($setting->key, ['site_logo', 'site_favicon', 'seo_title', 'seo_description', 'seo_keywords', 'seo_author', 'seo_og_title', 'seo_og_description', 'seo_og_image', 'seo_twitter_title', 'seo_twitter_description', 'seo_twitter_image', 'robots_enabled', 'robots_custom_content']))
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label text-sm font-weight-bold">{{ $setting->label }}</label>
                                     <input type="text" name="{{ $setting->key }}" class="form-control" value="{{ $setting->value }}">
