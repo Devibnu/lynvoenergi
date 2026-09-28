@@ -16,7 +16,7 @@
 
         <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
-                
+
                 <!-- Kolom Kiri: Copywriting & CTAs -->
                 <div class="lg:col-span-7">
                     <!-- Pill Badge -->
@@ -44,7 +44,7 @@
                             <span>Konsultasi via WhatsApp</span>
                         </a>
 
-                        <a href="{{ route('quotation') }}" 
+                        <a href="{{ route('quotation') }}"
                            class="inline-flex items-center justify-center gap-2.5 bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 hover:border-blue-500 font-extrabold text-base px-7 py-4 rounded-xl shadow-xl transition duration-200 transform hover:-translate-y-0.5">
                             <i class="fa-solid fa-file-invoice-dollar text-amber-400"></i>
                             <span>Minta Penawaran B2B</span>
@@ -75,16 +75,16 @@
                 <!-- Kolom Kanan: Foto Industri Resolusi Tinggi & 3 Floating Badges Putih -->
                 <div class="lg:col-span-5 relative">
                     <div class="relative mx-auto max-w-md lg:max-w-none">
-                        
+
                         <!-- High-Res Industrial Photography Container -->
                         <div class="relative rounded-3xl overflow-hidden border-2 border-slate-700/80 shadow-2xl shadow-blue-950/60 group">
-                            <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1000&q=80" 
-                                 alt="Lynvo Energi Baterai Industri & Accu Suplai Nasional" 
+                            <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1000&q=80"
+                                 alt="Lynvo Energi Baterai Industri & Accu Suplai Nasional"
                                  class="w-full h-[420px] sm:h-[480px] object-cover object-center group-hover:scale-105 transition duration-700">
-                            
+
                             <!-- Gradient Overlay for Contrast & Depth -->
                             <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent"></div>
-                            
+
                             <!-- Bottom Badge inside image -->
                             <div class="absolute bottom-4 left-4 right-4 p-3.5 rounded-2xl bg-slate-900/90 backdrop-blur-md border border-slate-700/80 flex items-center justify-between">
                                 <div class="flex items-center gap-2.5">
@@ -142,7 +142,7 @@
     <section class="relative z-20 -mt-6 sm:-mt-8 max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
         <div class="bg-white rounded-2xl sm:rounded-3xl shadow-xl border border-slate-200/80 p-6 sm:p-8">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-                
+
                 <!-- Prop 1: Pengalaman & Terpercaya -->
                 <div class="flex items-start gap-4">
                     <div class="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center text-xl flex-shrink-0 shadow-sm border border-blue-100">
@@ -205,7 +205,7 @@
     <!-- ========================================================================= -->
     <section class="py-16 sm:py-20 bg-slate-50">
         <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
-            
+
             <!-- Section Header -->
             <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
                 <div>
@@ -219,7 +219,7 @@
                         Tersedia berbagai pilihan kapasitas ampere (Ah), cold cranking amps (CCA), dan tipe teknologi aki (MF Kering, Basah, VRLA, AGM) sesuai spesifikasi teknis mesin Anda.
                     </p>
                 </div>
-                <a href="{{ route('products.index') }}" 
+                <a href="{{ route('products.index') }}"
                    class="inline-flex items-center gap-2 text-sm font-bold text-blue-600 hover:text-blue-800 transition group flex-shrink-0">
                     <span>Lihat Semua Katalog Produk</span>
                     <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition transform"></i>
@@ -234,12 +234,12 @@
                             <!-- Photo Thumbnail -->
                             <div class="h-48 overflow-hidden relative bg-slate-100">
                                 @if($category->image)
-                                    <img src="{{ asset('storage/' . $category->image) }}" 
-                                         alt="{{ $category->name }}" 
+                                    <img src="{{ asset('storage/' . $category->image) }}"
+                                         alt="{{ $category->name }}"
                                          class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500">
                                 @else
-                                    <img src="https://placehold.co/600x400/0f172a/ffffff?text=Foto+{{ urlencode($category->name) }}" 
-                                         alt="{{ $category->name }}" 
+                                    <img src="https://placehold.co/600x400/0f172a/ffffff?text=Foto+{{ urlencode($category->name) }}"
+                                         alt="{{ $category->name }}"
                                          class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500">
                                 @endif
                             </div>
@@ -254,7 +254,7 @@
                         </div>
                         <div class="p-6 pt-0 border-t border-slate-100 flex items-center justify-between">
                             <span class="text-xs font-semibold text-slate-500">{{ $category->products_count ?? 0 }} Produk</span>
-                            <a href="{{ route('products.category', $category->slug) }}" 
+                            <a href="{{ route('products.category', $category->slug) }}"
                                class="inline-flex items-center gap-1.5 text-xs font-bold text-blue-600 group-hover:text-blue-700 transition">
                                 <span>Lihat Produk</span>
                                 <i class="fa-solid fa-arrow-right text-[10px]"></i>
@@ -281,7 +281,7 @@
 
         <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-                
+
                 <!-- Left: Headline & Sektor Grid Strip -->
                 <div class="lg:col-span-7">
                     <span class="text-xs font-extrabold uppercase tracking-widest text-emerald-400 bg-emerald-950/80 border border-emerald-500/30 px-3.5 py-1.5 rounded-full inline-block mb-4">
@@ -306,7 +306,7 @@
                                 ['border' => 'hover:border-rose-500/60', 'bg' => 'bg-rose-950', 'text' => 'text-rose-400'],
                             ];
                         @endphp
-                        
+
                         @foreach($applications as $application)
                         @php $appStyle = $appStyleMap[$loop->index % count($appStyleMap)]; @endphp
                         <a href="{{ route('applications.show', $application->slug) }}" class="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 {{ $appStyle['border'] }} transition flex items-center gap-3.5 block group">
@@ -321,7 +321,7 @@
                         @endforeach
                     </div>
 
-                    <a href="{{ route('applications.index') }}" 
+                    <a href="{{ route('applications.index') }}"
                        class="inline-flex items-center gap-2 text-sm font-bold text-blue-400 hover:text-blue-300 transition">
                         <span>Eksplorasi Rincian Seluruh Sektor Industri</span>
                         <i class="fa-solid fa-arrow-right text-xs"></i>
@@ -332,10 +332,10 @@
                 <div class="lg:col-span-5 relative">
                     <div class="relative rounded-2xl overflow-hidden border border-slate-700/80 shadow-2xl shadow-blue-950/70 group">
                         <!-- Real Industrial Engineer Photo -->
-                        <img src="https://placehold.co/800x600/0f172a/ffffff?text=Foto+Teknisi+K3" 
-                             alt="Teknisi Spesialis Lynvo Energi Inspeksi Baterai Industri" 
+                        <img src="https://placehold.co/800x600/0f172a/ffffff?text=Foto+Teknisi+K3"
+                             alt="Teknisi Spesialis Lynvo Energi Inspeksi Baterai Industri"
                              class="w-full h-[450px] sm:h-[500px] object-cover object-center group-hover:scale-105 transition duration-700">
-                        
+
                         <!-- Smooth Dark Navy Gradient Blend Overlay -->
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
 
@@ -374,7 +374,7 @@
     <!-- ========================================================================= -->
     <section class="py-16 sm:py-20 bg-slate-50 border-b border-slate-200">
         <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
-            
+
             <!-- Section Header -->
             <div class="mb-12">
                 <span class="text-xs font-extrabold uppercase tracking-widest text-blue-600 bg-blue-50 border border-blue-200/60 px-3.5 py-1.5 rounded-full inline-block mb-2">
@@ -386,7 +386,7 @@
                 <p class="text-slate-600 text-sm mt-2 max-w-2xl mb-5">
                     Bukti nyata keandalan pasokan baterai industri, instalasi genset standby, dan kontrak pengadaan armada logistik bersama Lynvo Energi.
                 </p>
-                <a href="{{ route('projects.index') }}" 
+                <a href="{{ route('projects.index') }}"
                    class="inline-flex items-center gap-2 text-sm font-bold text-white bg-blue-600 hover:bg-blue-700 px-5 py-2.5 rounded-lg shadow-sm transition group">
                     <span>Lihat Semua Portofolio Proyek</span>
                     <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition transform"></i>
@@ -395,7 +395,7 @@
 
             <!-- 4 Column Real Photo Projects Grid -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                
+
                 @forelse($latestProjects as $index => $proj)
                     @php
                         $photoUrl = $proj->image
@@ -406,16 +406,16 @@
                         <div>
                             <!-- Real Photo Thumbnail with Category Badge -->
                             <div class="h-48 overflow-hidden relative bg-slate-100">
-                                <img src="{{ $photoUrl }}" 
-                                     alt="{{ $proj->title }}" 
+                                <img src="{{ $photoUrl }}"
+                                     alt="{{ $proj->title }}"
                                      class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500">
-                                
+
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                                
+
                                 <span class="absolute top-3 left-3 px-2.5 py-1 rounded-lg text-[10px] font-bold bg-blue-600 text-white shadow">
                                     {{ $proj->category }}
                                 </span>
-                                
+
                                 <span class="absolute bottom-2.5 right-3 text-[11px] font-bold text-white/90">
                                     {{ $proj->completion_year ?? '2025' }}
                                 </span>
@@ -442,7 +442,7 @@
 
                         <!-- Footer Link -->
                         <div class="p-5 pt-0 border-t border-slate-100 bg-slate-50/50">
-                            <a href="{{ route('projects.show', $proj->slug) }}" 
+                            <a href="{{ route('projects.show', $proj->slug) }}"
                                class="text-xs font-bold text-blue-600 hover:text-blue-800 flex items-center justify-between pt-3">
                                 <span>Detail Studi Kasus</span>
                                 <i class="fa-solid fa-arrow-right text-[10px]"></i>
@@ -468,7 +468,7 @@
     <section class="py-14 bg-slate-100/70">
         <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <div class="bg-white rounded-3xl p-7 sm:p-10 shadow-2xl border border-slate-200/90 text-slate-900 relative">
-                
+
                 <div class="flex flex-col lg:flex-row lg:items-center justify-between mb-8 gap-4 pb-6 border-b border-slate-100">
                     <div>
                         <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold uppercase tracking-wider mb-2 border border-emerald-200">
@@ -494,47 +494,55 @@
                     <input type="hidden" name="type" value="b2b_quotation">
                     <input type="hidden" name="source_url" value="{{ url()->current() }}">
 
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
                         <!-- Input Nama -->
-                        <div>
+                        <div class="lg:col-span-1">
                             <label for="quick_name" class="block text-xs font-bold text-slate-700 mb-1.5">Nama Lengkap / Perusahaan</label>
-                            <input type="text" 
-                                   id="quick_name" 
-                                   name="name" 
-                                   required 
-                                   placeholder="cth: Bpk. Hendra / PT Mandiri" 
+                            <input type="text"
+                                   id="quick_name"
+                                   name="name"
+                                   required
+                                   placeholder="cth: Bpk. Hendra / PT Mandiri"
                                    class="w-full px-4 py-3.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 placeholder-slate-400 text-xs focus:bg-white focus:ring-2 focus:ring-blue-600 focus:border-blue-600 outline-none transition">
                         </div>
 
                         <!-- Input No WhatsApp -->
-                        <div>
+                        <div class="lg:col-span-1">
                             <label for="quick_phone" class="block text-xs font-bold text-slate-700 mb-1.5">Nomor WhatsApp</label>
-                            <input type="tel" 
-                                   id="quick_phone" 
-                                   name="phone" 
-                                   required 
-                                   placeholder="cth: {{ \App\Models\Setting::getValue('hero_phone') }}" 
+                            <input type="tel"
+                                   id="quick_phone"
+                                   name="phone"
+                                   required
+                                   placeholder="cth: {{ \App\Models\Setting::getValue('hero_phone') }}"
                                    class="w-full px-4 py-3.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 placeholder-slate-400 text-xs focus:bg-white focus:ring-2 focus:ring-blue-600 focus:border-blue-600 outline-none transition">
                         </div>
 
                         <!-- Input Kebutuhan Aki -->
-                        <div>
+                        <div class="lg:col-span-1">
                             <label for="quick_message" class="block text-xs font-bold text-slate-700 mb-1.5">Kebutuhan Aki / Tipe Mesin</label>
-                            <input type="text" 
-                                   id="quick_message" 
-                                   name="message" 
-                                   required 
-                                   placeholder="cth: Aki Truk N100 (10 Unit) / Genset" 
+                            <input type="text"
+                                   id="quick_message"
+                                   name="message"
+                                   required
+                                   placeholder="cth: Aki Truk N100 (10 Unit) / Genset"
                                    class="w-full px-4 py-3.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 placeholder-slate-400 text-xs focus:bg-white focus:ring-2 focus:ring-blue-600 focus:border-blue-600 outline-none transition">
                         </div>
 
-                        <!-- Tombol Submit -->
-                        <div class="flex items-end">
-                            <button type="submit" 
-                                    class="w-full py-3.5 px-6 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-extrabold text-xs sm:text-sm transition duration-200 shadow-xl shadow-slate-900/20 flex items-center justify-center gap-2 group">
-                                <span>Kirim Sekarang</span>
-                                <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition transform"></i>
-                            </button>
+                        <!-- Action Buttons -->
+                        <div class="lg:col-span-2 flex items-end">
+                            <div class="flex flex-col sm:flex-row gap-3 w-full">
+                                <button type="submit"
+                                        class="w-full py-3.5 px-6 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-extrabold text-xs sm:text-sm transition duration-200 shadow-xl shadow-slate-900/20 flex items-center justify-center gap-2 group">
+                                    <span>Kirim Sekarang</span>
+                                    <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition transform"></i>
+                                </button>
+                                <a href="{{ \App\Models\Setting::getWhatsappUrl('Halo Lynvo Energi, saya ingin konsultasi cepat mengenai aki/baterai') }}"
+                                   target="_blank" rel="noopener noreferrer"
+                                   class="w-full py-3.5 px-6 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs sm:text-sm transition duration-200 shadow-xl shadow-emerald-600/20 flex items-center justify-center gap-2 btn-wa-pulse">
+                                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                                    <span>Chat WhatsApp Langsung</span>
+                                </a>
+                            </div>
                         </div>
                     </div>
 
@@ -554,7 +562,7 @@
     <!-- ========================================================================= -->
     <section class="py-16 sm:py-20 bg-slate-50 border-b border-slate-200">
         <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
-            
+
             <!-- Section Header -->
             <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
                 <div>
@@ -579,7 +587,7 @@
                         ['border' => 'hover:border-amber-500/80', 'bg' => 'bg-amber-600', 'text' => 'group-hover:text-amber-600', 'link' => 'text-amber-600 hover:text-amber-800'],
                     ];
                 @endphp
-                
+
                 @forelse($articles as $article)
                 @php
                     $style = $styleMap[$loop->index % 3];
@@ -589,15 +597,15 @@
                         <!-- Photo Thumbnail -->
                         <div class="h-48 overflow-hidden relative bg-slate-100">
                             @if($article->image)
-                                <img src="{{ Storage::url($article->image) }}" 
-                                     alt="{{ $article->title }}" 
+                                <img src="{{ Storage::url($article->image) }}"
+                                     alt="{{ $article->title }}"
                                      class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500">
                             @else
-                                <img src="https://placehold.co/600x400/0f172a/ffffff?text={{ urlencode($article->category_name ?? 'Artikel') }}" 
-                                     alt="{{ $article->title }}" 
+                                <img src="https://placehold.co/600x400/0f172a/ffffff?text={{ urlencode($article->category_name ?? 'Artikel') }}"
+                                     alt="{{ $article->title }}"
                                      class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500">
                             @endif
-                            
+
                             @if($article->category_name)
                             <span class="absolute top-3 left-3 px-2.5 py-1 rounded-md text-[10px] font-bold {{ $style['bg'] }} text-white uppercase tracking-wider shadow">
                                 {{ $article->category_name }}
@@ -648,7 +656,7 @@
 
             <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 text-center">
                 @foreach($brands as $brand)
-                    <a href="{{ route('brands.show', $brand->slug) }}" 
+                    <a href="{{ route('brands.show', $brand->slug) }}"
                        class="p-3.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-white hover:border-blue-500 hover:shadow-md transition">
                         <span class="text-xs font-black text-slate-800 block">{{ $brand->name }}</span>
                         <span class="text-[10px] text-slate-400">100% Original</span>

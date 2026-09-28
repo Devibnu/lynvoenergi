@@ -29,7 +29,7 @@
     </div>
 
     <!-- MAIN PRODUCT DETAILS -->
-    <section class="py-12 bg-slate-50">
+    <section class="py-12 bg-slate-50 pb-24 md:pb-12">
         <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
 
@@ -282,5 +282,15 @@
             @endif
         </div>
     </section>
+
+    <!-- STICKY BOTTOM CTA (MOBILE ONLY) -->
+    <div class="fixed bottom-0 left-0 right-0 p-4 bg-white border-t border-slate-200 shadow-[0_-10px_15px_-3px_rgba(0,0,0,0.05)] md:hidden z-50">
+        <a href="{{ \App\Models\Setting::getWhatsappUrl($waTextDetail) }}"
+           target="_blank"
+           class="flex items-center justify-center gap-2 w-full bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-sm py-3.5 px-4 rounded-xl shadow-lg shadow-emerald-600/30 transition btn-wa-pulse">
+            <i class="fa-brands fa-whatsapp text-xl"></i>
+            <span>Pesan & Pasang via WhatsApp</span>
+        </a>
+    </div>
 
 @endsection

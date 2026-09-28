@@ -48,6 +48,14 @@
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
             <!-- Left: RFQ Form -->
             <div class="lg:col-span-8">
+                <!-- MOBILE KAM CTA (Tampil sebelum form RFQ pada Mobile/Tablet) -->
+                <div class="lg:hidden bg-gradient-to-br from-emerald-50 to-white rounded-2xl p-5 shadow-sm border border-emerald-100 mb-6 text-center">
+                    <h4 class="text-sm font-bold text-slate-900 mb-3">Butuh Respon Cepat?</h4>
+                    <a href="{{ \App\Models\Setting::getWhatsappUrl('Halo KAM Lynvo Energi, kami ingin mengajukan pengadaan baterai B2B urgent') }}" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold rounded-xl shadow-md transition shadow-emerald-600/20 btn-wa-pulse">
+                        <i class="fab fa-whatsapp text-lg"></i> Chat KAM B2B via WhatsApp
+                    </a>
+                </div>
+
                 <div class="bg-white rounded-2xl p-6 sm:p-8 lg:p-10 shadow-sm border border-slate-200">
                     <div class="border-b border-slate-100 pb-6 mb-6">
                         <h2 class="text-2xl font-bold text-slate-900">Formulir Pengadaan Baterai / Aki</h2>

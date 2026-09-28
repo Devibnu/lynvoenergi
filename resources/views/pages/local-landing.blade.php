@@ -47,6 +47,16 @@
                         Toko Aki & Accu <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-sky-300 to-amber-300">{{ $area->city_name }}</span> — Beli Aki / Ganti Accu, Kami Antar & Pasang di Tempat!
                     </h1>
 
+                    <!-- Hero Trust Bar -->
+                    <div class="flex items-center gap-3 mb-6 bg-slate-800/40 border border-slate-700/50 p-3 rounded-xl max-w-sm">
+                        <div class="flex items-center text-emerald-400 text-sm">
+                            <i class="fa-solid fa-shield-check"></i>
+                        </div>
+                        <div class="text-xs font-semibold text-slate-300">
+                            <span class="text-white font-bold">Layanan Profesional</span> & Bergaransi Resmi
+                        </div>
+                    </div>
+
                     <!-- Subheadline & Value Proposition -->
                     <p class="text-slate-300 text-base sm:text-lg leading-relaxed mb-8">
                         Aki mobil Anda drop, soak, atau kendaraan mogok di jalan maupun rumah? 
@@ -75,6 +85,16 @@
                                 </span>
                             </div>
                         </a>
+                    </div>
+
+                    <!-- Service Reliability Metrics -->
+                    <div class="flex items-center gap-4 mb-8 border-t border-slate-700/50 pt-6">
+                        <div class="flex items-center gap-3 text-emerald-400">
+                            <i class="fa-solid fa-clock-rotate-left text-xl"></i>
+                            <div class="text-xs text-slate-400">
+                                Layanan panggilan <strong class="text-white">siaga di wilayah Banten</strong>.
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Quick Guarantee Pills -->
