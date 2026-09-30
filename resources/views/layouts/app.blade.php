@@ -19,9 +19,24 @@
         $twitterImage = \App\Models\Setting::getValue('seo_twitter_image');
     @endphp
 
-    <title>{{ $seoTitle }}</title>
-    <meta name="description" content="{{ $seoDesc }}">
-    <meta name="keywords" content="{{ $seoKeywords }}">
+    @hasSection('title')
+        <title>@yield('title')</title>
+    @else
+        <title>{{ $seoTitle }}</title>
+    @endif
+
+    @hasSection('meta_description')
+        <meta name="description" content="@yield('meta_description')">
+    @else
+        <meta name="description" content="{{ $seoDesc }}">
+    @endif
+
+    @hasSection('meta_keywords')
+        <meta name="keywords" content="@yield('meta_keywords')">
+    @else
+        <meta name="keywords" content="{{ $seoKeywords }}">
+    @endif
+
     <meta name="author" content="{{ $seoAuthor }}">
     <link rel="canonical" href="{{ url()->current() }}">
 
