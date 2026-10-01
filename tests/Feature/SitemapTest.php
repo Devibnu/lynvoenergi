@@ -89,4 +89,27 @@ class SitemapTest extends TestCase
         $response->assertStatus(200);
         $response->assertDontSee(route('articles.show', $article->slug));
     }
+
+    /**
+     * D13-07-01: Ensure Sitemap Controller uses LazyCollection to prevent memory exhaustion.
+     */
+    public function test_sitemap_uses_lazy_collection_for_memory_safety()
+    {
+        $response = $this->get(route('sitemap'));
+
+        $response->assertStatus(200);
+
+        $view = $response->original;
+        $this->assertInstanceOf(\Illuminate\View\View::class, $view);
+
+        $data = $view->getData();
+
+        $this->assertInstanceOf(\Illuminate\Support\LazyCollection::class, $data['coverageAreas']);
+        $this->assertInstanceOf(\Illuminate\Support\LazyCollection::class, $data['categories']);
+        $this->assertInstanceOf(\Illuminate\Support\LazyCollection::class, $data['products']);
+        $this->assertInstanceOf(\Illuminate\Support\LazyCollection::class, $data['applications']);
+        $this->assertInstanceOf(\Illuminate\Support\LazyCollection::class, $data['brands']);
+        $this->assertInstanceOf(\Illuminate\Support\LazyCollection::class, $data['projects']);
+        $this->assertInstanceOf(\Illuminate\Support\LazyCollection::class, $data['articles']);
+    }
 }

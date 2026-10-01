@@ -20,11 +20,11 @@ class SitemapController extends Controller
     {
         $coverageAreas = CoverageArea::active()
             ->orderBy('sort_order')
-            ->get();
+            ->cursor();
 
         $categories = Category::active()
             ->orderBy('sort_order')
-            ->get();
+            ->cursor();
 
         $products = Product::active()
             ->with('category')
@@ -32,20 +32,20 @@ class SitemapController extends Controller
                 $q->active();
             })
             ->latest('updated_at')
-            ->get();
+            ->cursor();
 
         $applications = Application::active()
-            ->get();
+            ->cursor();
 
-        $brands = Brand::all();
+        $brands = Brand::cursor();
 
         $projects = Project::where('is_published', true)
             ->latest('updated_at')
-            ->get();
+            ->cursor();
 
         $articles = Article::active()
             ->latest('updated_at')
-            ->get();
+            ->cursor();
 
         return response()
             ->view('sitemap', compact(
