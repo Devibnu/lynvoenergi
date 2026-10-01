@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Application;
+use App\Models\Article;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\CoverageArea;
@@ -42,6 +43,10 @@ class SitemapController extends Controller
             ->latest('updated_at')
             ->get();
 
+        $articles = Article::active()
+            ->latest('updated_at')
+            ->get();
+
         return response()
             ->view('sitemap', compact(
                 'coverageAreas',
@@ -49,7 +54,8 @@ class SitemapController extends Controller
                 'products',
                 'applications',
                 'brands',
-                'projects'
+                'projects',
+                'articles'
             ))
             ->header('Content-Type', 'application/xml; charset=utf-8');
     }

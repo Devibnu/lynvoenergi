@@ -68,6 +68,13 @@
         <priority>0.8</priority>
     </url>
 
+    <url>
+        <loc>{{ route('articles.index') }}</loc>
+        <lastmod>{{ now()->startOfDay()->toAtomString() }}</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
     {{-- 2. Dynamic Local SEO Pages (Banten Coverage Areas) --}}
     @foreach($coverageAreas as $area)
     <url>
@@ -127,6 +134,16 @@
         <lastmod>{{ $project->updated_at ? $project->updated_at->toAtomString() : now()->toAtomString() }}</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
+    </url>
+    @endforeach
+
+    {{-- 8. Articles / Blog --}}
+    @foreach($articles as $article)
+    <url>
+        <loc>{{ route('articles.show', $article->slug) }}</loc>
+        <lastmod>{{ $article->updated_at ? $article->updated_at->toAtomString() : now()->toAtomString() }}</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
     </url>
     @endforeach
 
