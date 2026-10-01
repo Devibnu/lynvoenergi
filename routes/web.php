@@ -56,6 +56,10 @@ Route::post('/inquiry', [PageController::class, 'storeInquiry'])
     ->middleware('throttle:inquiry')
     ->name('inquiry.store');
 
+// Artikel / Blog
+Route::get('/artikel', [\App\Http\Controllers\ArticleController::class, 'index'])->name('articles.index');
+Route::get('/artikel/{article:slug}', [\App\Http\Controllers\ArticleController::class, 'show'])->name('articles.show');
+
 // Local Landing SEO Route
 Route::get('/{coverageArea:slug}', [LocalSeoController::class, 'showLocalLanding'])
     ->where('coverageArea', 'toko-aki-[a-z0-9\-]+')
