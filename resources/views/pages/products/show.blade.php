@@ -11,6 +11,51 @@
     <script type="application/ld+json">
         {!! json_encode($schemaProduct, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) !!}
     </script>
+    @php
+        $breadcrumbSchema = [
+            "@context" => "https://schema.org",
+            "@type" => "BreadcrumbList",
+            "itemListElement" => [
+                [
+                    "@type" => "ListItem",
+                    "position" => 1,
+                    "name" => "Beranda",
+                    "item" => route('home')
+                ],
+                [
+                    "@type" => "ListItem",
+                    "position" => 2,
+                    "name" => "Katalog Produk",
+                    "item" => route('products.index')
+                ]
+            ]
+        ];
+
+        if ($product->category) {
+            $breadcrumbSchema['itemListElement'][] = [
+                "@type" => "ListItem",
+                "position" => 3,
+                "name" => $product->category->name,
+                "item" => route('products.category', $product->category->slug)
+            ];
+            $breadcrumbSchema['itemListElement'][] = [
+                "@type" => "ListItem",
+                "position" => 4,
+                "name" => $product->name,
+                "item" => url()->current()
+            ];
+        } else {
+            $breadcrumbSchema['itemListElement'][] = [
+                "@type" => "ListItem",
+                "position" => 3,
+                "name" => $product->name,
+                "item" => url()->current()
+            ];
+        }
+    @endphp
+    <script type="application/ld+json">
+        {!! json_encode($breadcrumbSchema, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) !!}
+    </script>
 @endsection
 
 @section('content')
@@ -23,10 +68,12 @@
                 <i class="fa-solid fa-chevron-right text-[10px] text-slate-600"></i>
                 <a href="{{ route('products.index') }}" class="hover:text-white transition">Katalog Produk</a>
                 <i class="fa-solid fa-chevron-right text-[10px] text-slate-600"></i>
-                <a href="{{ route('products.category', $product->category->slug ?? 'aki') }}" class="hover:text-white transition">
-                    {{ $product->category->name }}
-                </a>
-                <i class="fa-solid fa-chevron-right text-[10px] text-slate-600"></i>
+                @if($product->category)
+                    <a href="{{ route('products.category', $product->category->slug) }}" class="hover:text-white transition">
+                        {{ $product->category->name }}
+                    </a>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-slate-600"></i>
+                @endif
                 <span class="text-blue-400 font-bold truncate max-w-xs sm:max-w-md">{{ $product->name }}</span>
             </nav>
         </div>

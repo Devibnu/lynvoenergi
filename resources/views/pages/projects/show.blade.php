@@ -3,6 +3,38 @@
 @section('title', $metaTitle)
 @section('meta_description', $metaDescription)
 
+@section('schema_json')
+    @php
+        $breadcrumbSchema = [
+            "@context" => "https://schema.org",
+            "@type" => "BreadcrumbList",
+            "itemListElement" => [
+                [
+                    "@type" => "ListItem",
+                    "position" => 1,
+                    "name" => "Beranda",
+                    "item" => route('home')
+                ],
+                [
+                    "@type" => "ListItem",
+                    "position" => 2,
+                    "name" => "Portofolio Proyek",
+                    "item" => route('projects.index')
+                ],
+                [
+                    "@type" => "ListItem",
+                    "position" => 3,
+                    "name" => $project->title,
+                    "item" => url()->current()
+                ]
+            ]
+        ];
+    @endphp
+    <script type="application/ld+json">
+        {!! json_encode($breadcrumbSchema, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) !!}
+    </script>
+@endsection
+
 @section('content')
 
     <!-- BREADCRUMB & HEADER -->
