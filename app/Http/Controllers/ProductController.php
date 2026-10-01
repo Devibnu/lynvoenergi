@@ -193,8 +193,7 @@ class ProductController extends Controller
                 'itemCondition' => 'https://schema.org/NewCondition',
                 'availability' => 'https://schema.org/InStock',
                 'seller' => [
-                    '@type' => 'Organization',
-                    'name' => 'PT Lynvo Energi Prima',
+                    '@id' => url('/') . '#organization',
                 ],
             ],
             'additionalProperty' => [

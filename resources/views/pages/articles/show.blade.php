@@ -16,8 +16,7 @@
   "image": "{{ $article->image ? asset('storage/' . $article->image) : '' }}",
   "datePublished": "{{ $article->published_at ? $article->published_at->toIso8601String() : $article->created_at->toIso8601String() }}",
   "author": {
-    "@@type": "Organization",
-    "name": "Lynvo Energi"
+    "@@id": "{{ url('/') }}#organization"
   }
 }
 </script>

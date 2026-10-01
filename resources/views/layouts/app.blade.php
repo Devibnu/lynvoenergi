@@ -153,6 +153,35 @@
         [x-cloak] { display: none !important; }
     </style>
 
+    <script type="application/ld+json">
+    {
+        "@@context": "https://schema.org",
+        "@@graph": [
+            {
+                "@@type": "Organization",
+                "@@id": "{{ url('/') }}#organization",
+                "name": "{{ \App\Models\Setting::getValue('seo_author', 'Lynvo Energi') }}",
+                "url": "{{ url('/') }}",
+                "logo": "{{ \App\Models\Setting::getValue('site_logo') ? asset('storage/' . \App\Models\Setting::getValue('site_logo')) : '' }}",
+                "telephone": "{{ \App\Models\Setting::getNormalizedWhatsappNumber() ? '+' . \App\Models\Setting::getNormalizedWhatsappNumber() : '' }}",
+                "email": "{{ \App\Models\Setting::getValue('site_email') }}",
+                "sameAs": [
+                    "{{ \App\Models\Setting::getValue('site_linkedin') }}"
+                ]
+            },
+            {
+                "@@type": "WebSite",
+                "@@id": "{{ url('/') }}#website",
+                "url": "{{ url('/') }}",
+                "name": "{{ \App\Models\Setting::getValue('seo_title') }}",
+                "description": "{{ \App\Models\Setting::getValue('seo_description') }}",
+                "publisher": {
+                    "@@id": "{{ url('/') }}#organization"
+                }
+            }
+        ]
+    }
+    </script>
     @yield('schema_json')
     @stack('styles')
 </head>
