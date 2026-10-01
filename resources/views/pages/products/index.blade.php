@@ -228,7 +228,13 @@
                                 <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-xl transition duration-300 flex flex-col justify-between group">
                                     <!-- Product Image Placeholder -->
                                     <div class="w-full h-48 overflow-hidden bg-slate-100 border-b border-slate-100">
-                                        <img src="{{ $product->image ? asset('storage/' . $product->image) : 'https://placehold.co/400x300/f8fafc/334155?text=No+Image' }}" alt="{{ $product->name }}" class="w-full h-48 object-cover rounded-t-xl group-hover:scale-105 transition-transform duration-500">
+                                        <img src="{{ $product->image ? asset('storage/' . $product->image) : 'https://placehold.co/400x300/f8fafc/334155?text=No+Image' }}"
+                                             alt="{{ $product->name }}"
+                                             width="400"
+                                             height="300"
+                                             loading="lazy"
+                                             decoding="async"
+                                             class="w-full h-48 object-cover rounded-t-xl group-hover:scale-105 transition-transform duration-500">
                                     </div>
                                     <div class="p-6">
                                         <!-- Card Top Badges -->

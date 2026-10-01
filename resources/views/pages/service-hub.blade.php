@@ -182,6 +182,10 @@
                         <div class="w-full h-40 overflow-hidden bg-slate-100 border-b border-slate-100">
                             <img src="https://placehold.co/400x300/f8fafc/334155?text=Foto+Produk+Aki" 
                                  alt="{{ $prod->name }}" 
+                                 width="400"
+                                 height="300"
+                                 loading="lazy"
+                                 decoding="async"
                                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         </div>
                         <div class="p-6 flex flex-col justify-between flex-grow">

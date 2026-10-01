@@ -35,6 +35,10 @@
                             <div class="w-full h-56 overflow-hidden bg-slate-100 border-b border-slate-100">
                                 <img src="{{ $project->image ? asset('storage/' . $project->image) : 'https://placehold.co/600x400/f8fafc/334155?text=Dokumentasi+Proyek' }}" 
                                      alt="{{ $project->title }}" 
+                                     width="600"
+                                     height="400"
+                                     loading="lazy"
+                                     decoding="async"
                                      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 rounded-t-xl">
                             </div>
                             <div class="p-6">

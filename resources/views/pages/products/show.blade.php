@@ -45,6 +45,11 @@
                         <div class="relative w-full h-64 bg-slate-100 rounded-xl flex items-center justify-center overflow-hidden mb-6 group border border-slate-200">
                             <img src="{{ $product->image ? asset('storage/' . $product->image) : 'https://placehold.co/800x600/f8fafc/334155?text=No+Image' }}" 
                                  alt="{{ $product->name }}" 
+                                 width="800"
+                                 height="600"
+                                 fetchpriority="high"
+                                 loading="eager"
+                                 decoding="async"
                                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         </div>
 

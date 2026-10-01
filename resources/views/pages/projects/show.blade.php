@@ -35,6 +35,11 @@
                     <div class="w-full mb-8 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
                         <img src="{{ $project->image ? asset('storage/' . $project->image) : 'https://placehold.co/800x500/f8fafc/334155?text=Dokumentasi+Proyek' }}" 
                              alt="{{ $project->title }}" 
+                             width="800"
+                             height="500"
+                             fetchpriority="high"
+                             loading="eager"
+                             decoding="async"
                              class="w-full h-auto object-cover">
                     </div>
 

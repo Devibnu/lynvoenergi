@@ -63,7 +63,7 @@
             
             @if($article->image)
                 <div class="w-full rounded-2xl overflow-hidden mb-12 shadow-lg border border-slate-100">
-                    <img src="{{ asset('storage/' . $article->image) }}" alt="{{ $article->title }}" class="w-full object-cover">
+                    <img src="{{ asset('storage/' . $article->image) }}" alt="{{ $article->title }}" width="1200" height="800" fetchpriority="high" loading="eager" decoding="async" class="w-full object-cover">
                 </div>
             @endif
 
@@ -95,6 +95,10 @@
                             <div class="h-40 overflow-hidden bg-slate-200">
                                 <img src="{{ $related->image ? asset('storage/' . $related->image) : 'https://placehold.co/400x300/f8fafc/334155?text=Artikel' }}" 
                                      alt="{{ $related->title }}" 
+                                     width="400"
+                                     height="300"
+                                     loading="lazy"
+                                     decoding="async"
                                      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                             </div>
                             <div class="p-5">

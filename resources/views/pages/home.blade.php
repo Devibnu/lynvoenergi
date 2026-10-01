@@ -80,6 +80,11 @@
                         <div class="relative rounded-3xl overflow-hidden border-2 border-slate-700/80 shadow-2xl shadow-blue-950/60 group">
                             <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1000&q=80"
                                  alt="Lynvo Energi Baterai Industri & Accu Suplai Nasional"
+                                 width="1000"
+                                 height="667"
+                                 fetchpriority="high"
+                                 loading="eager"
+                                 decoding="async"
                                  class="w-full h-[420px] sm:h-[480px] object-cover object-center group-hover:scale-105 transition duration-700">
 
                             <!-- Gradient Overlay for Contrast & Depth -->
@@ -236,10 +241,18 @@
                                 @if($category->image)
                                     <img src="{{ asset('storage/' . $category->image) }}"
                                          alt="{{ $category->name }}"
+                                         width="600"
+                                         height="400"
+                                         loading="lazy"
+                                         decoding="async"
                                          class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500">
                                 @else
                                     <img src="https://placehold.co/600x400/0f172a/ffffff?text=Foto+{{ urlencode($category->name) }}"
                                          alt="{{ $category->name }}"
+                                         width="600"
+                                         height="400"
+                                         loading="lazy"
+                                         decoding="async"
                                          class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500">
                                 @endif
                             </div>
@@ -334,6 +347,10 @@
                         <!-- Real Industrial Engineer Photo -->
                         <img src="https://placehold.co/800x600/0f172a/ffffff?text=Foto+Teknisi+K3"
                              alt="Teknisi Spesialis Lynvo Energi Inspeksi Baterai Industri"
+                             width="800"
+                             height="600"
+                             loading="lazy"
+                             decoding="async"
                              class="w-full h-[450px] sm:h-[500px] object-cover object-center group-hover:scale-105 transition duration-700">
 
                         <!-- Smooth Dark Navy Gradient Blend Overlay -->
@@ -408,6 +425,10 @@
                             <div class="h-48 overflow-hidden relative bg-slate-100">
                                 <img src="{{ $photoUrl }}"
                                      alt="{{ $proj->title }}"
+                                     width="600"
+                                     height="400"
+                                     loading="lazy"
+                                     decoding="async"
                                      class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500">
 
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
@@ -599,10 +620,18 @@
                             @if($article->image)
                                 <img src="{{ Storage::url($article->image) }}"
                                      alt="{{ $article->title }}"
+                                     width="600"
+                                     height="400"
+                                     loading="lazy"
+                                     decoding="async"
                                      class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500">
                             @else
                                 <img src="https://placehold.co/600x400/0f172a/ffffff?text={{ urlencode($article->category_name ?? 'Artikel') }}"
                                      alt="{{ $article->title }}"
+                                     width="600"
+                                     height="400"
+                                     loading="lazy"
+                                     decoding="async"
                                      class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500">
                             @endif
 
