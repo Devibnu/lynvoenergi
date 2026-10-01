@@ -10,7 +10,22 @@ class Setting extends Model
 
     public static function getValue($key, $default = null)
     {
-        return self::where('key', $key)->value('value') ?? $default;
+        $settings = \Illuminate\Support\Facades\Cache::rememberForever('global_settings_cache', function () {
+            return self::pluck('value', 'key')->toArray();
+        });
+
+        return $settings[$key] ?? $default;
+    }
+
+    protected static function booted()
+    {
+        static::saved(function ($setting) {
+            \Illuminate\Support\Facades\Cache::forget('global_settings_cache');
+        });
+
+        static::deleted(function ($setting) {
+            \Illuminate\Support\Facades\Cache::forget('global_settings_cache');
+        });
     }
 
     /**
