@@ -45,20 +45,78 @@
     @endif
 
     <!-- Open Graph -->
-    <meta property="og:type" content="website">
+    @hasSection('og_type')
+        <meta property="og:type" content="@yield('og_type')">
+    @else
+        <meta property="og:type" content="website">
+    @endif
     <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:title" content="{{ $ogTitle }}">
-    <meta property="og:description" content="{{ $ogDesc }}">
-    @if($ogImage)
-        <meta property="og:image" content="{{ asset('storage/' . $ogImage) }}">
+    @hasSection('og_title')
+        <meta property="og:title" content="@yield('og_title')">
+    @else
+        @hasSection('title')
+            <meta property="og:title" content="@yield('title')">
+        @else
+            <meta property="og:title" content="{{ $ogTitle }}">
+        @endif
+    @endif
+    @hasSection('og_description')
+        <meta property="og:description" content="@yield('og_description')">
+    @else
+        @hasSection('meta_description')
+            <meta property="og:description" content="@yield('meta_description')">
+        @else
+            <meta property="og:description" content="{{ $ogDesc }}">
+        @endif
+    @endif
+    @hasSection('og_image')
+        <meta property="og:image" content="@yield('og_image')">
+    @else
+        @if($ogImage)
+            <meta property="og:image" content="{{ asset('storage/' . $ogImage) }}">
+        @endif
     @endif
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{{ $twitterTitle }}">
-    <meta name="twitter:description" content="{{ $twitterDesc }}">
-    @if($twitterImage)
-        <meta name="twitter:image" content="{{ asset('storage/' . $twitterImage) }}">
+    @hasSection('twitter_title')
+        <meta name="twitter:title" content="@yield('twitter_title')">
+    @else
+        @hasSection('og_title')
+            <meta name="twitter:title" content="@yield('og_title')">
+        @else
+            @hasSection('title')
+                <meta name="twitter:title" content="@yield('title')">
+            @else
+                <meta name="twitter:title" content="{{ $twitterTitle }}">
+            @endif
+        @endif
+    @endif
+    @hasSection('twitter_description')
+        <meta name="twitter:description" content="@yield('twitter_description')">
+    @else
+        @hasSection('og_description')
+            <meta name="twitter:description" content="@yield('og_description')">
+        @else
+            @hasSection('meta_description')
+                <meta name="twitter:description" content="@yield('meta_description')">
+            @else
+                <meta name="twitter:description" content="{{ $twitterDesc }}">
+            @endif
+        @endif
+    @endif
+    @hasSection('twitter_image')
+        <meta name="twitter:image" content="@yield('twitter_image')">
+    @else
+        @hasSection('og_image')
+            <meta name="twitter:image" content="@yield('og_image')">
+        @else
+            @if($twitterImage)
+                <meta name="twitter:image" content="{{ asset('storage/' . $twitterImage) }}">
+            @elseif($ogImage)
+                <meta name="twitter:image" content="{{ asset('storage/' . $ogImage) }}">
+            @endif
+        @endif
     @endif
 
     <!-- Google Fonts -->

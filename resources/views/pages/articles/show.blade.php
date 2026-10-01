@@ -2,6 +2,10 @@
 
 @section('title', $metaTitle)
 @section('meta_description', $metaDescription)
+@section('og_type', 'article')
+@if($article->image)
+    @section('og_image', asset('storage/' . $article->image))
+@endif
 
 @section('schema_json')
 <script type="application/ld+json">
