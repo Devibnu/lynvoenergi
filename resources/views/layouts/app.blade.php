@@ -476,10 +476,17 @@
                 <!-- Kolom 1: Profil Lynvo Energi & Media Sosial -->
                 <div>
                     <div class="flex items-center gap-3 mb-4">
-                        <div class="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white font-bold text-xl shadow-md shadow-blue-500/30">
-                            <i class="fa-solid fa-car-battery"></i>
-                        </div>
-                        <span class="text-xl font-black text-white tracking-tight">LYNVO <span class="text-blue-500">ENERGI</span></span>
+                        @php
+                            $footerLogo = \App\Models\Setting::getValue('site_logo');
+                        @endphp
+                        @if($footerLogo)
+                            <img src="{{ asset('storage/' . $footerLogo) }}" alt="Lynvo Energi" class="h-10 w-auto">
+                        @else
+                            <div class="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white font-bold text-xl shadow-md shadow-blue-500/30">
+                                <i class="fa-solid fa-car-battery"></i>
+                            </div>
+                            <span class="text-xl font-black text-white tracking-tight">LYNVO <span class="text-blue-500">ENERGI</span></span>
+                        @endif
                     </div>
                     <p class="text-slate-300 text-sm leading-relaxed mb-5">
                         <strong>{{ \App\Models\Setting::getValue('company_name') }}</strong> — Distributor resmi &amp; pusat pengadaan baterai industri, aki armada truk, alat berat, marine, genset, dan layanan darurat ganti aki 24 jam se-Banten.
