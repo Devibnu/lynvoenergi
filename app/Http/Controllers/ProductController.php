@@ -155,6 +155,14 @@ class ProductController extends Controller
             ->with(['category', 'brand'])
             ->firstOrFail();
 
+        // D13-07-02: Product Category Canonical Validation
+        if ($product->category && $product->category->slug !== $categorySlug) {
+            return redirect()->route('products.show', array_merge(
+                ['category' => $product->category->slug, 'product' => $product->slug],
+                request()->query()
+            ), 301);
+        }
+
         // 4 Related Products
         $relatedProducts = Product::active()
             ->where('id', '!=', $product->id)
