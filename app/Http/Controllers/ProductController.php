@@ -70,11 +70,16 @@ class ProductController extends Controller
 
         $products = $query->paginate(12)->withQueryString();
 
-        $categories = Category::withCount(['products' => fn($q) => $q->active()])->get();
+        $categories = \Illuminate\Support\Facades\Cache::remember('catalog:categories', 3600, function () {
+            return Category::withCount(['products' => fn($q) => $q->active()])->get();
+        });
 
-        $brands = Brand::whereHas('products', fn($q) => $q->active())
-            ->withCount(['products' => fn($q) => $q->active()])
-            ->get();
+        $brands = \Illuminate\Support\Facades\Cache::remember('catalog:brands', 3600, function () {
+            return Brand::withCount(['products' => fn($q) => $q->active()])
+                ->get()
+                ->filter(fn($b) => $b->products_count > 0)
+                ->values();
+        });
 
         return view('pages.products.index', [
             'products' => $products,
@@ -129,11 +134,16 @@ class ProductController extends Controller
 
         $products = $query->paginate(12)->withQueryString();
 
-        $categories = Category::withCount(['products' => fn($q) => $q->active()])->get();
+        $categories = \Illuminate\Support\Facades\Cache::remember('catalog:categories', 3600, function () {
+            return Category::withCount(['products' => fn($q) => $q->active()])->get();
+        });
 
-        $brands = Brand::whereHas('products', fn($q) => $q->where('category_id', $category->id)->active())
-            ->withCount(['products' => fn($q) => $q->where('category_id', $category->id)->active()])
-            ->get();
+        $brands = \Illuminate\Support\Facades\Cache::remember("catalog:brands:category:{$category->id}", 3600, function () use ($category) {
+            return Brand::withCount(['products' => fn($q) => $q->where('category_id', $category->id)->active()])
+                ->get()
+                ->filter(fn($b) => $b->products_count > 0)
+                ->values();
+        });
 
         return view('pages.products.index', [
             'products' => $products,
