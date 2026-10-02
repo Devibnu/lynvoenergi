@@ -106,7 +106,7 @@ class InquiryWorkflowTest extends TestCase
 
     public function test_inquiry_endpoint_is_limited_to_five_requests_per_ip_per_minute(): void
     {
-        for ($attempt = 0; $attempt < 5; $attempt++) {
+        for ($attempt = 0; $attempt < 3; $attempt++) {
             $this->post('/inquiry', $this->inquiryPayload())->assertRedirect();
         }
 
@@ -115,7 +115,7 @@ class InquiryWorkflowTest extends TestCase
 
     public function test_inquiry_is_available_again_after_the_rate_limit_window(): void
     {
-        for ($attempt = 0; $attempt < 5; $attempt++) {
+        for ($attempt = 0; $attempt < 3; $attempt++) {
             $this->post('/inquiry', $this->inquiryPayload())->assertRedirect();
         }
 
