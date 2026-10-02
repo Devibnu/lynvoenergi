@@ -16,7 +16,7 @@ class ResetController extends Controller
 
     public function sendEmail(Request $request)
     {
-        if(env('IS_DEMO'))
+        if(config('demo.enabled'))
         {
             return redirect()->back()->withErrors(['msg2' => 'You are in a demo version, you can\'t recover your password.']);
         }
