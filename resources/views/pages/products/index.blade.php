@@ -281,9 +281,15 @@
                                     <div class="p-6">
                                         <!-- Card Top Badges -->
                                         <div class="flex items-center justify-between gap-2 mb-3">
-                                            <span class="px-2.5 py-1 rounded-md text-[11px] font-bold bg-blue-100 text-blue-800 uppercase tracking-wide">
-                                                {{ $product->getRelationValue('brand')?->name }}
-                                            </span>
+                                            @if($product->getRelationValue('brand'))
+                                                <a href="{{ route('brands.show', $product->getRelationValue('brand')->slug) }}" class="px-2.5 py-1 rounded-md text-[11px] font-bold bg-blue-100 text-blue-800 uppercase tracking-wide hover:bg-blue-200 transition inline-block">
+                                                    {{ $product->getRelationValue('brand')->name }}
+                                                </a>
+                                            @else
+                                                <span class="px-2.5 py-1 rounded-md text-[11px] font-bold bg-blue-100 text-blue-800 uppercase tracking-wide">
+                                                    Aki Resmi
+                                                </span>
+                                            @endif
                                             <span class="text-[11px] font-semibold text-slate-500 bg-slate-100 px-2 py-0.5 rounded">
                                                 {{ $product->category->name }}
                                             </span>
