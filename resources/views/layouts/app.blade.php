@@ -560,9 +560,6 @@
                         <div class="flex items-start gap-2">
                             <i class="fa-solid fa-location-dot text-rose-500 mt-0.5 text-xs"></i>
                             <div>
-                                @php
-                                    $primaryLocation = \App\Models\CompanyLocation::active()->where('is_primary', true)->first();
-                                @endphp
                                 <strong class="text-slate-100 block">{{ $primaryLocation ? $primaryLocation->name : 'Hub Logistik & Workshop' }}:</strong>
                                 <span>{{ $primaryLocation ? $primaryLocation->address : \App\Models\Setting::getValue('office_address') }}</span>
                             </div>

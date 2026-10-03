@@ -64,10 +64,35 @@ class CompanyLocation extends Model
     }
 
     /**
+     * Get global primary location (cached)
+     */
+    public static function getPrimaryLocation()
+    {
+        return \Illuminate\Support\Facades\Cache::rememberForever('global_primary_location', function () {
+            return self::active()->where('is_primary', true)->first();
+        });
+    }
+
+    /**
+     * Get all active ordered locations for contact page (cached)
+     */
+    public static function getContactLocations()
+    {
+        return \Illuminate\Support\Facades\Cache::rememberForever('contact_locations', function () {
+            return self::active()->ordered()->get();
+        });
+    }
+
+    /**
      * Boot the model.
      */
     protected static function booted()
     {
+        static::saved(function ($location) {
+            \Illuminate\Support\Facades\Cache::forget('global_primary_location');
+            \Illuminate\Support\Facades\Cache::forget('contact_locations');
+        });
+
         static::saving(function ($location) {
             // If this location is being set as primary, demote all others
             if ($location->is_primary) {
@@ -76,6 +101,9 @@ class CompanyLocation extends Model
         });
         
         static::deleted(function ($location) {
+            \Illuminate\Support\Facades\Cache::forget('global_primary_location');
+            \Illuminate\Support\Facades\Cache::forget('contact_locations');
+
             // If the primary location is deleted, set the next oldest one as primary
             if ($location->is_primary) {
                 $next = static::orderBy('id', 'asc')->first();

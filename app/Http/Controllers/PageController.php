@@ -27,7 +27,10 @@ class PageController extends Controller
      */
     public function contact(): View
     {
+        $locations = \App\Models\CompanyLocation::getContactLocations();
+
         return view('pages.contact', [
+            'locations' => $locations,
             'metaTitle' => 'Hubungi Kami — Hotline 24 Jam, Alamat & Layanan Pelanggan | Lynvo Energi',
             'metaDescription' => 'Hubungi customer service dan tim sales korporat Lynvo Energi. Siap melayani konsultasi teknis, pengadaan aki, dan bantuan darurat se-Banten.',
         ]);

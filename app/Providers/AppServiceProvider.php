@@ -29,5 +29,10 @@ class AppServiceProvider extends ServiceProvider
             $latestInquiries = \App\Models\Inquiry::where('is_read', false)->latest()->take(5)->get();
             $view->with('latestInquiries', $latestInquiries);
         });
+
+        \Illuminate\Support\Facades\View::composer('layouts.app', function ($view) {
+            $primaryLocation = \App\Models\CompanyLocation::getPrimaryLocation();
+            $view->with('primaryLocation', $primaryLocation);
+        });
     }
 }

@@ -174,9 +174,6 @@
 </section>
 
 <!-- Company Locations Section -->
-@php
-    $locations = \App\Models\CompanyLocation::active()->ordered()->get();
-@endphp
 
 @if($locations->count() > 0)
 <section class="py-12 lg:py-16 bg-white border-t border-slate-200">
