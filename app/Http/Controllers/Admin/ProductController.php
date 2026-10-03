@@ -28,7 +28,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255|unique:products,name',
             'brand_id' => 'required|exists:brands,id',
             'category_id' => 'required|exists:categories,id',
             'voltage' => 'nullable|string|max:255',
@@ -81,7 +81,7 @@ class ProductController extends Controller
         $product = \App\Models\Product::findOrFail($id);
 
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255|unique:products,name,' . $product->id,
             'brand_id' => 'required|exists:brands,id',
             'category_id' => 'required|exists:categories,id',
             'voltage' => 'nullable|string|max:255',

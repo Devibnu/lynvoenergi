@@ -24,7 +24,7 @@ class ApplicationController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255|unique:applications,name',
             'hero_headline' => 'required|string|max:255',
             'description' => 'required|string',
             'icon' => 'nullable|string|max:255',
@@ -54,7 +54,7 @@ class ApplicationController extends Controller
         $application = Application::findOrFail($id);
 
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255|unique:applications,name,' . $application->id,
             'hero_headline' => 'required|string|max:255',
             'description' => 'required|string',
             'icon' => 'nullable|string|max:255',

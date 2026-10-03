@@ -20,7 +20,7 @@ class LocalSeoController extends Controller
 
         $popularProducts = Product::where('is_popular_retail', true)
             ->active()
-            ->with(['category'])
+            ->with(['category', 'brand'])
             ->take(8)
             ->get();
 
@@ -151,7 +151,7 @@ class LocalSeoController extends Controller
 
         $featuredProducts = Product::where('is_popular_retail', true)
             ->active()
-            ->with(['category'])
+            ->with(['category', 'brand'])
             ->take(6)
             ->get();
 
