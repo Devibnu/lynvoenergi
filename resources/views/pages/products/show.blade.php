@@ -143,9 +143,11 @@
                     <!-- Title & Badges -->
                     <div class="bg-white rounded-2xl border border-slate-200 p-8 shadow-sm">
                         <div class="flex flex-wrap items-center gap-2 mb-3">
-                            <span class="px-3 py-1 rounded-md text-xs font-bold bg-blue-100 text-blue-800 uppercase tracking-wide">
-                                {{ $product->getRelationValue('brand')?->name }}
-                            </span>
+                            @if($product->getRelationValue('brand'))
+                                <a href="{{ route('brands.show', $product->brand->slug) }}" class="px-3 py-1 rounded-md text-xs font-bold bg-blue-100 text-blue-800 uppercase tracking-wide hover:bg-blue-200 transition">
+                                    {{ $product->brand->name }}
+                                </a>
+                            @endif
                             <a href="{{ route('products.category', $product->category->slug ?? 'aki') }}" 
                                class="px-3 py-1 rounded-md text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition">
                                 {{ $product->category->name }}
@@ -238,7 +240,13 @@
                                 <tbody>
                                     <tr class="border-b border-slate-100 bg-slate-50">
                                         <th class="py-3 px-4 font-bold text-slate-900 w-1/3">Merk / Brand</th>
-                                        <td class="py-3 px-4 font-semibold text-blue-600">{{ $product->getRelationValue('brand')?->name ?? '-' }}</td>
+                                        <td class="py-3 px-4 font-semibold text-blue-600">
+                                            @if($product->getRelationValue('brand'))
+                                                <a href="{{ route('brands.show', $product->brand->slug) }}" class="hover:underline">{{ $product->brand->name }}</a>
+                                            @else
+                                                -
+                                            @endif
+                                        </td>
                                     </tr>
                                     <tr class="border-b border-slate-100">
                                         <th class="py-3 px-4 font-bold text-slate-900">Kategori</th>
@@ -310,9 +318,11 @@
                         @foreach($relatedProducts as $rel)
                             <div class="bg-white rounded-2xl border border-slate-200 p-6 flex flex-col justify-between hover:shadow-lg transition">
                                 <div>
-                                    <span class="text-[11px] font-bold px-2 py-0.5 rounded bg-blue-100 text-blue-800 mb-2 inline-block">
-                                        {{ $rel->getRelationValue('brand')?->name }}
-                                    </span>
+                                    @if($rel->getRelationValue('brand'))
+                                        <a href="{{ route('brands.show', $rel->brand->slug) }}" class="text-[11px] font-bold px-2 py-0.5 rounded bg-blue-100 text-blue-800 mb-2 inline-block hover:bg-blue-200 transition">
+                                            {{ $rel->brand->name }}
+                                        </a>
+                                    @endif
                                     <h3 class="text-sm font-extrabold text-slate-900 mb-1 leading-snug">
                                         {{ $rel->name }}
                                     </h3>
