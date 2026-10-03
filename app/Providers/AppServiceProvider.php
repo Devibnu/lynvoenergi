@@ -23,6 +23,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        \Illuminate\Database\Eloquent\Model::preventLazyLoading(! app()->isProduction());
+
         \Illuminate\Support\Facades\View::composer('layouts.admin.app', function ($view) {
             $latestInquiries = \App\Models\Inquiry::where('is_read', false)->latest()->take(5)->get();
             $view->with('latestInquiries', $latestInquiries);
