@@ -14,7 +14,7 @@ class LocalSeoLandingTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        
+
         // Seed settings
         Setting::create(['key' => 'hero_phone', 'value' => '08123456789', 'label' => 'Hero Phone']);
         Setting::create(['key' => 'whatsapp_number', 'value' => '628123456789', 'label' => 'WA']);
@@ -31,7 +31,7 @@ class LocalSeoLandingTest extends TestCase
             'is_active' => true,
             'sort_order' => 1,
         ]);
-        
+
         CoverageArea::create([
             'city_name' => 'Inactive City',
             'slug' => 'toko-aki-inactive',
@@ -67,7 +67,7 @@ class LocalSeoLandingTest extends TestCase
     {
         $response = $this->get('/toko-aki-test-city');
         $response->assertStatus(200);
-        
+
         $response->assertSee('<title>Meta Title Test City</title>', false);
         $response->assertSee('Meta Desc Test City', false);
     }
@@ -76,7 +76,7 @@ class LocalSeoLandingTest extends TestCase
     {
         $response = $this->get('/toko-aki-test-city');
         $response->assertStatus(200);
-        
+
         // Assert WA link is rendered using Setting
         $response->assertSee('wa.me');
         // Assert WA CTA text
@@ -118,5 +118,93 @@ class LocalSeoLandingTest extends TestCase
     {
         $response = $this->get('/minta-penawaran');
         $response->assertStatus(200);
+    }
+
+    public function test_popular_product_internal_linking_and_cta()
+    {
+        // Seed category and brand
+        $category = \App\Models\Category::create([
+            'name' => 'Aki Mobil Test',
+            'slug' => 'aki-mobil-test',
+            'is_active' => true,
+        ]);
+
+        $brand = \App\Models\Brand::create([
+            'name' => 'Test Brand',
+            'slug' => 'test-brand',
+            'is_active' => true,
+        ]);
+
+        // Seed popular product
+        $product = \App\Models\Product::create([
+            'name' => 'Aki Keren NS40Z',
+            'slug' => 'aki-keren-ns40z',
+            'category_id' => $category->id,
+            'brand_id' => $brand->id,
+            'is_active' => true,
+            'is_popular_retail' => true,
+            'price' => 1000000,
+            'voltage' => '12V',
+            'capacity_ah' => 35,
+        ]);
+
+        $response = $this->get('/toko-aki-test-city');
+        $response->assertStatus(200);
+
+        $expectedProductUrl = route('products.show', [$category->slug, $product->slug]);
+
+        // TEST 1 & 2 & 3: Local landing page menampilkan popular product dengan link menuju Product Detail
+        $response->assertSee($expectedProductUrl);
+
+        // Assert the anchor tag contains the product name
+        // (Using assertSeeHtml since we just wrapped the h3 with a)
+        $response->assertSee('<a href="' . $expectedProductUrl . '" class="block">', false);
+        $response->assertSee('Aki Keren NS40Z', false);
+
+        // TEST 4: WhatsApp CTA existing tetap tersedia
+        $response->assertSee($product->whatsapp_order_url);
+        $response->assertSee('Pesan & Pasang Aki Ini', false);
+    }
+
+    public function test_service_hub_popular_product_internal_linking()
+    {
+        // Seed category and brand
+        $category = \App\Models\Category::create([
+            'name' => 'Aki Motor Test',
+            'slug' => 'aki-motor-test',
+            'is_active' => true,
+        ]);
+
+        $brand = \App\Models\Brand::create([
+            'name' => 'Test Brand 2',
+            'slug' => 'test-brand-2',
+            'is_active' => true,
+        ]);
+
+        // Seed popular product
+        $product = \App\Models\Product::create([
+            'name' => 'Aki Mantap',
+            'slug' => 'aki-mantap',
+            'category_id' => $category->id,
+            'brand_id' => $brand->id,
+            'is_active' => true,
+            'is_popular_retail' => true,
+            'price' => 150000,
+            'voltage' => '12V',
+            'capacity_ah' => 5,
+        ]);
+
+        $response = $this->get(route('services.battery_delivery'));
+        $response->assertStatus(200);
+
+        $expectedProductUrl = route('products.show', [$category->slug, $product->slug]);
+
+        // Assert internal link exists
+        $response->assertSee($expectedProductUrl);
+        $response->assertSee('<a href="' . $expectedProductUrl . '" class="block">', false);
+        $response->assertSee('Aki Mantap', false);
+
+        // Assert WhatsApp CTA existing
+        $response->assertSee($product->whatsapp_order_url);
     }
 }

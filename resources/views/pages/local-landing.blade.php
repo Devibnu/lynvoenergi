@@ -324,9 +324,11 @@
                             </div>
 
                             <!-- Product Name -->
-                            <h3 class="text-base font-extrabold text-slate-900 group-hover:text-blue-600 transition leading-snug mb-2">
-                                {{ $prod->name }}
-                            </h3>
+                            <a href="{{ route('products.show', [$prod->category?->slug ?? 'aki', $prod->slug]) }}" class="block">
+                                <h3 class="text-base font-extrabold text-slate-900 group-hover:text-blue-600 transition leading-snug mb-2">
+                                    {{ $prod->name }}
+                                </h3>
+                            </a>
 
                             <!-- Specs Pill -->
                             <div class="flex flex-wrap gap-2 text-xs text-slate-600 mb-4 bg-slate-50 p-2.5 rounded-lg border border-slate-100">

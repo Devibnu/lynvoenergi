@@ -196,7 +196,9 @@
                                 </span>
                                 <span class="text-xs font-semibold text-emerald-600">Garansi Resmi</span>
                             </div>
-                            <h3 class="text-base font-extrabold text-slate-900 mb-2">{{ $prod->name }}</h3>
+                            <a href="{{ route('products.show', [$prod->category?->slug ?? 'aki', $prod->slug]) }}" class="block">
+                                <h3 class="text-base font-extrabold text-slate-900 mb-2 hover:text-blue-600 transition">{{ $prod->name }}</h3>
+                            </a>
                             <div class="text-xs text-slate-600 mb-4">
                                 <p><i class="fa-solid fa-car-battery text-blue-500 mr-1"></i>{{ $prod->capacity_ah }} Ah ({{ $prod->voltage }})</p>
                                 @if($prod->suitable_for)
