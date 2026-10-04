@@ -191,9 +191,15 @@
                         <div class="p-6 flex flex-col justify-between flex-grow">
                             <div>
                             <div class="flex items-center justify-between mb-3">
-                                <span class="text-xs font-bold px-2.5 py-1 rounded bg-blue-100 text-blue-800">
-                                    {{ $prod->getRelationValue('brand')?->name }}
-                                </span>
+                                @if($prod->getRelationValue('brand'))
+                                    <a href="{{ route('brands.show', $prod->getRelationValue('brand')->slug) }}" class="text-xs font-bold px-2.5 py-1 rounded bg-blue-100 text-blue-800 hover:bg-blue-200 transition inline-block">
+                                        {{ $prod->getRelationValue('brand')->name }}
+                                    </a>
+                                @else
+                                    <span class="text-xs font-bold px-2.5 py-1 rounded bg-blue-100 text-blue-800 inline-block">
+                                        Aki Resmi
+                                    </span>
+                                @endif
                                 <span class="text-xs font-semibold text-emerald-600">Garansi Resmi</span>
                             </div>
                             <a href="{{ route('products.show', [$prod->category?->slug ?? 'aki', $prod->slug]) }}" class="block">
