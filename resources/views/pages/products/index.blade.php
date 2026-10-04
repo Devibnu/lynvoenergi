@@ -290,9 +290,15 @@
                                                     Aki Resmi
                                                 </span>
                                             @endif
-                                            <span class="text-[11px] font-semibold text-slate-500 bg-slate-100 px-2 py-0.5 rounded">
-                                                {{ $product->category->name }}
-                                            </span>
+                                            @if($product->getRelationValue('category'))
+                                                <a href="{{ route('products.category', $product->getRelationValue('category')->slug) }}" class="text-[11px] font-semibold text-slate-500 bg-slate-100 px-2 py-0.5 rounded hover:bg-slate-200 transition inline-block">
+                                                    {{ $product->getRelationValue('category')->name }}
+                                                </a>
+                                            @else
+                                                <span class="text-[11px] font-semibold text-slate-500 bg-slate-100 px-2 py-0.5 rounded inline-block">
+                                                    Aki
+                                                </span>
+                                            @endif
                                         </div>
 
                                         <!-- Product Title -->

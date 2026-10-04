@@ -91,9 +91,15 @@
                                     <span class="px-2.5 py-1 rounded text-[11px] font-bold bg-blue-100 text-blue-800">
                                         {{ $brand->name }}
                                     </span>
-                                    <span class="text-[11px] text-slate-500 bg-slate-100 px-2 py-0.5 rounded">
-                                        {{ $product->category?->name }}
-                                    </span>
+                                    @if($product->getRelationValue('category'))
+                                        <a href="{{ route('products.category', $product->getRelationValue('category')->slug) }}" class="text-[11px] text-slate-500 bg-slate-100 px-2 py-0.5 rounded hover:bg-slate-200 transition inline-block">
+                                            {{ $product->getRelationValue('category')->name }}
+                                        </a>
+                                    @else
+                                        <span class="text-[11px] text-slate-500 bg-slate-100 px-2 py-0.5 rounded inline-block">
+                                            Aki
+                                        </span>
+                                    @endif
                                 </div>
 
                                 <a href="{{ route('products.show', [$product->category?->slug ?? 'aki', $product->slug]) }}" class="block">
