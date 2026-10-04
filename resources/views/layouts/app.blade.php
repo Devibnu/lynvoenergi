@@ -287,6 +287,10 @@
                         </div>
                     </div>
 
+                    <a href="{{ route('articles.index') }}" class="text-base font-medium whitespace-nowrap {{ request()->routeIs('articles.*') ? 'text-blue-600' : 'text-slate-700' }} hover:text-blue-600 transition">
+                        Artikel & Edukasi
+                    </a>
+
                     <a href="{{ route('about') }}" class="text-base font-medium whitespace-nowrap {{ request()->routeIs('about') ? 'text-blue-600' : 'text-slate-700' }} hover:text-blue-600 transition">
                         Tentang Kami
                     </a>
@@ -402,6 +406,12 @@
                         </a>
                     </div>
                 </div>
+
+                <a href="{{ route('articles.index') }}" @click="mobileOpen = false"
+                   class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold {{ request()->routeIs('articles.*') ? 'bg-blue-50 text-blue-600' : 'text-slate-700 hover:bg-slate-50 hover:text-blue-600' }} transition-colors">
+                    <i class="fa-solid fa-newspaper w-5 text-center text-blue-500"></i>
+                    Artikel & Edukasi
+                </a>
 
                 <a href="{{ route('about') }}" @click="mobileOpen = false"
                    class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold {{ request()->routeIs('about') ? 'bg-blue-50 text-blue-600' : 'text-slate-700 hover:bg-slate-50 hover:text-blue-600' }} transition-colors">
@@ -522,6 +532,7 @@
                         <li><a href="{{ route('applications.index') }}" class="hover:text-white transition-colors flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-[10px] text-blue-500"></i> Sektor B2B &amp; Industri</a></li>
                         <li><a href="{{ route('projects.index') }}" class="hover:text-white transition-colors flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-[10px] text-blue-500"></i> Portofolio Proyek</a></li>
                         <li><a href="{{ route('services.battery_delivery') }}" class="hover:text-white transition-colors flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-[10px] text-blue-500"></i> Layanan Antar Pasang</a></li>
+                        <li><a href="{{ route('articles.index') }}" class="hover:text-white transition-colors flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-[10px] text-blue-500"></i> Artikel &amp; Edukasi</a></li>
                         <li><a href="{{ route('about') }}" class="hover:text-white transition-colors flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-[10px] text-blue-500"></i> Tentang Lynvo Energi</a></li>
                         <li><a href="{{ route('quotation') }}" class="text-blue-400 font-semibold hover:text-blue-300 transition-colors flex items-center gap-1.5"><i class="fa-solid fa-file-invoice text-[10px] text-amber-400"></i> Minta Penawaran B2B</a></li>
                     </ul>
