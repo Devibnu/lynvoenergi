@@ -84,6 +84,19 @@
                 </div>
             @endif
 
+            <!-- COMMERCIAL BRIDGE -->
+            @if(!($article->action_label && $article->action_url))
+                <div class="mt-8 mb-12 p-6 bg-slate-50 border border-slate-200 rounded-xl flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div>
+                        <h4 class="text-lg font-bold text-slate-900 mb-1">Lagi Cari Aki Berkualitas?</h4>
+                        <p class="text-sm text-slate-600">Temukan pilihan aki terbaik untuk berbagai kebutuhan di katalog produk kami.</p>
+                    </div>
+                    <a href="{{ route('products.index') }}" class="shrink-0 inline-flex items-center gap-2 px-6 py-3 bg-slate-900 text-white font-bold rounded-xl hover:bg-slate-800 transition shadow-sm">
+                        Lihat Katalog Produk <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </a>
+                </div>
+            @endif
+
             <hr class="border-slate-200 mb-12">
 
             <!-- RELATED ARTICLES -->
