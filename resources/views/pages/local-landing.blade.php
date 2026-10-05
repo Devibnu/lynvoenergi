@@ -153,10 +153,10 @@
                         <div class="flex items-center justify-between pb-5 border-b border-slate-700 mb-6">
                             <div>
                                 <span class="text-xs font-bold text-blue-400 uppercase tracking-wider block">Wilayah Siaga</span>
-                                <h3 class="text-xl font-black text-white flex items-center gap-2 mt-0.5">
+                                <h2 class="text-xl font-black text-white flex items-center gap-2 mt-0.5">
                                     <i class="fa-solid fa-map-pin text-rose-500"></i>
                                     {{ $area->city_name }}, Banten
-                                </h3>
+                                </h2>
                             </div>
                             <span class="px-3 py-1 bg-emerald-950 text-emerald-300 border border-emerald-500/30 text-xs font-bold rounded-full">
                                 Unit Ready
@@ -388,7 +388,7 @@
                         <i class="fa-solid fa-recycle"></i>
                     </div>
                     <div>
-                        <h4 class="text-lg font-bold text-slate-900">Program Tukar Tambah Aki Bekas (Trade-In Extra Hemat)</h4>
+                        <h3 class="text-lg font-bold text-slate-900">Program Tukar Tambah Aki Bekas (Trade-In Extra Hemat)</h3>
                         <p class="text-sm text-slate-700 mt-1 max-w-2xl">
                             Jangan buang aki lama Anda! Tukarkan aki mati/soak saat teknisi tiba dan dapatkan potongan harga khusus untuk pembelian aki baru. Nilai tukar tambah menyesuaikan jenis dan kondisi aki bekas.
                         </p>
@@ -419,10 +419,10 @@
                     </p>
                     
                     <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
-                        <h4 class="text-xs font-bold text-slate-700 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                        <h3 class="text-xs font-bold text-slate-700 uppercase tracking-wider mb-2 flex items-center gap-1.5">
                             <i class="fa-solid fa-headset text-blue-600"></i>
                             Hotline Darurat {{ $area->city_name }}
-                        </h4>
+                        </h3>
                         <p class="text-sm font-semibold text-slate-900">
                             Pesan sekarang, teknisi terdekat langsung menuju lokasi:
                         </p>
@@ -455,9 +455,9 @@
 
                         <!-- Other Banten Area Links -->
                         <div class="mt-8 pt-6 border-t border-slate-200">
-                            <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">
+                            <h3 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">
                                 Layanan di Wilayah Banten Lainnya:
-                            </h4>
+                            </h3>
                             <div class="flex flex-wrap gap-2">
                                 @foreach($otherAreas as $other)
                                     <a href="{{ route('local.landing', $other->slug) }}" 

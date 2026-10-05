@@ -72,6 +72,66 @@ class LocalSeoLandingTest extends TestCase
         $response->assertSee('Meta Desc Test City', false);
     }
 
+    public function test_serang_landing_uses_transactional_metadata_and_valid_heading_hierarchy()
+    {
+        CoverageArea::create([
+            'city_name' => 'Serang',
+            'slug' => 'toko-aki-serang',
+            'hero_title' => 'Toko Aki Serang',
+            'district_coverage' => 'Serang Kota',
+            'custom_intro_text' => 'Layanan aki di Serang.',
+            'meta_title' => 'Existing Serang Title',
+            'meta_description' => 'Existing Serang Description',
+            'is_active' => true,
+            'sort_order' => 2,
+        ]);
+
+        $response = $this->get('/toko-aki-serang');
+        $response->assertStatus(200);
+        $response->assertSee(
+            '<title>Toko Aki Serang | Jual, Ganti &amp; Pasang Aki di Tempat</title>',
+            false
+        );
+        $response->assertSee(
+            '<meta name="description" content="Jual aki Serang untuk mobil dan kendaraan Anda. Lynvo Energi melayani ganti, antar, pasang aki di tempat, dan tukar tambah aki dengan teknisi siap datang ke lokasi.">',
+            false
+        );
+        $this->assertMatchesRegularExpression(
+            '/<link rel="canonical" href="https?:\/\/[^"]+\/toko-aki-serang">/',
+            $response->getContent()
+        );
+        $response->assertSee('Pesan Aki & Panggil Teknisi', false);
+        $response->assertSee('wa.me', false);
+        $response->assertSee('tel:08123456789', false);
+        $response->assertSee('Pertanyaan Seputar Toko Aki Serang', false);
+        $response->assertSee('Cek Nilai Tukar Tambah Aki', false);
+        $response->assertSee(route('services.battery_delivery'), false);
+        $response->assertSee(route('local.landing', 'toko-aki-test-city'), false);
+
+        $this->assertDoesNotMatchRegularExpression('/\/merek\/null/', $response->getContent());
+        $this->assertDoesNotMatchRegularExpression(
+            '/<a\b[^>]*>(?:(?!<\/a>).)*<a\b/s',
+            $response->getContent()
+        );
+
+        preg_match('/<main\b[^>]*>(.*?)<\/main>/s', $response->getContent(), $mainMatch);
+        $this->assertNotEmpty($mainMatch, 'The page must render its main content landmark');
+        preg_match_all('/<h([1-6])\b/i', $mainMatch[1], $headingMatches);
+        $headingLevels = array_map('intval', $headingMatches[1]);
+
+        $this->assertNotEmpty($headingLevels);
+        $this->assertSame(1, $headingLevels[0]);
+        $this->assertSame(1, count(array_filter($headingLevels, fn (int $level) => $level === 1)));
+
+        for ($index = 1; $index < count($headingLevels); $index++) {
+            $this->assertLessThanOrEqual(
+                1,
+                $headingLevels[$index] - $headingLevels[$index - 1],
+                'Heading levels must not skip a level'
+            );
+        }
+    }
+
     public function test_page_renders_correct_ctas()
     {
         $response = $this->get('/toko-aki-test-city');

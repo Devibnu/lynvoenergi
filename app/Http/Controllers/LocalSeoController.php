@@ -33,6 +33,11 @@ class LocalSeoController extends Controller
         $metaTitle = $area->meta_title ?: "Toko Aki & Accu {$area->city_name} — Layanan Antar Pasang 24 Jam | Lynvo Energi";
         $metaDescription = $area->meta_description ?: "Pusat jual beli aki dan accu mobil, truk, genset di {$area->city_name} Banten. Layanan pesan antar pasang aki darurat cepat, garansi resmi original GS Astra, Yuasa, Incoe, Amaron.";
 
+        if ($area->slug === 'toko-aki-serang') {
+            $metaTitle = 'Toko Aki Serang | Jual, Ganti & Pasang Aki di Tempat';
+            $metaDescription = 'Jual aki Serang untuk mobil dan kendaraan Anda. Lynvo Energi melayani ganti, antar, pasang aki di tempat, dan tukar tambah aki dengan teknisi siap datang ke lokasi.';
+        }
+
         // JSON-LD LocalBusiness / AutoRepair Schema
         $schemaLocalBusiness = [
             '@context' => 'https://schema.org',
