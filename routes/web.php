@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 // SEO Routes
-Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
+Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap')->withoutMiddleware('web');
 Route::get('/robots.txt', [App\Http\Controllers\SeoController::class, 'robots'])->name('robots');
 
 // Homepage & Service Hub

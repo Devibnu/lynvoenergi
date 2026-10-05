@@ -17,7 +17,7 @@ class SitemapTest extends TestCase
     public function test_sitemap_returns_successful_response_and_valid_xml()
     {
         $response = $this->get(route('sitemap'));
-        
+
         $response->assertStatus(200);
         $response->assertHeader('Content-Type', 'application/xml; charset=utf-8');
         $this->assertStringStartsWith('<?xml', $response->getContent());
@@ -38,9 +38,9 @@ class SitemapTest extends TestCase
             'meta_title' => 'Meta',
             'meta_description' => 'Meta desc'
         ]);
-        
+
         $response = $this->get(route('sitemap'));
-        
+
         $response->assertStatus(200);
         $response->assertSee(route('home'));
         $response->assertSee(route('local.landing', $area->slug));
@@ -64,9 +64,9 @@ class SitemapTest extends TestCase
             'is_active' => true,
             'published_at' => now(),
         ]);
-        
+
         $response = $this->get(route('sitemap'));
-        
+
         $response->assertStatus(200);
         $response->assertSee(route('articles.index'));
         $response->assertSee(route('articles.show', $article1->slug));
@@ -83,9 +83,9 @@ class SitemapTest extends TestCase
             'slug' => 'rahasia-internal',
             'is_active' => false,
         ]);
-        
+
         $response = $this->get(route('sitemap'));
-        
+
         $response->assertStatus(200);
         $response->assertDontSee(route('articles.show', $article->slug));
     }
@@ -111,5 +111,19 @@ class SitemapTest extends TestCase
         $this->assertInstanceOf(\Illuminate\Support\LazyCollection::class, $data['brands']);
         $this->assertInstanceOf(\Illuminate\Support\LazyCollection::class, $data['projects']);
         $this->assertInstanceOf(\Illuminate\Support\LazyCollection::class, $data['articles']);
+    }
+
+    /**
+     * SEO Hardening: Ensure sitemap is stateless and public cacheable.
+     */
+    public function test_sitemap_is_stateless_and_cacheable()
+    {
+        $response = $this->get(route('sitemap'));
+
+        $response->assertStatus(200);
+        $response->assertHeaderMissing('Set-Cookie');
+        $this->assertStringContainsString('max-age=3600', $response->headers->get('Cache-Control') ?? '');
+        $this->assertStringContainsString('public', $response->headers->get('Cache-Control') ?? '');
+        $this->assertStringNotContainsString('private', $response->headers->get('Cache-Control') ?? '');
     }
 }
