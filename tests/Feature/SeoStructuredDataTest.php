@@ -16,16 +16,26 @@ class SeoStructuredDataTest extends TestCase
 {
     use RefreshDatabase;
 
-    private function getBreadcrumbListSchema(string $htmlContent): array
+    private function getJsonLdSchemas(string $htmlContent): array
     {
         preg_match_all('/<script type="application\/ld\+json">(.*?)<\/script>/s', $htmlContent, $matches);
         $schemas = [];
+
         foreach ($matches[1] as $json) {
             $data = json_decode($json, true);
-            if (isset($data['@type']) && $data['@type'] === 'BreadcrumbList') {
-                $schemas[] = $data;
-            }
+            $this->assertIsArray($data, 'Every JSON-LD script must contain valid JSON');
+            $schemas[] = $data;
         }
+
+        return $schemas;
+    }
+
+    private function getBreadcrumbListSchema(string $htmlContent): array
+    {
+        $schemas = array_values(array_filter(
+            $this->getJsonLdSchemas($htmlContent),
+            fn (array $data) => ($data['@type'] ?? null) === 'BreadcrumbList'
+        ));
 
         $this->assertCount(1, $schemas, 'There must be exactly one BreadcrumbList schema on the page');
         return $schemas[0];
@@ -127,6 +137,29 @@ class SeoStructuredDataTest extends TestCase
         $response = $this->get('/' . $area->slug);
 
         $response->assertStatus(200);
+        $response->assertSeeHtml('application/ld+json');
+
+        $schemas = $this->getJsonLdSchemas($response->getContent());
+        $types = array_column($schemas, '@type');
+        $this->assertContains('AutoRepair', $types);
+        $this->assertContains('FAQPage', $types);
+        $this->assertContains('BreadcrumbList', $types);
+
+        $localBusinessSchemas = array_values(array_filter(
+            $schemas,
+            fn (array $data) => ($data['@type'] ?? null) === 'AutoRepair'
+        ));
+        $this->assertCount(1, $localBusinessSchemas);
+        $localBusinessSchema = $localBusinessSchemas[0];
+        $this->assertArrayHasKey('hasOfferCatalog', $localBusinessSchema);
+        $this->assertSame(
+            'Service',
+            $localBusinessSchema['hasOfferCatalog']['itemListElement'][0]['itemOffered']['@type']
+        );
+
+        $jsonLd = json_encode($schemas);
+        $this->assertStringNotContainsString('Aki Mobil & Truk Bergaransi Resmi', $jsonLd);
+        $this->assertDoesNotMatchRegularExpression('/"@type"\s*:\s*"Product"/', $jsonLd);
 
         $schema = $this->getBreadcrumbListSchema($response->getContent());
 

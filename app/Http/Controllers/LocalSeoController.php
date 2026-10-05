@@ -77,14 +77,6 @@ class LocalSeoController extends Controller
                             'description' => 'Teknisi datang ke rumah, kantor, atau lokasi mogok jalan raya untuk pasang aki baru dan tes dinamo alternator gratis.',
                         ],
                     ],
-                    [
-                        '@type' => 'Offer',
-                        'itemOffered' => [
-                            '@type' => 'Product',
-                            'name' => 'Aki Mobil & Truk Bergaransi Resmi',
-                            'description' => 'Aki kering MF dan konvensional GS Astra, Yuasa, Incoe, Amaron, Varta 100% original.',
-                        ],
-                    ],
                 ],
             ],
         ];

@@ -12,6 +12,22 @@ class ProductDetailTest extends TestCase
 {
     use RefreshDatabase;
 
+    private function getProductSchema(string $htmlContent): array
+    {
+        preg_match_all('/<script type="application\/ld\+json">(.*?)<\/script>/s', $htmlContent, $matches);
+
+        foreach ($matches[1] as $json) {
+            $data = json_decode($json, true);
+            $this->assertIsArray($data, 'Every JSON-LD script must contain valid JSON');
+
+            if (($data['@type'] ?? null) === 'Product') {
+                return $data;
+            }
+        }
+
+        $this->fail('The product detail page must contain a Product JSON-LD schema');
+    }
+
     public function test_product_detail_shows_brand_link_if_brand_exists()
     {
         $category = Category::create([
@@ -43,6 +59,11 @@ class ProductDetailTest extends TestCase
         
         // Assert Schema/JSON-LD is present (SEO regression)
         $response->assertSeeHtml('application/ld+json');
+        $schema = $this->getProductSchema($response->getContent());
+        $this->assertSame('Produk Test GS', $schema['name']);
+        $this->assertArrayHasKey('offers', $schema);
+        $this->assertSame('GS Astra Test', $schema['brand']['name']);
+        $this->assertSame('Aki Mobil', $schema['category']);
     }
 
     public function test_product_detail_renders_without_brand_link_if_brand_missing()
