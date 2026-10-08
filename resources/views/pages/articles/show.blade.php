@@ -40,7 +40,7 @@
         <div aria-hidden="true" class="pointer-events-none absolute inset-0 opacity-60"
              style="background: radial-gradient(60% 80% at 85% 0%, rgba(37,99,235,.22), transparent 70%);"></div>
 
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-8 sm:pt-8 sm:pb-10">
+        <div class="relative max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-8 sm:pt-8 sm:pb-10">
 
             {{-- Breadcrumb --}}
             <nav aria-label="Breadcrumb" class="mb-5 sm:mb-6">
@@ -53,7 +53,7 @@
                 </ol>
             </nav>
 
-            <div class="lg:max-w-[960px]">
+            <div class="lg:max-w-[1000px]">
                 {{-- Category + date --}}
                 <div class="flex flex-wrap items-center gap-3 mb-4 text-sm font-semibold">
                     @if($article->category_name)
@@ -73,7 +73,7 @@
                 </h1>
 
                 @if($article->excerpt)
-                    <p class="mt-4 sm:mt-5 text-slate-300 text-[18px] leading-[1.5] sm:text-[19px] sm:leading-[1.6] max-w-[760px]">
+                    <p class="mt-4 sm:mt-5 text-slate-300 text-[18px] leading-[1.5] sm:text-[19px] sm:leading-[1.6] max-w-[840px]">
                         {{ $article->excerpt }}
                     </p>
                 @endif
@@ -111,11 +111,11 @@
 
     {{-- ============ MAIN + SIDEBAR ============ --}}
     <div class="bg-slate-50/60">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+        <div class="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
             <div class="flex flex-col lg:flex-row gap-8 lg:gap-[32px]">
 
                 {{-- MAIN ARTICLE --}}
-                <div class="w-full lg:flex-1 min-w-0 lg:max-w-[880px]">
+                <div class="w-full lg:flex-1 min-w-0 lg:max-w-[920px]">
 
                     @if($article->image)
                         <figure class="mb-5 sm:mb-8 rounded-[16px] sm:rounded-2xl overflow-hidden border border-slate-200 bg-slate-100 shadow-[0_8px_30px_-12px_rgba(15,23,42,0.25)]">
@@ -129,7 +129,7 @@
 
                     {{-- Article body (existing content, presentation only) --}}
                     <section aria-label="Isi artikel" class="article-body">
-                        <div class="max-w-[820px]">
+                        <div class="max-w-[920px]">
                         @if($formattedContent['mode'] === 'html')
                             <div class="article-prose">
                                 {!! $formattedContent['html'] !!}
@@ -300,7 +300,7 @@
 
 {{-- ============ COMMERCIAL CTA ============ --}}
 <section class="bg-slate-50/60 pb-6 pt-4 sm:pb-10 sm:pt-6" aria-labelledby="article-cta-title">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
         <div class="relative overflow-hidden rounded-[20px] sm:rounded-3xl bg-slate-950 border border-slate-800 p-5 sm:px-10 sm:py-10">
             <div aria-hidden="true" class="hidden lg:block pointer-events-none absolute -right-10 -bottom-16 text-slate-800/60">
                 <i class="fa-solid fa-car-battery text-[14rem]"></i>
