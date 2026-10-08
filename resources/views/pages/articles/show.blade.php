@@ -40,7 +40,7 @@
         <div aria-hidden="true" class="pointer-events-none absolute inset-0 opacity-60"
              style="background: radial-gradient(60% 80% at 85% 0%, rgba(37,99,235,.22), transparent 70%);"></div>
 
-        <div class="relative max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-8 sm:pt-8 sm:pb-10">
+        <div class="relative max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 pt-6 pb-8 sm:pt-8 sm:pb-10">
 
             {{-- Breadcrumb --}}
             <nav aria-label="Breadcrumb" class="mb-5 sm:mb-6">
@@ -111,7 +111,7 @@
 
     {{-- ============ MAIN + SIDEBAR ============ --}}
     <div class="bg-slate-50/60">
-        <div class="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+        <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-8 sm:py-10">
             <div class="flex flex-col lg:flex-row gap-8 lg:gap-[32px]">
 
                 {{-- MAIN ARTICLE --}}
@@ -300,7 +300,7 @@
 
 {{-- ============ COMMERCIAL CTA ============ --}}
 <section class="bg-slate-50/60 pb-6 pt-4 sm:pb-10 sm:pt-6" aria-labelledby="article-cta-title">
-    <div class="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
         <div class="relative overflow-hidden rounded-[20px] sm:rounded-3xl bg-slate-950 border border-slate-800 p-5 sm:px-10 sm:py-10">
             <div aria-hidden="true" class="hidden lg:block pointer-events-none absolute -right-10 -bottom-16 text-slate-800/60">
                 <i class="fa-solid fa-car-battery text-[14rem]"></i>
