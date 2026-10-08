@@ -181,28 +181,15 @@
                         </div>
 
                         <!-- Action Buttons -->
+                        @if($product->cta_label && $product->cta_url)
                         <div class="flex flex-col sm:flex-row gap-3 mb-6">
-                            @php
-                                $cleanVoltageDetail = str_replace(['V', 'v', ' '], '', $product->voltage);
-                                $waTextDetail = "Halo Lynvo Energi,\n\nSaya tertarik dengan produk:\n\n{$product->name}\n\nSpesifikasi:\n{$cleanVoltageDetail}V\n{$product->capacity_ah} Ah\n";
-                                if ($product->cca) {
-                                    $waTextDetail .= "{$product->cca} CCA\n";
-                                }
-                                $waTextDetail .= "\nMohon informasi harga dan ketersediaan stok.\n\nTerima kasih.";
-                            @endphp
-                            <a href="{{ \App\Models\Setting::getWhatsappUrl($waTextDetail) }}"
+                            <a href="{{ $product->cta_url }}"
                                target="_blank"
                                class="inline-flex items-center justify-center gap-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-sm px-6 py-4 rounded-xl shadow-lg shadow-emerald-600/30 transition btn-wa-pulse">
-                                <i class="fa-brands fa-whatsapp text-xl"></i>
-                                <span>Pesan & Pasang via WhatsApp</span>
-                            </a>
-                            <a href="{{ \App\Models\Setting::getWhatsappUrl('Halo Lynvo Energi, kami ingin meminta Surat Penawaran Harga (RFQ) untuk produk ' . $product->name . ' untuk kebutuhan perusahaan kami.') }}"
-                               target="_blank"
-                               class="inline-flex items-center justify-center gap-2 bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm px-6 py-4 rounded-xl transition">
-                                <i class="fa-solid fa-file-invoice-dollar text-amber-400"></i>
-                                <span>Minta Penawaran B2B / PO</span>
+                                <span>{{ $product->cta_label }}</span>
                             </a>
                         </div>
+                        @endif
 
                         <!-- Description Text -->
                         <div class="prose prose-slate max-w-none text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-6">
@@ -350,13 +337,14 @@
     </section>
 
     <!-- STICKY BOTTOM CTA (MOBILE ONLY) -->
+    @if($product->cta_label && $product->cta_url)
     <div class="fixed bottom-[60px] left-0 right-0 p-4 bg-white/95 backdrop-blur-md border-t border-slate-200 shadow-[0_-10px_15px_-3px_rgba(0,0,0,0.05)] md:hidden z-40">
-        <a href="{{ \App\Models\Setting::getWhatsappUrl($waTextDetail) }}"
+        <a href="{{ $product->cta_url }}"
            target="_blank"
            class="flex items-center justify-center gap-2 w-full bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-sm py-3.5 px-4 rounded-xl shadow-lg shadow-emerald-600/30 transition btn-wa-pulse">
-            <i class="fa-brands fa-whatsapp text-xl"></i>
-            <span>Pesan & Pasang via WhatsApp</span>
+            <span>{{ $product->cta_label }}</span>
         </a>
     </div>
+    @endif
 
 @endsection

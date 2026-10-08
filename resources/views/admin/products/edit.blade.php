@@ -75,6 +75,15 @@
                                 <input type="number" name="price" class="form-control" value="{{ old('price', $product->price) }}" placeholder="Contoh: 750000">
                             </div>
 
+                            <div class="form-group">
+                                <label class="form-control-label">CTA Label (Opsional)</label>
+                                <input type="text" name="cta_label" class="form-control" value="{{ old('cta_label', $product->cta_label) }}" placeholder="Contoh: Beli di Tokopedia">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-control-label">CTA URL (Opsional)</label>
+                                <input type="url" name="cta_url" class="form-control" value="{{ old('cta_url', $product->cta_url) }}" placeholder="Contoh: https://tokopedia.com/...">
+                            </div>
+
                             <div class="form-group mt-4">
                                 <label class="form-control-label">Sektor Aplikasi (Opsional)</label>
                                 <div class="row">

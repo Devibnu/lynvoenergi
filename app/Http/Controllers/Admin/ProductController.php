@@ -37,6 +37,8 @@ class ProductController extends Controller
             'compatibility' => 'nullable|string',
             'price' => 'nullable|numeric',
             'image' => 'nullable|image|max:2048',
+            'cta_label' => 'nullable|string|max:255',
+            'cta_url' => 'nullable|url|max:2048',
             'applications' => 'nullable|array',
             'applications.*' => 'exists:applications,id',
         ]);
@@ -90,6 +92,8 @@ class ProductController extends Controller
             'compatibility' => 'nullable|string',
             'price' => 'nullable|numeric',
             'image' => 'nullable|image|max:2048',
+            'cta_label' => 'nullable|string|max:255',
+            'cta_url' => 'nullable|url|max:2048',
             'applications' => 'nullable|array',
             'applications.*' => 'exists:applications,id',
         ]);
