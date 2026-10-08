@@ -1,3 +1,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ---------- Article page (pages/articles/show) ---------- */
+@layer components {
+    .share-btn {
+        @apply inline-flex items-center justify-center w-11 h-11 rounded-xl border border-slate-700 bg-slate-900/60 text-slate-200 hover:text-white transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950;
+    }
+
+    /* Fallback styling for articles authored as HTML (no typography plugin installed) */
+    .article-prose {
+        @apply text-[17px] sm:text-lg leading-[1.8] text-slate-700 break-words;
+    }
+    .article-prose > * + * { @apply mt-6; }
+    .article-prose h2 { @apply mt-12 text-2xl sm:text-[1.7rem] font-extrabold text-slate-900 tracking-tight leading-snug pl-4 border-l-4 border-emerald-500; }
+    .article-prose h3 { @apply mt-10 text-xl font-bold text-slate-900 leading-snug; }
+    .article-prose h4 { @apply mt-8 text-lg font-bold text-slate-900; }
+    .article-prose a { @apply text-blue-600 font-semibold underline underline-offset-2 hover:text-blue-700; }
+    .article-prose strong { @apply font-bold text-slate-900; }
+    .article-prose ul { @apply list-disc pl-6 space-y-2; }
+    .article-prose ol { @apply list-decimal pl-6 space-y-2; }
+    .article-prose li::marker { @apply text-emerald-600; }
+    .article-prose blockquote { @apply border-l-4 border-blue-500 bg-blue-50 rounded-r-xl px-5 py-4 text-slate-800; }
+    .article-prose img { @apply rounded-xl border border-slate-200 max-w-full h-auto; }
+    .article-prose table { @apply w-full text-left text-base border border-slate-200 rounded-xl overflow-hidden block overflow-x-auto; }
+    .article-prose th { @apply bg-slate-100 font-bold text-slate-900 px-4 py-3; }
+    .article-prose td { @apply border-t border-slate-200 px-4 py-3; }
+}

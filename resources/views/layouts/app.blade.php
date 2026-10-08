@@ -239,20 +239,20 @@
                 </a>
 
                 <!-- Desktop Navigation Links -->
-                <nav class="hidden lg:flex items-center gap-4 xl:gap-6">
-                    <a href="{{ route('home') }}" class="text-base font-medium whitespace-nowrap {{ request()->routeIs('home') ? 'text-blue-600' : 'text-slate-700' }} hover:text-blue-600 transition">
+                <nav class="hidden lg:flex items-center gap-2.5 xl:gap-4">
+                    <a href="{{ route('home') }}" class="text-[14px] xl:text-[15px] font-semibold whitespace-nowrap {{ request()->routeIs('home') ? 'text-blue-600' : 'text-slate-700' }} hover:text-blue-600 transition">
                         Beranda
                     </a>
 
-                    <a href="{{ route('products.index') }}" class="text-base font-medium whitespace-nowrap {{ request()->routeIs('products.*') ? 'text-blue-600' : 'text-slate-700' }} hover:text-blue-600 transition">
+                    <a href="{{ route('products.index') }}" class="text-[14px] xl:text-[15px] font-semibold whitespace-nowrap {{ request()->routeIs('products.*') ? 'text-blue-600' : 'text-slate-700' }} hover:text-blue-600 transition">
                         Katalog Produk
                     </a>
 
-                    <a href="{{ route('applications.index') }}" class="text-base font-medium whitespace-nowrap {{ request()->routeIs('applications.*') ? 'text-blue-600' : 'text-slate-700' }} hover:text-blue-600 transition">
+                    <a href="{{ route('applications.index') }}" class="text-[14px] xl:text-[15px] font-semibold whitespace-nowrap {{ request()->routeIs('applications.*') ? 'text-blue-600' : 'text-slate-700' }} hover:text-blue-600 transition">
                         Sektor B2B
                     </a>
 
-                    <a href="{{ route('projects.index') }}" class="text-base font-medium whitespace-nowrap {{ request()->routeIs('projects.*') ? 'text-blue-600' : 'text-slate-700' }} hover:text-blue-600 transition">
+                    <a href="{{ route('projects.index') }}" class="text-[14px] xl:text-[15px] font-semibold whitespace-nowrap {{ request()->routeIs('projects.*') ? 'text-blue-600' : 'text-slate-700' }} hover:text-blue-600 transition">
                         Proyek
                     </a>
 
@@ -287,27 +287,27 @@
                         </div>
                     </div>
 
-                    <a href="{{ route('articles.index') }}" class="text-base font-medium whitespace-nowrap {{ request()->routeIs('articles.*') ? 'text-blue-600' : 'text-slate-700' }} hover:text-blue-600 transition">
+                    <a href="{{ route('articles.index') }}" class="text-[14px] xl:text-[15px] font-semibold whitespace-nowrap {{ request()->routeIs('articles.*') ? 'text-blue-600' : 'text-slate-700' }} hover:text-blue-600 transition">
                         Artikel & Edukasi
                     </a>
 
-                    <a href="{{ route('about') }}" class="text-base font-medium whitespace-nowrap {{ request()->routeIs('about') ? 'text-blue-600' : 'text-slate-700' }} hover:text-blue-600 transition">
+                    <a href="{{ route('about') }}" class="text-[14px] xl:text-[15px] font-semibold whitespace-nowrap {{ request()->routeIs('about') ? 'text-blue-600' : 'text-slate-700' }} hover:text-blue-600 transition">
                         Tentang Kami
                     </a>
 
-                    <a href="{{ route('contact') }}" class="text-base font-medium whitespace-nowrap {{ request()->routeIs('contact') ? 'text-blue-600' : 'text-slate-700' }} hover:text-blue-600 transition">
+                    <a href="{{ route('contact') }}" class="text-[14px] xl:text-[15px] font-semibold whitespace-nowrap {{ request()->routeIs('contact') ? 'text-blue-600' : 'text-slate-700' }} hover:text-blue-600 transition">
                         Kontak
                     </a>
                 </nav>
 
                 <!-- Header CTA Button (Desktop) -->
-                <div class="hidden lg:flex items-center gap-2.5 flex-shrink-0">
-                    <a href="{{ route('quotation') }}" class="inline-flex items-center justify-center gap-1.5 px-5 py-2.5 border border-blue-600 text-blue-600 hover:bg-blue-50 text-base font-semibold rounded-xl transition whitespace-nowrap">
+                <div class="hidden lg:flex items-center gap-2 flex-shrink-0">
+                    <a href="{{ route('quotation') }}" class="inline-flex items-center justify-center gap-1.5 px-3 xl:px-4 py-2 border border-blue-600 text-blue-600 hover:bg-blue-50 text-[14px] font-semibold rounded-xl transition whitespace-nowrap">
                         <i class="fa-solid fa-file-invoice-dollar"></i> <span class="whitespace-nowrap">Minta RFQ B2B</span>
                     </a>
                     <a href="{{ \App\Models\Setting::getWhatsappUrl('Halo Lynvo Energi, saya butuh bantuan pesan antar aki sekarang.') }}"
                        target="_blank"
-                       class="inline-flex items-center justify-center gap-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-base font-semibold px-5 py-2.5 rounded-xl shadow-lg shadow-emerald-600/20 transition transform hover:-translate-y-0.5 btn-wa-pulse whitespace-nowrap">
+                       class="inline-flex items-center justify-center gap-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-[14px] font-semibold px-3 xl:px-4 py-2 rounded-xl shadow-lg shadow-emerald-600/20 transition transform hover:-translate-y-0.5 btn-wa-pulse whitespace-nowrap">
                         <i class="fa-brands fa-whatsapp"></i>
                         <span class="whitespace-nowrap">Panggil Teknisi</span>
                     </a>
@@ -452,81 +452,97 @@
     </main>
 
     <!-- Global Trust & Guarantee Banner -->
-    <section class="bg-slate-900 text-white py-12 border-t border-slate-800">
-        <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-                <div class="p-4 rounded-xl bg-slate-800/60 border border-slate-700/50">
-                    <i class="fa-solid fa-shield-halved text-3xl text-emerald-400 mb-3 block"></i>
-                    <h4 class="text-base font-semibold text-white">100% Produk Original</h4>
-                    <p class="text-sm text-slate-300 mt-1">Aki baru bergaransi resmi langsung distributor pabrikan.</p>
+    <section class="bg-slate-900 text-white py-6 sm:py-10 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-5">
+                <div class="p-2 sm:p-6 rounded-xl sm:rounded-2xl bg-slate-800/50 border border-slate-700/50 flex flex-row sm:flex-col items-center sm:items-start text-left gap-2 sm:gap-0 h-[72px] sm:h-auto min-h-[72px] sm:min-h-0">
+                    <div class="shrink-0 flex items-center justify-center sm:w-12 sm:h-12 sm:rounded-xl sm:bg-slate-950 sm:shadow-inner sm:border sm:border-slate-800 sm:mb-4 pl-1 sm:pl-0">
+                        <i class="fa-solid fa-shield-halved text-[18px] sm:text-lg text-emerald-400"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-[12px] sm:text-base font-bold text-white tracking-tight leading-tight">100% Produk Original</h4>
+                        <p class="hidden sm:block text-sm text-slate-400 mt-2 leading-relaxed">Aki baru bergaransi resmi langsung distributor pabrikan.</p>
+                    </div>
                 </div>
-                <div class="p-4 rounded-xl bg-slate-800/60 border border-slate-700/50">
-                    <i class="fa-solid fa-stopwatch-20 text-3xl text-blue-400 mb-3 block"></i>
-                    <h4 class="text-base font-semibold text-white">Respon Cepat 30-60 Mnt</h4>
-                    <p class="text-sm text-slate-300 mt-1">Teknisi siaga langsung meluncur ke titik lokasi Anda.</p>
+                <div class="p-2 sm:p-6 rounded-xl sm:rounded-2xl bg-slate-800/50 border border-slate-700/50 flex flex-row sm:flex-col items-center sm:items-start text-left gap-2 sm:gap-0 h-[72px] sm:h-auto min-h-[72px] sm:min-h-0">
+                    <div class="shrink-0 flex items-center justify-center sm:w-12 sm:h-12 sm:rounded-xl sm:bg-slate-950 sm:shadow-inner sm:border sm:border-slate-800 sm:mb-4 pl-1 sm:pl-0">
+                        <i class="fa-solid fa-stopwatch text-[18px] sm:text-lg text-blue-400"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-[12px] sm:text-base font-bold text-white tracking-tight leading-tight">Respon Cepat 30-60 Mnt</h4>
+                        <p class="hidden sm:block text-sm text-slate-400 mt-2 leading-relaxed">Teknisi siaga langsung meluncur ke titik lokasi Anda.</p>
+                    </div>
                 </div>
-                <div class="p-4 rounded-xl bg-slate-800/60 border border-slate-700/50">
-                    <i class="fa-solid fa-wrench text-3xl text-amber-400 mb-3 block"></i>
-                    <h4 class="text-base font-semibold text-white">Gratis Pasang &amp; Tes Dinamo</h4>
-                    <p class="text-sm text-slate-300 mt-1">Pengecekan alternator &amp; kebocoran arus gratis di tempat.</p>
+                <div class="p-2 sm:p-6 rounded-xl sm:rounded-2xl bg-slate-800/50 border border-slate-700/50 flex flex-row sm:flex-col items-center sm:items-start text-left gap-2 sm:gap-0 h-[72px] sm:h-auto min-h-[72px] sm:min-h-0">
+                    <div class="shrink-0 flex items-center justify-center sm:w-12 sm:h-12 sm:rounded-xl sm:bg-slate-950 sm:shadow-inner sm:border sm:border-slate-800 sm:mb-4 pl-1 sm:pl-0">
+                        <i class="fa-solid fa-wrench text-[18px] sm:text-lg text-amber-400"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-[12px] sm:text-base font-bold text-white tracking-tight leading-tight">Gratis Pasang &amp; Tes</h4>
+                        <p class="hidden sm:block text-sm text-slate-400 mt-2 leading-relaxed">Pengecekan alternator &amp; kebocoran arus gratis di tempat.</p>
+                    </div>
                 </div>
-                <div class="p-4 rounded-xl bg-slate-800/60 border border-slate-700/50">
-                    <i class="fa-solid fa-recycle text-3xl text-teal-400 mb-3 block"></i>
-                    <h4 class="text-base font-semibold text-white">Terima Tukar Tambah</h4>
-                    <p class="text-sm text-slate-300 mt-1">Aki lama Anda dihargai tinggi untuk potongan harga langsung.</p>
+                <div class="p-2 sm:p-6 rounded-xl sm:rounded-2xl bg-slate-800/50 border border-slate-700/50 flex flex-row sm:flex-col items-center sm:items-start text-left gap-2 sm:gap-0 h-[72px] sm:h-auto min-h-[72px] sm:min-h-0">
+                    <div class="shrink-0 flex items-center justify-center sm:w-12 sm:h-12 sm:rounded-xl sm:bg-slate-950 sm:shadow-inner sm:border sm:border-slate-800 sm:mb-4 pl-1 sm:pl-0">
+                        <i class="fa-solid fa-recycle text-[18px] sm:text-lg text-teal-400"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-[12px] sm:text-base font-bold text-white tracking-tight leading-tight">Terima Tukar Tambah</h4>
+                        <p class="hidden sm:block text-sm text-slate-400 mt-2 leading-relaxed">Aki lama Anda dihargai tinggi untuk potongan harga langsung.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Global Footer Dark Navy (5 Kolom Sesuai Mockup Referensi) -->
-    <footer class="bg-slate-950 text-slate-300 pt-16 pb-12 border-t border-slate-800 text-sm">
+    <footer class="bg-slate-950 text-slate-300 pt-8 sm:pt-10 pb-[80px] md:pb-12 border-t border-slate-800 text-sm">
         <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-6 pb-12 border-b border-slate-800">
+            <div class="flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-5 gap-6 sm:gap-8 lg:gap-6 pb-8 sm:pb-12 border-b border-slate-800">
                 <!-- Kolom 1: Profil Lynvo Energi & Media Sosial -->
                 <div>
-                    <div class="flex items-center gap-3 mb-4">
+                    <div class="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
                         @php
                             $footerLogo = \App\Models\Setting::getValue('site_logo');
                         @endphp
                         @if($footerLogo)
-                            <img src="{{ asset('storage/' . $footerLogo) }}" alt="Lynvo Energi" class="h-10 w-auto">
+                            <img src="{{ asset('storage/' . $footerLogo) }}" alt="Lynvo Energi" class="h-8 sm:h-10 w-auto max-w-[180px] sm:max-w-none">
                         @else
-                            <div class="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white font-bold text-xl shadow-md shadow-blue-500/30">
+                            <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-blue-600 flex items-center justify-center text-white font-bold text-sm sm:text-xl shadow-md shadow-blue-500/30">
                                 <i class="fa-solid fa-car-battery"></i>
                             </div>
-                            <span class="text-xl font-black text-white tracking-tight">LYNVO <span class="text-blue-500">ENERGI</span></span>
+                            <span class="text-[15px] sm:text-xl font-black text-white tracking-tight">LYNVO <span class="text-blue-500">ENERGI</span></span>
                         @endif
                     </div>
-                    <p class="text-slate-300 text-sm leading-relaxed mb-5">
-                        <strong>{{ \App\Models\Setting::getValue('company_name') }}</strong> — Distributor resmi &amp; pusat pengadaan baterai industri, aki armada truk, alat berat, marine, genset, dan layanan darurat ganti aki 24 jam se-Banten.
+                    <p class="text-slate-300 text-[12px] sm:text-sm leading-relaxed mb-4 sm:mb-5 max-w-full">
+                        <strong>{{ \App\Models\Setting::getValue('company_name') ?: 'Lynvo Energi' }}</strong> — Distributor resmi &amp; pusat pengadaan baterai industri, aki armada truk, alat berat, marine, genset, dan layanan darurat ganti aki 24 jam se-Banten.
                     </p>
-                    <div class="flex items-center gap-2.5">
-                        <a href="{{ \App\Models\Setting::getWhatsappUrl() }}" target="_blank" class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 hover:border-emerald-500 hover:bg-emerald-600 flex items-center justify-center text-slate-300 hover:text-white transition" title="WhatsApp">
+                    <div class="flex items-center gap-2">
+                        <a href="{{ \App\Models\Setting::getWhatsappUrl() }}" target="_blank" class="w-9 h-9 sm:w-8 sm:h-8 rounded-lg bg-slate-900 border border-slate-800 hover:border-emerald-500 hover:bg-emerald-600 flex items-center justify-center text-slate-300 hover:text-white transition" title="WhatsApp">
                             <i class="fa-brands fa-whatsapp text-sm"></i>
                         </a>
-                        <a href="{{ \App\Models\Setting::getPhoneUrl() }}" class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 hover:border-blue-500 hover:bg-blue-600 flex items-center justify-center text-slate-300 hover:text-white transition" title="Telepon">
+                        <a href="{{ \App\Models\Setting::getPhoneUrl() }}" class="w-9 h-9 sm:w-8 sm:h-8 rounded-lg bg-slate-900 border border-slate-800 hover:border-blue-500 hover:bg-blue-600 flex items-center justify-center text-slate-300 hover:text-white transition" title="Telepon">
                             <i class="fa-solid fa-phone text-xs"></i>
                         </a>
-                        <a href="mailto:{{ \App\Models\Setting::getValue('site_email') }}" class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 hover:border-amber-500 hover:bg-amber-600 flex items-center justify-center text-slate-300 hover:text-white transition" title="Email">
+                        <a href="mailto:{{ \App\Models\Setting::getValue('site_email') }}" class="w-9 h-9 sm:w-8 sm:h-8 rounded-lg bg-slate-900 border border-slate-800 hover:border-amber-500 hover:bg-amber-600 flex items-center justify-center text-slate-300 hover:text-white transition" title="Email">
                             <i class="fa-solid fa-envelope text-xs"></i>
                         </a>
-                        <a href="{{ \App\Models\Setting::getValue('site_linkedin', 'https://linkedin.com') }}" target="_blank" class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 hover:border-sky-500 hover:bg-sky-600 flex items-center justify-center text-slate-300 hover:text-white transition" title="LinkedIn">
+                        <a href="{{ \App\Models\Setting::getValue('site_linkedin', 'https://linkedin.com') }}" target="_blank" class="w-9 h-9 sm:w-8 sm:h-8 rounded-lg bg-slate-900 border border-slate-800 hover:border-sky-500 hover:bg-sky-600 flex items-center justify-center text-slate-300 hover:text-white transition" title="LinkedIn">
                             <i class="fa-brands fa-linkedin-in text-xs"></i>
                         </a>
                     </div>
                 </div>
 
                 <!-- Kolom 2: Navigasi Menu Cepat -->
-                <div x-data="{ open: false }" class="border-b border-slate-800 lg:border-none pb-4 lg:pb-0">
-                    <h5 @click="open = !open" class="text-white font-bold text-base mb-4 flex items-center justify-between cursor-pointer lg:cursor-default w-full">
+                <div x-data="{ open: false }" class="border-b border-slate-800 lg:border-none pb-3 sm:pb-4 lg:pb-0">
+                    <h5 @click="open = !open" class="text-white font-bold text-[14px] sm:text-base mb-3 sm:mb-4 flex items-center justify-between cursor-pointer lg:cursor-default w-full">
                         <span class="flex items-center gap-2">
                             <i class="fa-solid fa-compass text-blue-500 text-xs"></i>
                             Menu Navigasi
                         </span>
                         <i class="fa-solid fa-chevron-down text-slate-400 text-xs transition-transform duration-200 lg:hidden" :class="open ? 'rotate-180' : ''"></i>
                     </h5>
-                    <ul x-show="open" class="space-y-2 text-sm text-slate-300 lg:!block" x-cloak>
+                    <ul :class="open ? 'block' : 'hidden lg:block'" class="space-y-2 text-[12px] sm:text-sm text-slate-300">
                         <li><a href="{{ route('home') }}" class="hover:text-white transition-colors flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-[10px] text-blue-500"></i> Beranda Utama</a></li>
                         <li><a href="{{ route('products.index') }}" class="hover:text-white transition-colors flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-[10px] text-blue-500"></i> Katalog Aki &amp; Baterai</a></li>
                         <li><a href="{{ route('applications.index') }}" class="hover:text-white transition-colors flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-[10px] text-blue-500"></i> Sektor B2B &amp; Industri</a></li>
@@ -539,15 +555,15 @@
                 </div>
 
                 <!-- Kolom 3: Kategori Produk Aki -->
-                <div x-data="{ open: false }" class="border-b border-slate-800 lg:border-none pb-4 lg:pb-0">
-                    <h5 @click="open = !open" class="text-white font-bold text-base mb-4 flex items-center justify-between cursor-pointer lg:cursor-default w-full">
+                <div x-data="{ open: false }" class="border-b border-slate-800 lg:border-none pb-3 sm:pb-4 lg:pb-0">
+                    <h5 @click="open = !open" class="text-white font-bold text-[14px] sm:text-base mb-3 sm:mb-4 flex items-center justify-between cursor-pointer lg:cursor-default w-full">
                         <span class="flex items-center gap-2">
                             <i class="fa-solid fa-boxes-stacked text-blue-500 text-xs"></i>
                             Kategori Produk
                         </span>
                         <i class="fa-solid fa-chevron-down text-slate-400 text-xs transition-transform duration-200 lg:hidden" :class="open ? 'rotate-180' : ''"></i>
                     </h5>
-                    <ul x-show="open" class="space-y-2 text-sm text-slate-300 lg:!block" x-cloak>
+                    <ul :class="open ? 'block' : 'hidden lg:block'" class="space-y-2 text-[12px] sm:text-sm text-slate-300">
                         <li><a href="{{ route('products.category', 'aki-mobil') }}" class="hover:text-white transition-colors">Aki Mobil (MF / Basah)</a></li>
                         <li><a href="{{ route('products.category', 'aki-truk-bus') }}" class="hover:text-white transition-colors">Aki Truk &amp; Bus Heavy Duty</a></li>
                         <li><a href="{{ route('products.category', 'aki-alat-berat') }}" class="hover:text-white transition-colors">Aki Excavator &amp; Alat Berat</a></li>
@@ -559,15 +575,15 @@
                 </div>
 
                 <!-- Kolom 4: Kontak & Alamat Gudang/Kantor Banten -->
-                <div x-data="{ open: false }" class="border-b border-slate-800 lg:border-none pb-4 lg:pb-0">
-                    <h5 @click="open = !open" class="text-white font-bold text-base mb-4 flex items-center justify-between cursor-pointer lg:cursor-default w-full">
+                <div x-data="{ open: false }" class="border-b border-slate-800 lg:border-none pb-3 sm:pb-4 lg:pb-0">
+                    <h5 @click="open = !open" class="text-white font-bold text-[14px] sm:text-base mb-3 sm:mb-4 flex items-center justify-between cursor-pointer lg:cursor-default w-full">
                         <span class="flex items-center gap-2">
                             <i class="fa-solid fa-headset text-blue-500 text-xs"></i>
                             Kontak &amp; Gudang
                         </span>
                         <i class="fa-solid fa-chevron-down text-slate-400 text-xs transition-transform duration-200 lg:hidden" :class="open ? 'rotate-180' : ''"></i>
                     </h5>
-                    <div x-show="open" class="space-y-3 text-sm text-slate-300 lg:!block" x-cloak>
+                    <div :class="open ? 'block' : 'hidden lg:block'" class="space-y-3 text-[12px] sm:text-sm text-slate-300">
                         <div class="flex items-start gap-2">
                             <i class="fa-solid fa-location-dot text-rose-500 mt-0.5 text-xs"></i>
                             <div>
@@ -593,15 +609,15 @@
                 </div>
 
                 <!-- Kolom 5: Grafis Peta Jangkauan Pengiriman Indonesia -->
-                <div x-data="{ open: false }" class="border-b border-slate-800 lg:border-none pb-4 lg:pb-0">
-                    <h5 @click="open = !open" class="text-white font-bold text-base mb-4 flex items-center justify-between cursor-pointer lg:cursor-default w-full">
+                <div x-data="{ open: false }" class="lg:border-none pb-2 sm:pb-0">
+                    <h5 @click="open = !open" class="text-white font-bold text-[14px] sm:text-base mb-3 sm:mb-4 flex items-center justify-between cursor-pointer lg:cursor-default w-full">
                         <span class="flex items-center gap-2">
                             <i class="fa-solid fa-earth-asia text-emerald-400 text-xs"></i>
                             Jangkauan Distribusi
                         </span>
                         <i class="fa-solid fa-chevron-down text-slate-400 text-xs transition-transform duration-200 lg:hidden" :class="open ? 'rotate-180' : ''"></i>
                     </h5>
-                    <div x-show="open" class="p-3.5 rounded-xl bg-slate-900 border border-slate-800 lg:!block" x-cloak>
+                    <div :class="open ? 'block' : 'hidden lg:block'" class="p-3.5 rounded-xl bg-slate-900 border border-slate-800">
                         <!-- Stylized Minimal Indonesia Map Graphic SVG -->
                         <div class="relative w-full h-24 mb-2 flex items-center justify-center bg-slate-950/80 rounded-lg p-2 overflow-hidden border border-slate-800/80">
                             <svg viewBox="0 0 400 160" class="w-full h-full text-slate-700 fill-current opacity-80" xmlns="http://www.w3.org/2000/svg">
@@ -625,7 +641,7 @@
                                 34 Provinsi
                             </span>
                         </div>
-                        <div class="text-sm text-slate-300 leading-snug">
+                        <div class="text-[12px] sm:text-sm text-slate-300 leading-snug">
                             <span class="text-white font-semibold block">Suplai Ekspedisi Nasional:</span>
                             Jawa, Sumatera, Kalimantan, Sulawesi, Bali, NTB, NTT &amp; Papua.
                         </div>
@@ -633,11 +649,13 @@
                 </div>
             </div>
 
-            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-400">
-                <p>&copy; {{ date('Y') }} {{ \App\Models\Setting::getValue('company_name') }}. All rights reserved. {{ \App\Models\Setting::getValue('company_description') }}.</p>
-                <div class="flex items-center gap-5">
+            <div class="pt-6 sm:pt-8 flex flex-col sm:flex-row items-center sm:items-start justify-between gap-4 sm:gap-4 text-[11px] sm:text-sm text-slate-400 text-center sm:text-left">
+                <p>&copy; {{ date('Y') }} {{ \App\Models\Setting::getValue('company_name') }}. All rights reserved. <span class="hidden sm:inline">{{ \App\Models\Setting::getValue('company_description') }}.</span></p>
+                <div class="flex flex-wrap justify-center items-center gap-3 sm:gap-5">
                     <a href="{{ route('services.battery_delivery') }}" class="hover:text-slate-200 transition-colors">Layanan Antar Pasang</a>
+                    <span class="text-slate-700 hidden sm:inline">&bull;</span>
                     <a href="{{ route('quotation') }}" class="hover:text-slate-200 transition-colors">Permintaan RFQ B2B</a>
+                    <span class="text-slate-700 hidden sm:inline">&bull;</span>
                     <a href="{{ route('contact') }}" class="hover:text-slate-200 transition-colors">Hubungi Kami</a>
                 </div>
             </div>

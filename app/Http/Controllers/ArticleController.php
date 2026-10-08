@@ -37,9 +37,20 @@ class ArticleController extends Controller
             ->take(3)
             ->get();
 
+        // Existing category names only (no fictional categories).
+        $categories = Article::active()
+            ->whereNotNull('category_name')
+            ->where('category_name', '!=', '')
+            ->selectRaw('category_name, COUNT(*) as total')
+            ->groupBy('category_name')
+            ->orderByDesc('total')
+            ->get();
+
         return view('pages.articles.show', [
             'article' => $article,
             'relatedArticles' => $relatedArticles,
+            'categories' => $categories,
+            'formattedContent' => \App\Support\ArticleContentFormatter::format($article->content),
             'metaTitle' => "{$article->title} | Lynvo Energi",
             'metaDescription' => $article->excerpt ?: \Illuminate\Support\Str::limit(strip_tags($article->content), 150),
         ]);
