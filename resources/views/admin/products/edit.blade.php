@@ -51,6 +51,18 @@
                                 <input type="text" name="name" class="form-control" value="{{ old('name', $product->name) }}" required placeholder="Contoh: Aki Mobil NS40Z">
                             </div>
                             <div class="form-group">
+                                <label class="form-control-label">Tipe Baterai</label>
+                                <select name="battery_type" class="form-control">
+                                    <option value="">-- Pilih Tipe Baterai --</option>
+                                    <option value="MF Kering" {{ old('battery_type', $product->battery_type) == 'MF Kering' ? 'selected' : '' }}>MF Kering</option>
+                                    <option value="Basah" {{ old('battery_type', $product->battery_type) == 'Basah' ? 'selected' : '' }}>Basah</option>
+                                    <option value="VRLA" {{ old('battery_type', $product->battery_type) == 'VRLA' ? 'selected' : '' }}>VRLA</option>
+                                    <option value="AGM" {{ old('battery_type', $product->battery_type) == 'AGM' ? 'selected' : '' }}>AGM</option>
+                                    <option value="EFB" {{ old('battery_type', $product->battery_type) == 'EFB' ? 'selected' : '' }}>EFB</option>
+                                    <option value="Gel" {{ old('battery_type', $product->battery_type) == 'Gel' ? 'selected' : '' }}>Gel</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
                                 <label class="form-control-label">Kompatibilitas</label>
                                 <textarea name="compatibility" class="form-control" rows="3" placeholder="Contoh: Cocok untuk Avanza, Xenia...">{{ old('compatibility', $product->compatibility) }}</textarea>
                             </div>

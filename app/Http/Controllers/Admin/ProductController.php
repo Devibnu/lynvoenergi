@@ -13,7 +13,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = \App\Models\Product::with('category')->latest()->paginate(10);
+        $products = \App\Models\Product::with(['category', 'brand'])->latest()->paginate(10);
         return view('admin.products.index', compact('products'));
     }
 
@@ -41,6 +41,7 @@ class ProductController extends Controller
             'cta_url' => 'nullable|url|max:2048',
             'applications' => 'nullable|array',
             'applications.*' => 'exists:applications,id',
+            'battery_type' => 'nullable|string|in:MF Kering,Basah,VRLA,AGM,EFB,Gel',
         ]);
 
         $brand = Brand::findOrFail($validated['brand_id']);
@@ -96,6 +97,7 @@ class ProductController extends Controller
             'cta_url' => 'nullable|url|max:2048',
             'applications' => 'nullable|array',
             'applications.*' => 'exists:applications,id',
+            'battery_type' => 'nullable|string|in:MF Kering,Basah,VRLA,AGM,EFB,Gel',
         ]);
 
         $brand = Brand::findOrFail($validated['brand_id']);

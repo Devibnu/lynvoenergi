@@ -108,7 +108,7 @@
                             </div>
                             <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
                                 <span class="text-slate-400 block font-medium">Tipe Baterai:</span>
-                                <strong class="text-slate-900 font-bold">{{ $product->battery_type ?: 'Maintenance Free' }}</strong>
+                                <strong class="text-slate-900 font-bold">{{ $product->battery_type ?: '-' }}</strong>
                             </div>
                             <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
                                 <span class="text-slate-400 block font-medium">Kutub / Terminal:</span>

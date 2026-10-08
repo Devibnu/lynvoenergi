@@ -40,6 +40,18 @@
                                 <input type="text" name="name" class="form-control" required placeholder="Contoh: Aki Mobil NS40Z">
                             </div>
                             <div class="form-group">
+                                <label class="form-control-label">Tipe Baterai</label>
+                                <select name="battery_type" class="form-control">
+                                    <option value="">-- Pilih Tipe Baterai --</option>
+                                    <option value="MF Kering">MF Kering</option>
+                                    <option value="Basah">Basah</option>
+                                    <option value="VRLA">VRLA</option>
+                                    <option value="AGM">AGM</option>
+                                    <option value="EFB">EFB</option>
+                                    <option value="Gel">Gel</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
                                 <label class="form-control-label">Kompatibilitas</label>
                                 <textarea name="compatibility" class="form-control" rows="3" placeholder="Contoh: Cocok untuk Avanza, Xenia..."></textarea>
                             </div>
